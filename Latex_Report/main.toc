@@ -1,0 +1,54 @@
+\contentsline {chapter}{Abstract}{i}{Doc-Start}%
+\contentsline {chapter}{List of Figures}{iv}{chapter*.1}%
+\contentsline {chapter}{List of Tables}{v}{chapter*.1}%
+\contentsline {chapter}{Declaration of Originality}{vi}{chapter*.2}%
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Problem Analysis}{2}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Background}{2}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Problem Statement}{2}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Project Objectives}{2}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Requirements}{2}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Functional Requirements}{2}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Performance Requirements}{2}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Physical Requirements}{2}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.4}Non-Functional Requirements}{2}{subsection.2.4.4}%
+\contentsline {section}{\numberline {2.5}Risk Analysis}{2}{section.2.5}%
+\contentsline {chapter}{\numberline {3}Literature Study}{3}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Case Studies}{3}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Case Study 1 – [Topic]}{3}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Case Study 2 – [Topic]}{3}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Existing Solutions}{3}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Possible Solutions}{3}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Display Data}{3}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Concept Design}{4}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Functional Flow Diagrams}{4}{section.4.1}%
+\contentsline {section}{\numberline {4.2}System Architecture}{4}{section.4.2}%
+\contentsline {chapter}{\numberline {5}Preliminary Design}{5}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Preliminary Hardware Decisions}{5}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}[Subsystem 1 – e.g. Imaging Module]}{5}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}[Subsystem 2 – e.g. Processing Unit]}{5}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}[Subsystem 3 – e.g. Power Supply]}{5}{subsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.1.4}[Subsystem 4 – e.g. Mechanical Housing]}{5}{subsection.5.1.4}%
+\contentsline {section}{\numberline {5.2}Preliminary Software Decisions}{5}{section.5.2}%
+\contentsline {chapter}{\numberline {6}Detailed Design}{6}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Detailed Hardware Decisions}{6}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}[Component A Specifications]}{6}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}[Component B Specifications]}{6}{subsection.6.1.2}%
+\contentsline {section}{\numberline {6.2}Detailed Software Decisions}{6}{section.6.2}%
+\contentsline {section}{\numberline {6.3}CAD Designs}{6}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}[Assembly A – e.g. Probe Enclosure]}{6}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}[Assembly B – e.g. Cable Reel]}{7}{subsection.6.3.2}%
+\contentsline {section}{\numberline {6.4}Electrical Design}{7}{section.6.4}%
+\contentsline {chapter}{\numberline {7}Implementation}{8}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Electrical Implementation}{8}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Mechanical Implementation}{8}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Software Implementation}{8}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Final System}{8}{section.7.4}%
+\contentsline {chapter}{\numberline {8}Testing}{9}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Test REQ\_04\_PERF – [Requirement Short Name]}{9}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Test REQ\_05\_PERF – [Requirement Short Name]}{9}{section.8.2}%
+\contentsline {chapter}{\numberline {9}Conclusion}{11}{chapter.9}%
+\contentsline {chapter}{\numberline {A}Generative AI Usage}{12}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Risk Register}{13}{appendix.B}%
+\contentsline {chapter}{\numberline {C}Additional Technical Data}{15}{appendix.C}%
+\contentsfinish 

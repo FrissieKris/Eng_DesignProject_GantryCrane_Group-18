@@ -1,0 +1,88 @@
+% ============================================================
+%  CHAPTER 7 – IMPLEMENTATION
+% ============================================================
+\chapter{Implementation}
+\label{ch:implementation}
+
+[Describe how the design was physically realised. This chapter
+bridges the design (Chapters~\ref{ch:preliminary}–\ref{ch:detailed})
+and the testing (Chapter~\ref{ch:testing}).]
+
+\section{Electrical Implementation}
+\label{sec:elec-impl}
+
+[Describe the PCB or wiring assembly process, any soldering or
+crimping work, cable management, and final continuity / short-circuit
+checks performed before power-on.]
+
+\begin{figure}[H]
+    \centering
+    %\includegraphics[width=0.85\textwidth]{wiring_diagram}
+    \caption{Electrical hardware component layout and wiring diagram.}
+    \label{fig:wiring}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    %\includegraphics[width=0.70\textwidth]{elec_photo}
+    \caption{Photograph of the assembled electrical system.}
+    \label{fig:elec-photo}
+\end{figure}
+
+\section{Mechanical Implementation}
+\label{sec:mech-impl}
+
+[Describe the fabrication and assembly of all mechanical parts.
+Include materials used, tolerances achieved, and any challenges
+encountered during construction.]
+
+\begin{figure}[H]
+    \centering
+    %\includegraphics[width=0.60\textwidth]{mech_assembly_photo}
+    \caption{Photograph of the mechanical assembly.}
+    \label{fig:mech-photo}
+\end{figure}
+
+\section{Software Implementation}
+\label{sec:sw-impl}
+
+[Describe how the software was written, structured, and tested
+informally during development. Highlight any algorithms, third-party
+libraries used, or non-trivial design patterns.]
+
+% Code listing example
+\begin{lstlisting}[language=Python,
+                   caption={Sensor initialisation routine.},
+                   label=lst:sensor-init]
+import sensor_library as sl
+
+def init_sensor(pin: int, baud: int = 9600) -> sl.Sensor:
+    """Initialise and calibrate the sensor on the given GPIO pin."""
+    sensor = sl.Sensor(pin=pin, baud=baud)
+    sensor.calibrate()
+    return sensor
+\end{lstlisting}
+
+\section{Final System}
+\label{sec:final-system}
+
+[Present photographs of the completed system from multiple angles.
+Briefly confirm that it matches the design intent before formal
+testing begins.]
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        %\includegraphics[width=\textwidth]{final_front}
+        \caption{Front view.}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        %\includegraphics[width=\textwidth]{final_side}
+        \caption{Side view.}
+    \end{subfigure}
+    \caption{Final assembled system.}
+    \label{fig:final-system}
+\end{figure}

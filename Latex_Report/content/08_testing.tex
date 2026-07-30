@@ -1,0 +1,95 @@
+% ============================================================
+%  CHAPTER 8 – TESTING
+% ============================================================
+\chapter{Testing}
+\label{ch:testing}
+
+[Each test traces back to a requirement defined in
+Section~\ref{sec:requirements}. For every test, state the
+objective, procedure, results, and a pass/fail verdict.]
+
+% ── Test template – duplicate this block for each requirement ──
+%
+%  \section{Test REQ\_XX – [Short Name]}
+%  \label{sec:test-reqXX}
+%  \textbf{Objective:} ...
+%  \textbf{Procedure:} enumerate steps
+%  \textbf{Acceptance criterion:} ...
+%  \textbf{Results:} table
+%  \textbf{Conclusion:} pass/fail statement
+
+% ── TEST 1 ───────────────────────────────────────────────────
+\section{Test REQ\_04\_PERF – [Requirement Short Name]}
+\label{sec:test-req04}
+
+\textbf{Objective:} Verify that the system achieves \ldots as
+specified in REQ\_04\_PERF.
+
+\textbf{Procedure:}
+\begin{enumerate}
+    \item Set up the system in the test configuration.
+    \item [Step 2 \ldots]
+    \item Record the measured value.
+    \item Repeat three times and calculate the average.
+\end{enumerate}
+
+\textbf{Acceptance criterion:} The measured value shall be
+$\leq \SI{15}{\milli\second}$.
+
+\textbf{Results:}
+
+\begin{table}[H]
+    \centering
+    \caption{Results for Test REQ\_04\_PERF.}
+    \label{tab:test-req04}
+    \begin{tabular}{@{} c c c c @{}}
+        \toprule
+        \textbf{Trial} & \textbf{Expected (\si{\ms})}
+            & \textbf{Measured (\si{\ms})} & \textbf{Pass / Fail} \\
+        \midrule
+        1 & $\leq \SI{15}{\milli\second}$ & & \\
+        2 & $\leq \SI{15}{\milli\second}$ & & \\
+        3 & $\leq \SI{15}{\milli\second}$ & & \\
+        \midrule
+        Average & & & \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\textbf{Conclusion:} Requirement REQ\_04\_PERF was
+[\textbf{met} / \textbf{not met}] because \ldots
+
+% ── TEST 2 ───────────────────────────────────────────────────
+\section{Test REQ\_05\_PERF – [Requirement Short Name]}
+\label{sec:test-req05}
+
+\textbf{Objective:} \ldots
+
+\textbf{Procedure:}
+\begin{enumerate}
+    \item \ldots
+\end{enumerate}
+
+\textbf{Acceptance criterion:} \ldots
+
+\textbf{Results:}
+
+\begin{table}[H]
+    \centering
+    \caption{Results for Test REQ\_05\_PERF.}
+    \label{tab:test-req05}
+    \begin{tabular}{@{} c c c c @{}}
+        \toprule
+        \textbf{Trial} & \textbf{Expected} & \textbf{Measured}
+            & \textbf{Pass / Fail} \\
+        \midrule
+        1 & & & \\
+        2 & & & \\
+        3 & & & \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\textbf{Conclusion:} \ldots
+
+% [Add further \section blocks for each requirement under test]

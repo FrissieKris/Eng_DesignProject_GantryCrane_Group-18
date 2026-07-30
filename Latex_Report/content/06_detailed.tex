@@ -1,0 +1,107 @@
+% ============================================================
+%  CHAPTER 6 – DETAILED DESIGN
+% ============================================================
+\chapter{Detailed Design}
+\label{ch:detailed}
+
+[Specify every design decision at the component level. Include
+exact part numbers, electrical parameters, mechanical dimensions,
+software data structures, and algorithms.]
+
+\section{Detailed Hardware Decisions}
+\label{sec:detailed-hw}
+
+% ── Component specifications ─────────────────────────────────
+\subsection{[Component A Specifications]}
+\label{subsec:comp-a}
+
+[Describe the component and why the exact variant was chosen.
+Refer to the datasheet~\cite{example_datasheet}.]
+
+\begin{table}[H]
+    \centering
+    \caption{[Component A] specifications~\cite{example_datasheet}.}
+    \label{tab:comp-a-specs}
+    \begin{tabular}{@{} l l @{}}
+        \toprule
+        \textbf{Parameter}       & \textbf{Value} \\
+        \midrule
+        Supply voltage           & \SI{5}{\volt} \\
+        Operating current        & \SI{500}{\milli\ampere} \\
+        Dimensions               & \SI{85}{\mm} $\times$ \SI{56}{\mm} \\
+        Mass                     & \SI{45}{\gram} \\
+        Interface                & USB 3.0, MIPI CSI-2 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{[Component B Specifications]}
+\label{subsec:comp-b}
+
+\begin{table}[H]
+    \centering
+    \caption{[Component B] specifications.}
+    \label{tab:comp-b-specs}
+    \begin{tabular}{@{} l l @{}}
+        \toprule
+        \textbf{Parameter} & \textbf{Value} \\
+        \midrule
+        Parameter 1        & Value \\
+        Parameter 2        & Value \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Detailed Software Decisions}
+\label{sec:detailed-sw}
+
+[Describe the software architecture in detail: threading model,
+communication protocols, data structures, and key algorithms.
+Include a software block diagram or state machine where helpful.]
+
+\begin{figure}[H]
+    \centering
+    %\includegraphics[width=0.80\textwidth]{software_architecture}
+    \caption{Software architecture diagram.}
+    \label{fig:sw-arch}
+\end{figure}
+
+\section{CAD Designs}
+\label{sec:cad}
+
+[Present all custom-fabricated mechanical parts with isometric CAD
+views and key dimensions annotated.]
+
+\subsection{[Assembly A – e.g. Probe Enclosure]}
+
+[Description of the part, material choice, and manufacturing method.]
+
+\begin{figure}[H]
+    \centering
+    %\includegraphics[width=0.55\textwidth]{cad_assembly_a}
+    \caption{Isometric CAD drawing of [Assembly A].}
+    \label{fig:cad-assembly-a}
+\end{figure}
+
+\subsection{[Assembly B – e.g. Cable Reel]}
+
+\begin{figure}[H]
+    \centering
+    %\includegraphics[width=0.55\textwidth]{cad_assembly_b}
+    \caption{Isometric CAD drawing of [Assembly B].}
+    \label{fig:cad-assembly-b}
+\end{figure}
+
+\section{Electrical Design}
+\label{sec:elec-design}
+
+[Present the full electrical schematic or wiring diagram.
+Describe the power distribution, signal routing, and any
+protection circuits (fuses, TVS diodes, etc.).]
+
+\begin{figure}[H]
+    \centering
+    %\includegraphics[width=0.90\textwidth]{schematic_full}
+    \caption{Full electrical schematic of the system.}
+    \label{fig:schematic}
+\end{figure}

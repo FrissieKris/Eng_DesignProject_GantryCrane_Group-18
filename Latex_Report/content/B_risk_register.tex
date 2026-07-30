@@ -1,0 +1,69 @@
+% ============================================================
+%  APPENDIX B – RISK REGISTER
+% ============================================================
+\chapter{Risk Register}
+\label{app:risk}
+
+\begin{table}[H]
+    \centering
+    \caption{Risk identification and management.}
+    \label{tab:risk-register}
+    \begin{tabular}{@{} l p{3.5cm} c c p{4cm} @{}}
+        \toprule
+        \textbf{ID} & \textbf{Risk description}
+            & \textbf{Likelihood} & \textbf{Impact}
+            & \textbf{Mitigation strategy} \\
+        \midrule
+        R01 & Component delivery delay
+            & Medium & High
+            & Order components 4 weeks in advance; identify local suppliers. \\
+        R02 & Waterproofing failure of enclosure
+            & Low & High
+            & Pressure-test housing before electronics are installed. \\
+        R03 & Software instability on embedded platform
+            & Medium & Medium
+            & Use watchdog timer; implement error logging. \\
+        R04 & [Add risk] & & & \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Risk traceability matrix \textbf{BEFORE} mitigation.}
+    \label{tab:risk-before}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{@{} l | c c c c c @{}}
+        \toprule
+         & \multicolumn{5}{c}{\textbf{Impact}} \\
+        \textbf{Likelihood} & \textbf{1 – Negligible} & \textbf{2 – Minor}
+            & \textbf{3 – Moderate} & \textbf{4 – Major} & \textbf{5 – Severe} \\
+        \midrule
+        5 – Very high &   &   &    &    & \\
+        4 – High      &   &   &    & R01 & \\
+        3 – Medium    &   &   & R03 &    & \\
+        2 – Low       &   &   &    & R02 & \\
+        1 – Very low  &   &   &    &    & \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Risk traceability matrix \textbf{AFTER} mitigation.}
+    \label{tab:risk-after}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{@{} l | c c c c c @{}}
+        \toprule
+         & \multicolumn{5}{c}{\textbf{Impact}} \\
+        \textbf{Likelihood} & \textbf{1 – Negligible} & \textbf{2 – Minor}
+            & \textbf{3 – Moderate} & \textbf{4 – Major} & \textbf{5 – Severe} \\
+        \midrule
+        5 – Very high &   &   &    &    & \\
+        4 – High      &   &   &    &    & \\
+        3 – Medium    &   & R01 & R02 &   & \\
+        2 – Low       &   & R03 &    &    & \\
+        1 – Very low  &   &   &    &    & \\
+        \bottomrule
+    \end{tabular}
+\end{table}
