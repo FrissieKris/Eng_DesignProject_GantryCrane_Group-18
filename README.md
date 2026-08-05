@@ -1,9 +1,9 @@
 MCTR \
---Juan Fourie     -->   Pulley Mechanism \
+--Juan Fourie     -->   Spooling \
 --Romeo Mapasa    -->   Lateral Movement \
 EEII \
---Jopie Roux      --> \
---JP Smith        --> \
+--Jopie Roux      -->   Drive Electronics\
+--JP Smith        -->   Magnetic Load Attachment\
 REII  \
---Anton Swanepoel --> \
+--Anton Swanepoel -->   Remote Control Dashboard\
 
