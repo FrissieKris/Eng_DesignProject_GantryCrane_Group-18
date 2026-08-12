@@ -21,6 +21,7 @@
 *.acn
 *.acr
 *.alg
+*.run.xml
 
 *.pdf
 !img/*.pdf
