@@ -4,7 +4,7 @@
 % ============================================================
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{NWUStyle}[2025/01/01 NWU Faculty of Engineering Style]
- 
+
 % ── Core packages ───────────────────────────────────────────
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
@@ -48,7 +48,8 @@
 \RequirePackage{eso-pic}
 \RequirePackage{tikz}
 \RequirePackage{hyperref}   % load late so it patches everything
- 
+
+
 % biblatex (IEEE style) – loaded here so the .sty controls it
 \RequirePackage[style=ieee, backend=biber]{biblatex}
 
@@ -84,25 +85,25 @@
 %    Subsec   → "1.1.1  Detail"    (bold)
 % ── Section heading styles ──────────────────────────────────
 \titleformat{\chapter}[hang]
-    {\normalfont\large\bfseries}{\thechapter}{1em}{}
+{\normalfont\large\bfseries}{\thechapter}{1em}{}
 \titlespacing*{\chapter}{0pt}{12pt}{6pt}
- 
+
 \titleformat{\section}[hang]
-    {\normalfont\normalsize\bfseries}{\thesection}{1em}{}
+{\normalfont\normalsize\bfseries}{\thesection}{1em}{}
 \titlespacing*{\section}{0pt}{10pt}{4pt}
- 
+
 \titleformat{\subsection}[hang]
-    {\normalfont\normalsize\bfseries}{\thesubsection}{1em}{}
+{\normalfont\normalsize\bfseries}{\thesubsection}{1em}{}
 \titlespacing*{\subsection}{0pt}{8pt}{2pt}
- 
+
 \titleformat{\subsubsection}[hang]
-    {\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
 \titlespacing*{\subsubsection}{0pt}{6pt}{2pt}
- 
+
 % Suppress "Chapter N" prefix
 \renewcommand{\chaptername}{}
 \renewcommand{\thechapter}{\arabic{chapter}}
- 
+
 % ── Table / figure caption style ────────────────────────────
 %    Tables:  "Table 1. Caption"  above the table, centred, italic
 %    Figures: "Figure 1. Caption" below the figure, centred, italic
@@ -129,9 +130,9 @@
 \renewcommand{\headrulewidth}{0pt}   % no header rule (matches template)
 \fancyfoot[R]{\thepage}              % page number bottom-right
 \fancypagestyle{plain}{%             % also affects chapter first pages
-  \fancyhf{}
-  \fancyfoot[R]{\thepage}
-  \renewcommand{\headrulewidth}{0pt}
+    \fancyhf{}
+    \fancyfoot[R]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
 }
 % ── TOC depth ───────────────────────────────────────────────
 \setcounter{tocdepth}{3}
@@ -154,7 +155,7 @@
 \newcommand*{\orcidlogo}[1]{%
     \raisebox{-.3\baselineskip}{%
         \includegraphics[height=\baselineskip, width=\baselineskip,
-                         keepaspectratio]{#1}%
+            keepaspectratio]{#1}%
     }%
 }
 
@@ -224,7 +225,7 @@
 % ============================================================
 %  ENVIRONMENTS
 % ============================================================
- 
+
 % Abstract environment
 % Usage:  \begin{Abstract}{} ... \end{Abstract}
 \newenvironment{Abstract}[1]{%
@@ -235,7 +236,7 @@
 }{%
     \clearpage
 }
- 
+
 % Keywords command (call inside Abstract environment)
 \newcommand{\KeyWords}[1]{%
     \vspace{8pt}
@@ -259,102 +260,102 @@
 %  TITLE PAGE  –  \MakeTitle
 % ============================================================
 \newcommand{\MakeTitle}{%
- 
-\begin{titlepage}
-\thispagestyle{empty}
- 
-% NWU purple banner graphic in the top-left background
-\AddToShipoutPictureBG*{%
-    \AtPageUpperLeft{%
-        \raisebox{-\height}{%
-            \includegraphics[width=0.8\paperwidth]{NWUBack}%
-        }%
-    }%
-}
- 
-\vspace*{15mm}
- 
-\begin{center}
- 
-    % ── Faculty heading ──────────────────────────────────────
-    {\large\bfseries\color{nwupurple} FACULTY OF ENGINEERING}
- 
-    \vspace{16mm}
- 
-    % ── Project / report title ───────────────────────────────
-    {\large \mytitle \par}
- 
-    \vspace{10mm}
- 
-    % ── Subtitle / report type (optional) ───────────────────
-    \ifthenelse{\equal{\reporttitle}{}}{}{%
-        {\normalsize \reporttitle \par}
-        \vspace{10mm}
-    }
- 
-    % ── Module & assignment (for coursework reports) ─────────
-    \ifthenelse{\equal{\modulecode}{}}{}{%
-        {\normalsize \textbf{Module:} \modulecode \par}
-        \vspace{4pt}
-    }
-    \ifthenelse{\equal{\assignmentname}{}}{}{%
-        {\normalsize \textbf{Assignment:} \assignmentname \par}
-        \vspace{10mm}
-    }
- 
-    % ── Author block ─────────────────────────────────────────
-    \vspace{6mm}
-    \textbf{By:}\\[4pt]
-    \textbf{\initials~\surname}\\[2pt]
-    \ifthenelse{\equal{\firstname}{}}{}{\firstname~\surname\\[2pt]}
-    Student number: \studentnumber
- 
-    % ── ORCID (optional) ─────────────────────────────────────
-    \ifshoworcid
-        \vspace{6pt}
-        \orcidlogo{ORCID}\quad\texttt{orcid.org/\orcidnumber}\par
-    \fi
- 
-    \vspace{14mm}
- 
-    % ── Supervisor block ─────────────────────────────────────
-    \ifthenelse{\equal{\supervisorname}{}}{}{%
-        \textbf{Supervisor:}\\[4pt]
-        \textbf{\supervisorname}\\[8pt]
-    }
-    \printcosupervisor{\cosupervisorname}
-    \printasssupervisor{\assistantsupervisorname}
- 
-    \vspace{14mm}
- 
-    % ── Degree block ─────────────────────────────────────────
-    \ifthenelse{\equal{\degreename}{}}{}{%
-        Submitted in pursuit of the degree\\[6pt]
-        \textbf{\MakeUppercase{\degreename}}\\[4pt]
-        In\\[4pt]
-        \textbf{\MakeUppercase{\disciplinename}}\\[14pt]
-        \textbf{North-West University \campusname}\\[10pt]
-    }
- 
-    % ── Date ─────────────────────────────────────────────────
-    \ifthenelse{\equal{\submissiondate}{}}
-        {{\normalsize \givendate}}
-        {{\normalsize \submissiondate}}
- 
-\end{center}
- 
-\vfill
- 
-\end{titlepage}
+
+    \begin{titlepage}
+        \thispagestyle{empty}
+
+        % NWU purple banner graphic in the top-left background
+        \AddToShipoutPictureBG*{%
+            \AtPageUpperLeft{%
+                \raisebox{-\height}{%
+                    \includegraphics[width=0.8\paperwidth]{NWUBack}%
+                }%
+            }%
+        }
+
+        \vspace*{15mm}
+
+        \begin{center}
+
+            % ── Faculty heading ──────────────────────────────────────
+            {\large\bfseries\color{nwupurple} FACULTY OF ENGINEERING}
+
+            \vspace{16mm}
+
+            % ── Project / report title ───────────────────────────────
+            {\large \mytitle \par}
+
+            \vspace{10mm}
+
+            % ── Subtitle / report type (optional) ───────────────────
+            \ifthenelse{\equal{\reporttitle}{}}{}{%
+                {\normalsize \reporttitle \par}
+                \vspace{10mm}
+            }
+
+            % ── Module & assignment (for coursework reports) ─────────
+            \ifthenelse{\equal{\modulecode}{}}{}{%
+                {\normalsize \textbf{Module:} \modulecode \par}
+                \vspace{4pt}
+            }
+            \ifthenelse{\equal{\assignmentname}{}}{}{%
+                {\normalsize \textbf{Assignment:} \assignmentname \par}
+                \vspace{10mm}
+            }
+
+            % ── Author block ─────────────────────────────────────────
+            \vspace{6mm}
+            \textbf{By:}\\[4pt]
+            \textbf{\initials~\surname}\\[2pt]
+            \ifthenelse{\equal{\firstname}{}}{}{\firstname~\surname\\[2pt]}
+            Student number: \studentnumber
+
+            % ── ORCID (optional) ─────────────────────────────────────
+            \ifshoworcid
+                \vspace{6pt}
+            \orcidlogo{ORCID}\quad\texttt{orcid.org/\orcidnumber}\par
+            \fi
+
+            \vspace{14mm}
+
+            % ── Supervisor block ─────────────────────────────────────
+            \ifthenelse{\equal{\supervisorname}{}}{}{%
+                \textbf{Supervisor:}\\[4pt]
+                \textbf{\supervisorname}\\[8pt]
+            }
+            \printcosupervisor{\cosupervisorname}
+            \printasssupervisor{\assistantsupervisorname}
+
+            \vspace{14mm}
+
+            % ── Degree block ─────────────────────────────────────────
+            \ifthenelse{\equal{\degreename}{}}{}{%
+                Submitted in pursuit of the degree\\[6pt]
+                \textbf{\MakeUppercase{\degreename}}\\[4pt]
+                In\\[4pt]
+                \textbf{\MakeUppercase{\disciplinename}}\\[14pt]
+                \textbf{North-West University \campusname}\\[10pt]
+            }
+
+            % ── Date ─────────────────────────────────────────────────
+            \ifthenelse{\equal{\submissiondate}{}}
+            {{\normalsize \givendate}}
+            {{\normalsize \submissiondate}}
+
+        \end{center}
+
+        \vfill
+
+    \end{titlepage}
 
 
-  \clearpage
-  \ClearShipoutPictureBG
+    \clearpage
+    \ClearShipoutPictureBG
 
-% Front matter starts on roman numerals
-\pagenumbering{roman}
-\pagestyle{fancy}
- 
+    % Front matter starts on roman numerals
+    \pagenumbering{roman}
+    \pagestyle{fancy}
+
 }% end \MakeTitle
 
 % ============================================================
@@ -363,12 +364,12 @@
 \newcommand{\MakeDeclaration}{%
     \chapter*{Declaration of Originality}
     \addcontentsline{toc}{chapter}{Declaration of Originality}
- 
+
     I, \firstname~\surname, with student number \studentnumber{} declare
     the following:
- 
+
     This report is my own original work. I further declare that:
- 
+
     \begin{enumerate}
         \item No part of it has been copied from another person;
         \item I did not work with another person on this project and report;
@@ -379,24 +380,24 @@
         \item Parts without references are my own ideas, arguments, and
               conclusions.
     \end{enumerate}
- 
+
     \ifthenelse{\equal{\turnitinscore}{}}{}{%
         The Turnitin plagiarism test resulted in a score of \turnitinscore.
     }
- 
+
     \vspace{22mm}
     \noindent\rule{60mm}{0.4pt}\\[2pt]
     Signature\\[10pt]
     \ifthenelse{\equal{\submissiondate}{}}{\givendate}{\submissiondate}
- 
+
     \clearpage
 }
- 
+
 \endinput
 % ============================================================
 %  END NWUStyle.sty
 % ============================================================
- 
+
 
 
 

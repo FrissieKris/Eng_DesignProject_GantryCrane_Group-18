@@ -48,7 +48,8 @@
 \contentsline {section}{\numberline {8.1}Test REQ\_04\_PERF – [Requirement Short Name]}{9}{section.8.1}%
 \contentsline {section}{\numberline {8.2}Test REQ\_05\_PERF – [Requirement Short Name]}{9}{section.8.2}%
 \contentsline {chapter}{\numberline {9}Conclusion}{11}{chapter.9}%
-\contentsline {chapter}{\numberline {A}Generative AI Usage}{12}{appendix.A}%
-\contentsline {chapter}{\numberline {B}Risk Register}{13}{appendix.B}%
-\contentsline {chapter}{\numberline {C}Additional Technical Data}{15}{appendix.C}%
+\contentsline {chapter}{References}{12}{chapter*.25}%
+\contentsline {chapter}{\numberline {A}Generative AI Usage}{13}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Risk Register}{14}{appendix.B}%
+\contentsline {chapter}{\numberline {C}Additional Technical Data}{17}{appendix.C}%
 \contentsfinish 

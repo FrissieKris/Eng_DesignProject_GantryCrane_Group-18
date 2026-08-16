@@ -4,26 +4,53 @@
 \chapter{Risk Register}
 \label{app:risk}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.75\textwidth]{App_RiskEvaluation_Matrix.png}
+    \caption{Risk Evaluation Matrix used to determine risk severity \cite{Risk_Eval_Table}.}
+    \label{app:risk-eval-table}
+\end{figure}
+
+
+\rowcolors{1}{gray!25}{white}
 \begin{table}[H]
     \centering
+
     \caption{Risk identification and management.}
     \label{tab:risk-register}
-    \begin{tabular}{@{} l p{3.5cm} c c p{4cm} @{}}
+    \begin{tabular}{@{} l p{4cm} p{4.5cm} p{8cm} @{}}
         \toprule
         \textbf{ID} & \textbf{Risk description}
-            & \textbf{Likelihood} & \textbf{Impact}
-            & \textbf{Mitigation strategy} \\
+                    & \textbf{Likelihood and Impact}
+                    & \textbf{Mitigation strategy}                                                                    \\
         \midrule
-        R01 & Component delivery delay
-            & Medium & High
-            & Order components 4 weeks in advance; identify local suppliers. \\
-        R02 & Waterproofing failure of enclosure
-            & Low & High
-            & Pressure-test housing before electronics are installed. \\
-        R03 & Software instability on embedded platform
-            & Medium & Medium
-            & Use watchdog timer; implement error logging. \\
-        R04 & [Add risk] & & & \\
+        S1          & Late Component Delivery
+                    & Possible; Significant
+                    & Determine and order components 2 weeks ahead of time; look for local suppliers.                 \\
+        S2          & Component Failure
+                    & Likely; Significant
+                    & Acquire spares where reasonable and obtain quality suppliers.  \\
+        G1          & Member does not adhere to responsibilities
+                    & Possible; Significant
+                    & Perform weekly check-ins, work management, and performance measures.                            \\
+        G2          & Member's attention required elsewhere, e.g. death or disaster.
+                    & Possible; Severe
+                    & Communicate possible interferences with group responsibilities and plan accordingly.            \\
+        K1          & Tool ignorance e.g. CAD, Simulink, Git, Codebase.
+                    & Very Likely; Significant                                                                                      
+                    & Share knowledge of tools with other members and learn from tutorials as required.               \\
+        K2          & Ignorance regarding components
+                    & Very Likely; Significant                                                                                     
+                    & Rely on familiar experience and components; consult resources to learn of new ones required.    \\
+        P1          & Integration failure of subsystems 
+                    & Possible, Severe
+                    & Have clear documentation of subsystems, tests and confirmation during development.                                \\
+        L1          & Workshop / Lab Access Conflicts 
+                    & Very Likely; Significant
+                    & Make use of members' tools or organise with other acquantances who have 3D printers or fabrication facilities. \\
+        L2          & Poor Documentation and Traceability Problems          
+                    & Very Likely; Significant 
+                    & Use shared GitHub repository with version control of all files and drawings with naming conventions.   \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -35,15 +62,15 @@
     \renewcommand{\arraystretch}{1.4}
     \begin{tabular}{@{} l | c c c c c @{}}
         \toprule
-         & \multicolumn{5}{c}{\textbf{Impact}} \\
-        \textbf{Likelihood} & \textbf{1 – Negligible} & \textbf{2 – Minor}
-            & \textbf{3 – Moderate} & \textbf{4 – Major} & \textbf{5 – Severe} \\
+                            & \multicolumn{5}{c}{\textbf{Impact}}                                                    \\
+        \textbf{Likelihood} & \textbf{1 – Negligible}             & \textbf{2 – Minor}
+                            & \textbf{3 – Moderate}               & \textbf{4 – Major} & \textbf{5 – Severe}         \\
         \midrule
-        5 – Very high &   &   &    &    & \\
-        4 – High      &   &   &    & R01 & \\
-        3 – Medium    &   &   & R03 &    & \\
-        2 – Low       &   &   &    & R02 & \\
-        1 – Very low  &   &   &    &    & \\
+        5 – Very high       &                                     &                    &                     &     & \\
+        4 – High            &                                     &                    &                     & R01 & \\
+        3 – Medium          &                                     &                    & R03                 &     & \\
+        2 – Low             &                                     &                    &                     & R02 & \\
+        1 – Very low        &                                     &                    &                     &     & \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -55,15 +82,15 @@
     \renewcommand{\arraystretch}{1.4}
     \begin{tabular}{@{} l | c c c c c @{}}
         \toprule
-         & \multicolumn{5}{c}{\textbf{Impact}} \\
-        \textbf{Likelihood} & \textbf{1 – Negligible} & \textbf{2 – Minor}
-            & \textbf{3 – Moderate} & \textbf{4 – Major} & \textbf{5 – Severe} \\
+                            & \multicolumn{5}{c}{\textbf{Impact}}                                                 \\
+        \textbf{Likelihood} & \textbf{1 – Negligible}             & \textbf{2 – Minor}
+                            & \textbf{3 – Moderate}               & \textbf{4 – Major} & \textbf{5 – Severe}      \\
         \midrule
-        5 – Very high &   &   &    &    & \\
-        4 – High      &   &   &    &    & \\
-        3 – Medium    &   & R01 & R02 &   & \\
-        2 – Low       &   & R03 &    &    & \\
-        1 – Very low  &   &   &    &    & \\
+        5 – Very high       &                                     &                    &                     &  & \\
+        4 – High            &                                     &                    &                     &  & \\
+        3 – Medium          &                                     & R01                & R02                 &  & \\
+        2 – Low             &                                     & R03                &                     &  & \\
+        1 – Very low        &                                     &                    &                     &  & \\
         \bottomrule
     \end{tabular}
 \end{table}

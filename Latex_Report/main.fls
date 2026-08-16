@@ -349,6 +349,8 @@ INPUT D:\Miktex\tex\latex\biblatex\blx-case-expl3.sty
 INPUT D:\Miktex\tex\latex\biblatex\blx-case-expl3.sty
 INPUT D:\Miktex\tex\latex\l3packages\xparse\xparse.sty
 INPUT D:\Miktex\tex\latex\l3packages\xparse\xparse.sty
+INPUT D:\Miktex\tex\latex\colortbl\colortbl.sty
+INPUT D:\Miktex\tex\latex\colortbl\colortbl.sty
 INPUT D:\Miktex\tex\latex\graphics\color.sty
 INPUT D:\Miktex\tex\latex\psnfss\t1phv.fd
 INPUT D:\Miktex\tex\latex\psnfss\t1phv.fd
@@ -529,6 +531,12 @@ INPUT .\content\B_risk_register.tex
 INPUT .\content\B_risk_register.tex
 INPUT .\content\B_risk_register.tex
 INPUT content\B_risk_register.tex
+INPUT .\img\App_RiskEvaluation_Matrix.png
+INPUT .\img\App_RiskEvaluation_Matrix.png
+INPUT .\img\App_RiskEvaluation_Matrix.png
+INPUT .\img\App_RiskEvaluation_Matrix.png
+INPUT .\img\App_RiskEvaluation_Matrix.png
+INPUT .\img\App_RiskEvaluation_Matrix.png
 INPUT D:\Miktex\fonts\tfm\adobe\helvetic\phvbo8t.tfm
 INPUT .\content\C_additional.tex
 INPUT .\content\C_additional.tex

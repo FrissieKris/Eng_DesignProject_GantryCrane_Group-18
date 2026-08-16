@@ -16,5 +16,41 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{Risk_Eval_Table}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=811b144cfdda2fbe2a304dfc31d85045}{%
+           family={Pollmann},
+           familyi={P\bibinitperiod},
+           given={Daniela},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{811b144cfdda2fbe2a304dfc31d85045}
+      \strng{fullhash}{811b144cfdda2fbe2a304dfc31d85045}
+      \strng{fullhashraw}{811b144cfdda2fbe2a304dfc31d85045}
+      \strng{bibnamehash}{811b144cfdda2fbe2a304dfc31d85045}
+      \strng{authorbibnamehash}{811b144cfdda2fbe2a304dfc31d85045}
+      \strng{authornamehash}{811b144cfdda2fbe2a304dfc31d85045}
+      \strng{authorfullhash}{811b144cfdda2fbe2a304dfc31d85045}
+      \strng{authorfullhashraw}{811b144cfdda2fbe2a304dfc31d85045}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Risk Assessment Matrix – Riskpal – The Online Risk Assessment Platform}
+      \field{year}{2026}
+      \verb{urlraw}
+      \verb https://www.riskpal.com/risk-assessment-matrices/
+      \endverb
+      \verb{url}
+      \verb https://www.riskpal.com/risk-assessment-matrices/
+      \endverb
+    \endentry
+  \enddatalist
+  \missing{example_datasheet}
+  \missing{example_ref}
+\endrefsection
 \endinput
 

@@ -34,7 +34,8 @@
 \documentclass[12pt, a4paper]{report}
 
 \usepackage{NWUStyle} %You need the NWUStyle.sty file to be able to use this command.
- 
+\usepackage[table]{xcolor} 
+
 % Point biblatex at your .bib file
 \addbibresource{bib/MyBib.bib}
 
@@ -88,22 +89,22 @@
 
 % ── Cover page ──────────────────────────────────────────────
 \MakeTitle
- 
+
 % ── Abstract + Keywords ─────────────────────────────────────
 \input{content/00_abstract}
- 
+
 % ── Table of Contents / List of Figures / List of Tables ────
 \MakeTOCandLOFandLOT
- 
+
 % ── Declaration of Originality ──────────────────────────────
 \MakeDeclaration
- 
+
 % ── Switch to arabic page numbers for the body ──────────────
 \cleardoublepage
 \pagestyle{fancy}
 \pagenumbering{arabic}
 \setcounter{page}{1}
- 
+
 %================================================================================
 %BEGIN TYPING YOUR DOCUMENT - STARTING HERE.-------------------------------------
 %================================================================================
@@ -128,12 +129,12 @@
 % ── References ──────────────────────────────────────────────
 \newpage
 \printbibliography[heading=bibintoc, title={References}]
- 
+
 % ── Appendices ──────────────────────────────────────────────
 \newpage
 \appendix
 \input{content/A_ai_usage}
 \input{content/B_risk_register}
 \input{content/C_additional}
- 
+
 \end{document}

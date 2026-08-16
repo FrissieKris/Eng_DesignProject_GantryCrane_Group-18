@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.29)  12 AUG 2026 15:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.29)  16 AUG 2026 23:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1031,36 +1031,41 @@ Package: xparse 2025-10-09 L3 Experimental document command parser
 )
 Package: blx-case-expl3 2025/07/10 v3.21 expl3 case changing code for biblatex
 ))
-Package hyperref Info: Option `colorlinks' set `true' on input line 69.
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 69.
+Package hyperref Info: Option `colorlinks' set `true' on input line 70.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 70.
+) (D:\Miktex\tex/latex/colortbl\colortbl.sty
+Package: colortbl 2026/05/01 v1.0l Color table columns (DPC)
+\everycr=\toks59
+\minrowclearance=\skip141
+\rownum=\count514
 )
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 87.
-\@quotelevel=\count514
-\@quotereset=\count515
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 87.
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 88.
+\@quotelevel=\count515
+\@quotereset=\count516
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 88.
  (D:\Miktex\tex/latex/psnfss\t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 ) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 87.
-LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1098,17 +1103,17 @@ LaTeX Font Info:    ... okay on input line 87.
 
 (D:\Miktex\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count516
+\scratchcounter=\count517
 \scratchdimen=\dimen340
 \scratchbox=\box92
-\nofMPsegments=\count517
-\nofMParguments=\count518
-\everyMPshowfont=\toks59
-\MPscratchCnt=\count519
+\nofMPsegments=\count518
+\nofMParguments=\count519
+\everyMPshowfont=\toks60
+\MPscratchCnt=\count520
 \MPscratchDim=\dimen341
-\MPnumerator=\count520
-\makeMPintoPDFobject=\count521
-\everyMPtoPDFconversion=\toks60
+\MPnumerator=\count521
+\makeMPintoPDFobject=\count522
+\everyMPtoPDFconversion=\toks61
 ) (D:\Miktex\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1123,13 +1128,13 @@ Package caption Info: End \AtBeginDocument code.
 Package microtype Info: Patching varwidth to enable character protrusion.
 \MT@vwid@leftmargin=\dimen342
 \MT@vwid@rightmargin=\dimen343
-LaTeX Info: Redefining \microtypecontext on input line 87.
-Package microtype Info: Applying patch `item' on input line 87.
-Package microtype Info: Applying patch `toc' on input line 87.
-Package microtype Info: Applying patch `eqnum' on input line 87.
-Package microtype Info: Applying patch `footnote' on input line 87.
-Package microtype Info: Applying patch `verbatim' on input line 87.
-LaTeX Info: Redefining \microtypesetup on input line 87.
+LaTeX Info: Redefining \microtypecontext on input line 88.
+Package microtype Info: Applying patch `item' on input line 88.
+Package microtype Info: Applying patch `toc' on input line 88.
+Package microtype Info: Applying patch `eqnum' on input line 88.
+Package microtype Info: Applying patch `footnote' on input line 88.
+Package microtype Info: Applying patch `verbatim' on input line 88.
+LaTeX Info: Redefining \microtypesetup on input line 88.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1144,12 +1149,12 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `phv' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-\c@lstlisting=\count522
+\c@lstlisting=\count523
  (D:\Miktex\tex/latex/translations/dicts\translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 87.
-Package hyperref Info: Link coloring ON on input line 87.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 88.
+Package hyperref Info: Link coloring ON on input line 88.
  (main.out) (main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
@@ -1166,13 +1171,28 @@ Package biblatex Info: Automatic encoding selection.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
- (main.bbl)
-Package biblatex Info: Reference section=0 on input line 87.
-Package biblatex Info: Reference segment=0 on input line 87.
-<img/NWUBack.png, id=217, 644.4075pt x 317.185pt>
+ (main.bbl
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                example_datasheet
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                example_ref
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+)
+Package biblatex Info: Reference section=0 on input line 88.
+Package biblatex Info: Reference segment=0 on input line 88.
+<img/NWUBack.png, id=221, 644.4075pt x 317.185pt>
 File: img/NWUBack.png Graphic file (type png)
 <use img/NWUBack.png>
-Package pdftex.def Info: img/NWUBack.png  used on input line 90.
+Package pdftex.def Info: img/NWUBack.png  used on input line 91.
 (pdftex.def)             Requested size: 478.00812pt x 235.28915pt.
  [1
 
@@ -1314,76 +1334,81 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
  9.
 ) [11
 
-]
+] [12
 
-LaTeX Warning: Empty bibliography on input line 130.
-
-(content/A_ai_usage.tex
+] (content/A_ai_usage.tex
 Appendix A.
 
 Underfull \hbox (badness 6575) in paragraph at lines 22--23
 []|\T1/phv/m/n/12 (+20) Edited, ver-i-fied, and
  []
 
-) (content/B_risk_register.tex [12
+) (content/B_risk_register.tex [13
 
 ]
 Appendix B.
+<img/App_RiskEvaluation_Matrix.png, id=456, 732.336pt x 427.5975pt>
+File: img/App_RiskEvaluation_Matrix.png Graphic file (type png)
+<use img/App_RiskEvaluation_Matrix.png>
+Package pdftex.def Info: img/App_RiskEvaluation_Matrix.png  used on input line 9.
+(pdftex.def)             Requested size: 362.77264pt x 211.82126pt.
 
-Underfull \hbox (badness 2376) in paragraph at lines 17--18
-[]|\T1/phv/m/n/12 (+20) Component de-liv-
+Underfull \hbox (badness 1205) in paragraph at lines 33--34
+\T1/phv/m/n/12 (+20) here to re-spon-si-bil-i-
  []
 
 
-Underfull \hbox (badness 5446) in paragraph at lines 19--20
-\T1/phv/m/n/12 (+20) weeks in ad-vance;
+Underfull \hbox (badness 3668) in paragraph at lines 39--40
+[]|\T1/phv/m/n/12 (+20) Tool ig-no-rance e.g.
  []
 
 
-Underfull \hbox (badness 1205) in paragraph at lines 19--20
-\T1/phv/m/n/12 (+20) iden-tify lo-cal sup-pli-
+Underfull \hbox (badness 1838) in paragraph at lines 39--40
+\T1/phv/m/n/12 (+20) CAD, Simulink, Git,
  []
 
+
+Underfull \hbox (badness 1122) in paragraph at lines 42--43
+[]|\T1/phv/m/n/12 (+20) Ignorance re-gard-ing
+ []
+
+
+Overfull \hbox (37.78139pt too wide) in paragraph at lines 21--56
+ [][] 
+ []
+
+[14
+
+ <./img/App_RiskEvaluation_Matrix.png>]
 LaTeX Font Info:    Font shape `T1/phv/b/it' in size <12> not available
-(Font)              Font shape `T1/phv/b/sl' tried instead on input line 33.
-) (content/C_additional.tex [13
-
-] [14]
+(Font)              Font shape `T1/phv/b/sl' tried instead on input line 60.
+) (content/C_additional.tex [15] [16]
 Appendix C.
-) [15
+) [17
 
 ] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 57C7456881B6BAE294045EDFDA7C4A13;9966.
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                main
-(biblatex)                and rerun LaTeX afterwards.
-
+(rerunfilecheck)             Checksum: EC89A17E2F18BE237BAAE9329F461846;10062.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 41807 strings out of 467871
- 811526 string characters out of 5435214
- 1671501 words of memory out of 5000000
- 69793 multiletter control sequences out of 15000+600000
- 667960 words of font info for 167 fonts, out of 8000000 for 9000
+ 41954 strings out of 467871
+ 814094 string characters out of 5435214
+ 1673741 words of memory out of 5000000
+ 69919 multiletter control sequences out of 15000+600000
+ 668460 words of font info for 175 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,12n,108p,1323b,1420s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,12n,108p,1323b,1507s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Juan\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk> <C:\Users\Juan\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk><D:/Miktex/fonts/type1/public/amsfonts/cm/cmr12.pfb><D:/Miktex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/Miktex/fonts/type1/public/amsfonts/symbols/msam10.pfb><D:/Miktex/fonts/type1/urw/helvetic/uhvb8a.pfb><D:/Miktex/fonts/type1/urw/helvetic/uhvbo8a.pfb><D:/Miktex/fonts/type1/urw/helvetic/uhvr8a.pfb><D:/Miktex/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on main.pdf (22 pages, 193780 bytes).
+Output written on main.pdf (24 pages, 547561 bytes).
 PDF statistics:
- 569 PDF objects out of 1000 (max. 8388607)
- 116 named destinations out of 1000 (max. 500000)
- 48570 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 606 PDF objects out of 1000 (max. 8388607)
+ 121 named destinations out of 1000 (max. 500000)
+ 48583 words of extra memory for PDF output out of 51595 (max. 10000000)
 
