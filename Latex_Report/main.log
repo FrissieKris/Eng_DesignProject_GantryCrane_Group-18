@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.29)  16 AUG 2026 23:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.7.29)  23 AUG 2026 20:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1281,6 +1281,11 @@ LaTeX Warning: Citation 'example_ref' on page 3 undefined on input line 54.
 
 ]
  4.
+<figures/LifeCycleofGantryCrane_Diagram.png, id=390, 767.5074pt x 282.5757pt>
+File: figures/LifeCycleofGantryCrane_Diagram.png Graphic file (type png)
+<use figures/LifeCycleofGantryCrane_Diagram.png>
+Package pdftex.def Info: figures/LifeCycleofGantryCrane_Diagram.png  used on input line 20.
+(pdftex.def)             Requested size: 483.69687pt x 178.08398pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 68--69
 []|\T1/phv/m/n/12 (+20) [Description of
@@ -1288,17 +1293,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 68--69
 
 ) (content/05_preliminary.tex [4
 
-]
+ <./figures/LifeCycleofGantryCrane_Diagram.png>] [5]
  5.
 
-LaTeX Warning: Citation 'example_ref' on page 5 undefined on input line 39.
+LaTeX Warning: Citation 'example_ref' on page 6 undefined on input line 39.
 
-) (content/06_detailed.tex [5
+) (content/06_detailed.tex [6
 
 ]
  6.
 
-LaTeX Warning: Citation 'example_datasheet' on page 6 undefined on input line 19.
+LaTeX Warning: Citation 'example_datasheet' on page 7 undefined on input line 19.
 
 
 Overfull \hbox (82.20872pt too wide) in paragraph at lines 18--20
@@ -1306,11 +1311,11 @@ Overfull \hbox (82.20872pt too wide) in paragraph at lines 18--20
  []
 
 
-LaTeX Warning: Citation 'example_datasheet' on page 6 undefined on input line 23.
+LaTeX Warning: Citation 'example_datasheet' on page 7 undefined on input line 23.
 
-[6
+[7
 
-]) (content/07_implementation.tex [7]
+]) (content/07_implementation.tex [8]
  7.
 (D:\Miktex\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2025/11/14 1.11b listings language file
@@ -1324,17 +1329,17 @@ LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/cmtt/m/n' tried instead on input line 57.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 78.
-) (content/08_testing.tex [8
+) (content/08_testing.tex [9
 
 ]
  8.
-) (content/09_conclusion.tex [9
+) (content/09_conclusion.tex [10
 
-] [10]
+] [11]
  9.
-) [11
+) [12
 
-] [12
+] [13
 
 ] (content/A_ai_usage.tex
 Appendix A.
@@ -1343,11 +1348,11 @@ Underfull \hbox (badness 6575) in paragraph at lines 22--23
 []|\T1/phv/m/n/12 (+20) Edited, ver-i-fied, and
  []
 
-) (content/B_risk_register.tex [13
+) (content/B_risk_register.tex [14
 
 ]
 Appendix B.
-<img/App_RiskEvaluation_Matrix.png, id=456, 732.336pt x 427.5975pt>
+<img/App_RiskEvaluation_Matrix.png, id=463, 732.336pt x 427.5975pt>
 File: img/App_RiskEvaluation_Matrix.png Graphic file (type png)
 <use img/App_RiskEvaluation_Matrix.png>
 Package pdftex.def Info: img/App_RiskEvaluation_Matrix.png  used on input line 9.
@@ -1377,14 +1382,14 @@ Overfull \hbox (37.78139pt too wide) in paragraph at lines 21--56
  [][] 
  []
 
-[14
+[15
 
  <./img/App_RiskEvaluation_Matrix.png>]
 LaTeX Font Info:    Font shape `T1/phv/b/it' in size <12> not available
 (Font)              Font shape `T1/phv/b/sl' tried instead on input line 60.
-) (content/C_additional.tex [15] [16]
+) (content/C_additional.tex [16] [17]
 Appendix C.
-) [17
+) [18
 
 ] (main.aux)
  ***********
@@ -1398,17 +1403,17 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 41954 strings out of 467871
- 814094 string characters out of 5435214
- 1673741 words of memory out of 5000000
- 69919 multiletter control sequences out of 15000+600000
+ 41962 strings out of 467871
+ 814443 string characters out of 5435214
+ 1673746 words of memory out of 5000000
+ 69926 multiletter control sequences out of 15000+600000
  668460 words of font info for 175 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,12n,108p,1323b,1507s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Juan\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk> <C:\Users\Juan\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk><D:/Miktex/fonts/type1/public/amsfonts/cm/cmr12.pfb><D:/Miktex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/Miktex/fonts/type1/public/amsfonts/symbols/msam10.pfb><D:/Miktex/fonts/type1/urw/helvetic/uhvb8a.pfb><D:/Miktex/fonts/type1/urw/helvetic/uhvbo8a.pfb><D:/Miktex/fonts/type1/urw/helvetic/uhvr8a.pfb><D:/Miktex/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on main.pdf (24 pages, 547561 bytes).
+Output written on main.pdf (25 pages, 585276 bytes).
 PDF statistics:
- 606 PDF objects out of 1000 (max. 8388607)
- 121 named destinations out of 1000 (max. 500000)
- 48583 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 613 PDF objects out of 1000 (max. 8388607)
+ 122 named destinations out of 1000 (max. 500000)
+ 48588 words of extra memory for PDF output out of 51595 (max. 10000000)
 

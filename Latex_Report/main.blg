@@ -1,18 +1,18 @@
 [0] Config.pm:328> INFO - This is Biber 2.21
-[0] Config.pm:331> INFO - Logfile is 'main.blg'
-[95] biber-MSWIN64:342> INFO - === 
-[124] Biber.pm:421> INFO - Reading 'main.bcf'
-[218] Biber.pm:1002> INFO - Found 3 citekeys in bib section 0
-[231] Biber.pm:4487> INFO - Processing section 0
-[242] Biber.pm:4678> INFO - Looking for bibtex file 'bib/MyBib.bib' for section 0
-[277] bibtex.pm:1713> INFO - LaTeX decoding ...
-[284] bibtex.pm:1519> INFO - Found BibTeX data source 'bib/MyBib.bib'
-[315] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[315] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[315] Biber.pm:4307> INFO - Sorting list 'none/global//global/global/global' of type 'entry' with template 'none' and locale 'en-US'
-[315] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-US'
-[320] bbl.pm:676> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[321] bbl.pm:779> INFO - Output to main.bbl
-[321] Biber.pm:132> WARN - I didn't find a database entry for 'example_ref' (section 0)
-[321] Biber.pm:132> WARN - I didn't find a database entry for 'example_datasheet' (section 0)
-[321] Biber.pm:134> INFO - WARNINGS: 2
+[1] Config.pm:331> INFO - Logfile is 'main.blg'
+[301] biber-MSWIN64:342> INFO - === 
+[431] Biber.pm:421> INFO - Reading 'main.bcf'
+[634] Biber.pm:1002> INFO - Found 3 citekeys in bib section 0
+[651] Biber.pm:4487> INFO - Processing section 0
+[664] Biber.pm:4678> INFO - Looking for bibtex file 'bib/MyBib.bib' for section 0
+[751] bibtex.pm:1713> INFO - LaTeX decoding ...
+[761] bibtex.pm:1519> INFO - Found BibTeX data source 'bib/MyBib.bib'
+[811] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[811] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[811] Biber.pm:4307> INFO - Sorting list 'none/global//global/global/global' of type 'entry' with template 'none' and locale 'en-US'
+[811] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-US'
+[822] bbl.pm:676> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[824] bbl.pm:779> INFO - Output to main.bbl
+[825] Biber.pm:132> WARN - I didn't find a database entry for 'example_ref' (section 0)
+[825] Biber.pm:132> WARN - I didn't find a database entry for 'example_datasheet' (section 0)
+[825] Biber.pm:134> INFO - WARNINGS: 2
