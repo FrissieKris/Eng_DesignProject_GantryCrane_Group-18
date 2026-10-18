@@ -1,0 +1,463 @@
+% ============================================================
+%  NWUStyle.sty  –  North-West University Faculty of Engineering
+%  Official report / thesis style file
+% ============================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{NWUStyle}[2025/01/01 NWU Faculty of Engineering Style]
+
+% ── Core packages ───────────────────────────────────────────
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{helvet}                        % Helvetica (sans-serif body)
+\renewcommand\familydefault{\sfdefault}        % use sans-serif as default
+
+\RequirePackage{geometry}
+\geometry{
+    a4paper,
+    top    = 30mm,
+    bottom = 30mm,
+    left   = 20mm,
+    right  = 20mm,
+}
+
+\RequirePackage{graphicx}
+\RequirePackage{amsmath, amssymb, amsthm}
+\RequirePackage{booktabs}
+\RequirePackage{array}
+\RequirePackage{longtable}
+\RequirePackage{caption}
+\RequirePackage{subcaption}
+\RequirePackage{float}
+\RequirePackage{enumitem}
+\RequirePackage{xcolor}
+\RequirePackage{titlesec}
+\RequirePackage{titletoc}
+\RequirePackage{fancyhdr}
+\RequirePackage{setspace}
+\RequirePackage{microtype}
+\RequirePackage{parskip}
+\RequirePackage{listings}
+\RequirePackage{siunitx}
+\RequirePackage{url}
+\RequirePackage{pdfpages}
+\RequirePackage{appendix}
+\RequirePackage{tocloft}
+\RequirePackage{ifthen}
+\RequirePackage{adjustbox}
+\RequirePackage{pdflscape}
+\RequirePackage{eso-pic}
+\RequirePackage{tikz}
+\RequirePackage[table]{xcolor}
+\RequirePackage{tabularx}
+\RequirePackage{hyperref}   % load late so it patches everything
+
+
+% biblatex (IEEE style) – loaded here so the .sty controls it
+\RequirePackage[style=ieee, backend=biber]{biblatex}
+
+% ── Colour palette (match NWU purple) ───────────────────────
+\definecolor{nwupurple}{RGB}{100, 28, 128}   % NWU brand purple
+\definecolor{darkgray}{RGB}{64, 64, 64}
+
+% --- Specify File Paths --- 
+\graphicspath{{img/}}
+
+% ── Hyperref setup ──────────────────────────────────────────
+\hypersetup{
+    colorlinks        = true,
+    linkcolor         = black,
+    citecolor         = black,
+    urlcolor          = nwupurple,
+    bookmarksnumbered = true,
+}
+
+% ── Typography ──────────────────────────────────────────────
+\setstretch{1.0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+
+
+% ── Paragraph spacing (no indent, small gap) ────────────────
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+
+% ── Section heading styles ──────────────────────────────────
+%    Chapter  → "1  Introduction"  (large, bold)
+%    Section  → "1.1  Background"  (medium bold)
+%    Subsec   → "1.1.1  Detail"    (bold)
+% ── Section heading styles ──────────────────────────────────
+\titleformat{\chapter}[hang]
+{\normalfont\large\bfseries}{\thechapter}{1em}{}
+\titlespacing*{\chapter}{0pt}{12pt}{6pt}
+
+\titleformat{\section}[hang]
+{\normalfont\normalsize\bfseries}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+
+\titleformat{\subsection}[hang]
+{\normalfont\normalsize\bfseries}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{8pt}{2pt}
+
+\titleformat{\subsubsection}[hang]
+{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+\titlespacing*{\subsubsection}{0pt}{6pt}{2pt}
+
+% Suppress "Chapter N" prefix
+\renewcommand{\chaptername}{}
+\renewcommand{\thechapter}{\arabic{chapter}}
+
+% ── Table / figure caption style ────────────────────────────
+%    Tables:  "Table 1. Caption"  above the table, centred, italic
+%    Figures: "Figure 1. Caption" below the figure, centred, italic
+\captionsetup[table]{
+    labelsep   = period,
+    labelfont  = {normalsize},
+    textfont   = {it, normalsize},
+    position   = above,
+    justification = centering,
+    singlelinecheck = false,
+}
+\captionsetup[figure]{
+    labelsep   = period,
+    labelfont  = {normalsize},
+    textfont   = {it, normalsize},
+    position   = below,
+    justification = centering,
+}
+
+% --- headers/footers ---
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}   % no header rule (matches template)
+\fancyfoot[R]{\thepage}              % page number bottom-right
+\fancypagestyle{plain}{%             % also affects chapter first pages
+    \fancyhf{}
+    \fancyfoot[R]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+% ── TOC depth ───────────────────────────────────────────────
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{4}
+
+% ── Listings (code) style ───────────────────────────────────
+\lstset{
+    basicstyle   = \ttfamily\small,
+    breaklines   = true,
+    frame        = single,
+    numbers      = left,
+    numberstyle  = \tiny\color{darkgray},
+    keywordstyle = \color{nwupurple}\bfseries,
+    commentstyle = \color{darkgray}\itshape,
+    captionpos   = b,
+    tabsize      = 4,
+}
+
+% ── ORCID inline logo helper ────────────────────────────────
+\newcommand*{\orcidlogo}[1]{%
+    \raisebox{-.3\baselineskip}{%
+        \includegraphics[height=\baselineskip, width=\baselineskip,
+            keepaspectratio]{#1}%
+    }%
+}
+
+
+%Set up variables
+%==========================================================
+%Set up the \StudentNumber variable. [required]
+
+% ---- holders (define once to avoid 'undefined' errors) ----
+% ============================================================
+%  VARIABLE HOLDERS  (initialise to empty)
+% ============================================================
+\newcommand{\EERIoneRole}{}
+\newcommand{\EERIoneName}{}
+\newcommand{\EERIoneNumber}{}
+
+\newcommand{\EERItwoRole}{}
+\newcommand{\EERItwoName}{}
+\newcommand{\EERItwoNumber}{}
+
+\newcommand{\MCTRoneRole}{}
+\newcommand{\MCTRoneName}{}
+\newcommand{\MCTRoneNumber}{}
+
+\newcommand{\MCTRTwoRole}{}
+\newcommand{\MCTRTwoName}{}
+\newcommand{\MCTRTwoNumber}{}
+
+\newcommand{\REIIRole}{}
+\newcommand{\REIIName}{}
+\newcommand{\REIINumber}{}
+
+
+\newcommand{\modulecode}{}
+\newcommand{\assignmentname}{}
+\newcommand{\mytitle}{}
+\newcommand{\reporttitle}{}       % project title (long subtitle)
+\newcommand{\givendate}{}
+\newcommand{\degreename}{}
+\newcommand{\disciplinename}{}
+\newcommand{\campusname}{}
+\newcommand{\submissiondate}{}
+\newcommand{\turnitinscore}{}
+\newcommand{\myfield}{}
+\newcommand{\orcidnumber}{}
+\newcommand{\supervisorname}{}
+\newcommand{\cosupervisorname}{}
+\newcommand{\assistantsupervisorname}{}
+
+
+
+% ── SETTERS (call these in main.tex) ────────────────────────
+% Usage: \StudentNumber{12345678}
+
+\newcommand{\SetEERIoneRole}[1]{\renewcommand{\EERIoneRole}{#1}}
+\newcommand{\SetEERIoneName}[1]{\renewcommand{\EERIoneName}{#1}}
+\newcommand{\SetEERIoneNumber}[1]{\renewcommand{\EERIoneNumber}{#1}}
+
+\newcommand{\SetEERItwoRole}[1]{\renewcommand{\EERItwoRole}{#1}}
+\newcommand{\SetEERItwoName}[1]{\renewcommand{\EERItwoName}{#1}}
+\newcommand{\SetEERItwoNumber}[1]{\renewcommand{\EERItwoNumber}{#1}}
+
+\newcommand{\SetMCTRoneRole}[1]{\renewcommand{\MCTRoneRole}{#1}}
+\newcommand{\SetMCTRoneName}[1]{\renewcommand{\MCTRoneName}{#1}}
+\newcommand{\SetMCTRoneNumber}[1]{\renewcommand{\MCTRoneNumber}{#1}}
+
+\newcommand{\SetMCTRTwoRole}[1]{\renewcommand{\MCTRTwoRole}{#1}}
+\newcommand{\SetMCTRTwoName}[1]{\renewcommand{\MCTRTwoName}{#1}}
+\newcommand{\SetMCTRTwoNumber}[1]{\renewcommand{\MCTRTwoNumber}{#1}}
+
+\newcommand{\SetREIIRole}[1]{\renewcommand{\REIIRole}{#1}}
+\newcommand{\SetREIIName}[1]{\renewcommand{\REIIName}{#1}}
+\newcommand{\SetREIINumber}[1]{\renewcommand{\REIINumber}{#1}}
+
+
+
+\newcommand{\Module}[1]            {\renewcommand{\modulecode}{#1}}
+\newcommand{\Assignment}[1]        {\renewcommand{\assignmentname}{#1}}
+\newcommand{\Title}[1]             {\renewcommand{\mytitle}{#1}}
+\newcommand{\ReportTitle}[1]       {\renewcommand{\reporttitle}{#1}}
+\newcommand{\Date}[1]              {\renewcommand{\givendate}{#1}}
+\newcommand{\Degree}[1]            {\renewcommand{\degreename}{#1}}
+\newcommand{\Discipline}[1]        {\renewcommand{\disciplinename}{#1}}
+\newcommand{\Campus}[1]            {\renewcommand{\campusname}{#1}}
+\newcommand{\SubmissionDate}[1]    {\renewcommand{\submissiondate}{#1}}
+\newcommand{\TurnitinScore}[1]     {\renewcommand{\turnitinscore}{#1}}
+\newcommand{\Field}[1]             {\renewcommand{\myfield}{#1}}
+\newcommand{\ORCID}[1]             {\renewcommand{\orcidnumber}{#1}}
+\newcommand{\Supervisor}[1]        {\renewcommand{\supervisorname}{#1}}
+\newcommand{\CoSupervisor}[1]      {\renewcommand{\cosupervisorname}{#1}}
+\newcommand{\AssistantSupervisor}[1]{\renewcommand{\assistantsupervisorname}{#1}}
+
+% ── ORCID toggle ────────────────────────────────────────────
+\newif\ifshoworcid
+\showorcidfalse   % default OFF  –  use \showorcidtrue in main.tex to enable
+
+% ── Optional-supervisor print macros ────────────────────────
+\newcommand{\printcosupervisor}[1]{%
+    \ifthenelse{\equal{#1}{}}{}{\textbf{Co-supervisor:} #1\\[4pt]}}
+\newcommand{\printasssupervisor}[1]{%
+    \ifthenelse{\equal{#1}{}}{}{\textbf{Assistant supervisor:} #1\\[4pt]}}
+
+% ============================================================
+%  ENVIRONMENTS
+% ============================================================
+
+% Abstract environment
+% Usage:  \begin{Abstract}{} ... \end{Abstract}
+\newenvironment{Abstract}[1]{%
+    \addcontentsline{toc}{chapter}{Abstract}
+    \setcounter{page}{1}
+    \pagenumbering{roman}
+    \chapter*{Abstract}
+}{%
+    \clearpage
+}
+
+% Keywords command (call inside Abstract environment)
+\newcommand{\KeyWords}[1]{%
+    \vspace{8pt}
+    \noindent\textbf{Keywords:} #1
+}
+
+% ── Convenience TOC / LOF / LOT command ─────────────────────
+\newcommand{\MakeTOCandLOFandLOT}{%
+    \clearpage
+    \tableofcontents
+    \clearpage
+    \listoffigures
+    \addcontentsline{toc}{chapter}{List of Figures}
+    \clearpage
+    \listoftables
+    \addcontentsline{toc}{chapter}{List of Tables}
+    \clearpage
+}
+
+% ============================================================
+%  TITLE PAGE  –  \MakeTitle
+% ============================================================
+\newcommand{\MakeTitle}{%
+
+    \begin{titlepage}
+    \thispagestyle{empty}
+
+    % NWU purple banner graphic in the top-left background
+    \AddToShipoutPictureBG*{%
+        \AtPageUpperLeft{%
+            \raisebox{-\height}{%
+                \includegraphics[width=0.8\paperwidth]{NWUBack}%
+            }%
+        }%
+    }
+
+    \vspace*{15mm}
+
+    \begin{center}
+
+    % ── Faculty heading ──────────────────────────────────────
+    {\large\bfseries\color{nwupurple} FACULTY OF ENGINEERING}
+
+    \vspace{16mm}
+
+    % ── Project / report title ───────────────────────────────
+    {\large \mytitle \par}
+
+    \vspace{10mm}
+
+    % ── Subtitle / report type (optional) ───────────────────
+    \ifthenelse{\equal{\reporttitle}{}}{}{%
+        {\normalsize \reporttitle \par}
+        \vspace{10mm}
+    }
+
+    % ── Module & assignment (for coursework reports) ─────────
+    \ifthenelse{\equal{\modulecode}{}}{}{%
+        {\normalsize \textbf{Module:} \modulecode \par}
+        \vspace{4pt}
+    }
+    \ifthenelse{\equal{\assignmentname}{}}{}{%
+        {\normalsize \textbf{Assignment:} \assignmentname \par}
+        \vspace{10mm}
+    }
+
+    % ── Author block ─────────────────────────────────────────
+        \vspace{6mm}
+            \textbf{Prepared by:}\par
+            \vspace{5mm}
+
+            \begin{tabularx}{\textwidth}{|X|X|X|}
+                \hline
+                \textbf{Role} &
+                \textbf{Name} &
+                \textbf{Student Number} \\[4mm]
+                \hline
+                \EERIoneRole & \EERIoneName & \EERIoneNumber \\[4mm]
+                \hline
+                \EERItwoRole & \EERItwoName & \EERItwoNumber \\[4mm]
+                \hline
+                \MCTRoneRole & \MCTRoneName & \MCTRoneNumber \\[4mm]
+                \hline
+                \MCTRTwoRole & \MCTRTwoName & \MCTRTwoNumber \\[4mm]
+                \hline
+                \REIIRole & \REIIName & \REIINumber \\[4mm]
+                \hline
+            \end{tabularx}
+
+            \vfill
+
+
+    % ── ORCID (optional) ─────────────────────────────────────
+    \ifshoworcid
+        \vspace{6pt}
+    \orcidlogo{ORCID}\quad\texttt{orcid.org/\orcidnumber}\par
+    \fi
+
+    \vspace{14mm}
+
+    % ── Supervisor block ─────────────────────────────────────
+    \ifthenelse{\equal{\supervisorname}{}}{}{%
+        \textbf{Supervisor:}\\[4pt]
+        \textbf{\supervisorname}\\[8pt]
+    }
+    \printcosupervisor{\cosupervisorname}
+    \printasssupervisor{\assistantsupervisorname}
+
+    \vspace{14mm}
+
+    % ── Degree block ─────────────────────────────────────────
+    \ifthenelse{\equal{\degreename}{}}{}{%
+        Submitted in pursuit of the degree\\[6pt]
+        \textbf{\MakeUppercase{\degreename}}\\[4pt]
+        In\\[4pt]
+        \textbf{\MakeUppercase{\disciplinename}}\\[14pt]
+        \textbf{North-West University \campusname}\\[10pt]
+    }
+
+    % ── Date ─────────────────────────────────────────────────
+    \ifthenelse{\equal{\submissiondate}{}}
+    {{\normalsize \givendate}}
+    {{\normalsize \submissiondate}}
+
+    \end{center}
+
+    \vfill
+
+    \end{titlepage}
+
+
+    \clearpage
+    \ClearShipoutPictureBG
+
+    % Front matter starts on roman numerals
+    \pagenumbering{roman}
+    \pagestyle{fancy}
+
+}% end \MakeTitle
+
+% ============================================================
+%  DECLARATION OF ORIGINALITY  –  \MakeDeclaration
+% ============================================================
+\newcommand{\MakeDeclaration}{%
+    \chapter*{Declaration of Originality}
+    \addcontentsline{toc}{chapter}{Declaration of Originality}
+
+    The undersigned authors declare the following:
+
+    This report is the authors' own original work. The authors
+    further declare that:
+
+    \begin{enumerate}
+        \item No part of this report has been copied from another
+              person without appropriate acknowledgement.
+        \item All consulted sources have been acknowledged in the
+              text and included in the bibliography.
+        \item All sections in which generative AI-enabled
+              technology was used have been indicated.
+        \item Unreferenced material represents the authors' own
+              ideas, arguments, and conclusions.
+    \end{enumerate}
+
+    \ifthenelse{\equal{\turnitinscore}{}}{}{%
+        The Turnitin similarity score was \turnitinscore.\par
+    }
+
+    \vspace{15mm}
+
+    \noindent
+    \begin{tabularx}{\textwidth}{X X}
+        \rule{60mm}{0.4pt} & \rule{60mm}{0.4pt} \\
+        Signature & Date
+    \end{tabularx}
+
+    \clearpage
+}
+
+\endinput
+% ============================================================
+%  END NWUStyle.sty
+% ============================================================
+
+
+
+

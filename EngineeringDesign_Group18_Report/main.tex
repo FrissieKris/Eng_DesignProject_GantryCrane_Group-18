@@ -1,0 +1,156 @@
+
+
+% ============================================================
+%  NWU Faculty of Engineering – Final Year Project Report
+%  main.tex  |  Top-level file
+%
+%  COMPILE:  pdflatex → biber → pdflatex → pdflatex
+%            (or simply run:  latexmk -pdf main)
+%
+%  FOLDER STRUCTURE expected:
+%    main.tex
+%    NWUStyle.sty
+%    NWUBack.png          <- purple NWU banner image
+%    img/                 <- all figures go here
+%    bib/
+%      MyBib.bib          <- your BibTeX references
+%    content/
+%      00_abstract.tex
+%      01_introduction.tex
+%      02_problem_analysis.tex
+%      03_literature.tex
+%      04_concept.tex
+%      05_preliminary.tex
+%      06_detailed.tex
+%      07_implementation.tex
+%      08_testing.tex
+%      09_conclusion.tex
+%      A_ai_usage.tex
+%      B_risk_register.tex
+%      C_additional.tex
+% ============================================================
+
+% ── Document class ──────────────────────────────────────────
+\documentclass[12pt, a4paper]{report}
+
+\usepackage{NWUStyle} %You need the NWUStyle.sty file to be able to use this command.
+
+
+% Point biblatex at your .bib file
+\addbibresource{bib/MyBib.bib}
+
+
+%================================================================================
+
+% ============================================================
+%    EDIT THESE FIELDS FOR YOUR PROJECT  
+% ============================================================
+ 
+% Full project title (appears large on cover)
+\Title{Gantry Crane}
+ 
+% Subtitle / report descriptor (leave blank with {} if unused)
+\ReportTitle{Group 18 Engineering Design Report}
+ 
+% Authors
+\SetEERIoneRole{EERI I}
+\SetEERIoneName{Jopie Roux}
+\SetEERIoneNumber{50128523}
+
+\SetEERItwoRole{EERI II}
+\SetEERItwoName{JP Smith}
+\SetEERItwoNumber{50128523}
+
+\SetMCTRoneRole{MCTR I}
+\SetMCTRoneName{Romeo Mapasa}
+\SetMCTRoneNumber{50128523}
+
+\SetMCTRTwoRole{MCTR II}
+\SetMCTRTwoName{Juan Fourie}
+\SetMCTRTwoNumber{50128523}
+
+\SetREIIRole{REII}
+\SetREIIName{Anton Swanepoel}
+\SetREIINumber{50128523}
+
+ 
+% Supervisor(s) – leave blank with {} if unused
+\Supervisor{}
+\CoSupervisor{}           % leave {} if none
+\AssistantSupervisor{}    % leave {} if none
+ 
+% ORCID – uncomment \showorcidtrue below and fill in number
+\ORCID{0000-0000-0000-0000}
+%\showorcidtrue            % uncomment to display ORCID on cover
+ 
+% Degree information
+\Degree{Bachelor of Engineering}
+\Discipline{School of Electrical, Electronic and Computer Engineering}
+\Campus{Potchefstroom Campus}
+ 
+% Module / assignment (for coursework reports – leave {} for FYP)
+\Module{}
+\Assignment{}
+ 
+% Dates
+\Date{21 November 2026}       % generic date field
+\SubmissionDate{25 November 2026}
+ 
+% Turnitin score (leave {} to omit the line)
+\TurnitinScore{Bot Bootlicker\%}
+ 
+% ============================================================
+
+\begin{document}
+
+% ── Cover page ──────────────────────────────────────────────
+\MakeTitle
+
+% ── Abstract + Keywords ─────────────────────────────────────
+\input{content/00_abstract}
+
+% ── Table of Contents / List of Figures / List of Tables ────
+\MakeTOCandLOFandLOT
+
+% ── Declaration of Originality ──────────────────────────────
+\MakeDeclaration
+
+% ── Switch to arabic page numbers for the body ──────────────
+\cleardoublepage
+\pagestyle{fancy}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+%================================================================================
+%BEGIN TYPING YOUR DOCUMENT - STARTING HERE.-------------------------------------
+%================================================================================
+
+%EACH CHAPTER IS TYPED IN A SEPARATE FILE. YOU CAN ADD EACH FILE INTO YOUR DOCUMENT USING THE \input COMMAND.
+% MAKE SURE THE FILES ARE IN THE SAME FOLDER AS THIS MAIN FILE.
+
+% \input{content/ExampleChapter1} %Include the contents of the file "ExampleChapter1.tex"
+% \input{content/ExampleChapter2} %Include the contents of the file "ExampleChapter2.tex"
+% \input{content/ExampleChapter3} %Include the contents of the file "ExampleChapter3.tex"
+
+\input{content/01_introduction}
+\input{content/02_problem_analysis}
+\input{content/03_literature}
+\input{content/04_concept}
+\input{content/05_preliminary}
+\input{content/06_detailed}
+\input{content/07_implementation}
+\input{content/08_testing}
+\input{content/09_conclusion}
+
+% ── References ──────────────────────────────────────────────
+\newpage
+\printbibliography[heading=bibintoc, title={References}]
+
+% ── Appendices ──────────────────────────────────────────────
+\newpage
+\appendix
+\input{content/A_ai_usage}
+\input{content/B_risk_register}
+\input{content/C_additional}
+
+\end{document}
