@@ -1,8 +1,9 @@
 % ============================================================
-%  CHAPTER 2 – PROBLEM ANALYSIS
+%  CHAPTER 2 – System Analysis
 % ============================================================
-\chapter{Problem Analysis}
-\label{ch:problem}
+\chapter{System Analysis}
+\label{ch:system-analysis}
+This chapter describes the background of the design~\ref{sec:background}, provides the problem statement~\ref{sec:problem-statement}, discusses project objectives ~\ref{:sec:objectives}, as well as the system requirements ~\ref{sec:requirements}.
 
 \section{Background}
 \label{sec:background}
@@ -30,48 +31,405 @@ The objectives of this project are:
 \section{Requirements}
 \label{sec:requirements}
 
-[Requirements should be uniquely identified so they can be traced
-through design decisions and test results.]
+The system requirements are based on the document
+\textit{Engineering Design 2026 -- Hoisting System System
+Specification}, Revision 0, dated 4 August 2026. The specification
+defines the functional, performance, interface, physical, design,
+environmental, and other quality requirements for the
+rail-mounted gantry/trolley hoisting system.
+
+The system comprises five work packages: MCTR I (Lateral
+Movement), MCTR II (Spooling), EEII I (Drive Electronics),
+EEII II (Magnetic Load Attachment), and REII (Remote Control
+Dashboard). The work packages interface with a shared embedded
+controller based on the ESP32-S3-WROOM-1 module and an isolated
+I/O board.
+
+The requirements below summarise the applicable system
+specification. Detailed implementation requirements and
+controller pin assignments are defined in the relevant work-package
+scopes of work and Controller Specification.
 
 \subsection{Functional Requirements}
 \label{subsec:func-req}
 
+The functional requirements define the operations that the system
+and its constituent subsystems shall perform.
+
 \begin{itemize}
-    \item \textbf{REQ\_01\_FUNC:} [The system shall \ldots]
-    \item \textbf{REQ\_02\_FUNC:} [The system shall \ldots]
-    \item \textbf{REQ\_03\_FUNC:} [The system shall \ldots]
+    \item \textbf{FR1 -- Lateral movement:}
+    Upon receipt of a motion command from the controller, the
+    lateral movement mechanism shall move the trolley along the
+    I-beam rail in the commanded direction using a commercial
+    off-the-shelf (COTS) DC motor costing less than R250.
+    The associated performance target is defined by PT1.
+
+    \item \textbf{FR2 -- Position feedback:}
+    The lateral movement mechanism shall report wheel position
+    to the controller via quadrature encoder feedback to support
+    motion profiling by REII.
+
+    \item \textbf{FR3 -- Wheel manufacturing:}
+    The lateral movement wheels shall be custom-manufactured
+    by 3D printing to support the wheel wear-characterisation
+    exercise.
+
+    \item \textbf{FR4 -- Hoisting:}
+    Upon receipt of a raise or lower command, the spooling
+    mechanism shall drive the hoist gearbox to lift or lower
+    a payload of up to 20\,kg in the commanded direction.
+    The associated performance target is defined by PT2.
+
+    \item \textbf{FR5 -- Hoist load feedback:}
+    The spooling mechanism shall continuously report the
+    on-hook load to the controller during operation.
+
+    \item \textbf{FR6 -- Fail-safe braking:}
+    The active brake shall engage automatically upon loss
+    of drive power or command signal and shall hold the
+    payload without drift.
+
+    \item \textbf{FR7 -- Motor drive:}
+    Upon receipt of gate/PWM commands from the controller,
+    the drive electronics shall convert single-phase
+    230\,VAC mains power to a DC bus and invert it to a
+    three-phase drive for the induction motor.
+
+    \item \textbf{FR8 -- Drive protection:}
+    The drive electronics shall detect and interrupt drive
+    output during shoot-through or overcurrent conditions
+    to protect the switching devices from damage.
+
+    \item \textbf{FR9 -- Drive current feedback:}
+    The drive electronics shall provide a single-ended
+    current-sense signal, capped below 2.048\,V, to the
+    controller for firmware-based fault inference.
+
+    \item \textbf{FR10 -- Magnetic load attachment:}
+    Upon receipt of an engage command, the magnetic load
+    attachment shall generate sufficient holding force
+    through a three-point electromagnet to retain a payload
+    of up to 20\,kg under static conditions. The associated
+    performance target is defined by PT3.
+
+    \item \textbf{FR11 -- Magnetic load indication:}
+    The magnetic load attachment shall report an on-load
+    indication to the controller using current-sense
+    discrimination between a loaded and unloaded grip.
+
+    \item \textbf{FR12 -- Dashboard telemetry:}
+    Upon receipt of telemetry from the controller via the
+    nRF24L01 link, the dashboard shall display all operational
+    parameters to the operator, including position, speed,
+    load, current, fault status, and grip status.
+
+    \item \textbf{FR13 -- Dashboard control:}
+    The dashboard shall provide the operator with control
+    of all system operations, including lateral motion,
+    hoisting, and magnet-engagement commands.
+
+    \item \textbf{FR14 -- Independent real-time control:}
+    The embedded controller shall execute its real-time
+    control loop, including drive-signal generation, sensor
+    acquisition, and safety interlocks, independently of
+    wireless-link or dashboard availability.
+
+    \item \textbf{FR15 -- Standalone operation:}
+    For groups without computer-engineering capacity, the
+    controller shall accept motion and control commands
+    via UDP over its built-in Wi-Fi interface without
+    requiring additional hardware.
 \end{itemize}
+
 
 \subsection{Performance Requirements}
 \label{subsec:perf-req}
 
+The specification defines three quantitative performance targets.
+These targets are used for graduated performance assessment rather
+than as binary functional pass/fail requirements.
+
 \begin{itemize}
-    \item \textbf{REQ\_04\_PERF:} [The system shall achieve \ldots]
-    \item \textbf{REQ\_05\_PERF:} [The system shall achieve \ldots]
+    \item \textbf{PT1 -- Lateral movement speed:}
+    The trolley shall achieve a lateral speed of at least
+    1\,m/s, measured at a distance of 1\,m from the departure
+    point under unloaded conditions. Performance marks scale
+    with the demonstrated speed relative to the target.
+
+    \item \textbf{PT2 -- Hoisting performance:}
+    The hoisting mechanism shall complete a 1.6\,m hoist
+    stroke within 20\,s while carrying a 20\,kg payload,
+    corresponding to an average hoisting rate of approximately
+    80\,mm/s. Performance marks scale with the demonstrated
+    hoisting rate.
+
+    \item \textbf{PT3 -- Magnetic holding performance:}
+    The magnetic load attachment shall retain a 20\,kg payload
+    against a specified disturbance force. The numerical
+    disturbance-force threshold remains to be determined
+    through further dynamics modelling. Performance marks
+    scale with the demonstrated holding performance relative
+    to the eventual threshold.
 \end{itemize}
+
 
 \subsection{Physical Requirements}
 \label{subsec:phys-req}
 
+The physical requirements define the payload interface and
+essential hardware safety provisions.
+
 \begin{itemize}
-    \item \textbf{REQ\_06\_PHYS:} [The device shall fit within \ldots]
-    \item \textbf{REQ\_07\_PHYS:} [The device shall weigh less than \ldots]
+    \item \textbf{PHY1 -- Payload interface:}
+    The payload used for testing and demonstration shall have
+    a flat sheet-metal attachment surface measuring
+    600\,mm $\times$ 400\,mm and at least 3\,mm thick for
+    engagement by the magnetic load attachment. Additional
+    mass may be used to increase the total payload to a
+    maximum of 20\,kg, provided the combined centre of mass
+    remains centred on the attachment surface. This
+    requirement does not require the general system mounting
+    plate to be made from sheet metal.
+
+    \item \textbf{PHY2 -- Hardware emergency stop:}
+    The system shall include a hardware emergency-stop
+    mechanism wired directly into the high-voltage (HV) bus.
+    It shall be capable of removing power from the drive
+    electronics independently of the software or firmware
+    state.
+
+    \item \textbf{PHY3 -- Mains protection:}
+    The mains supply feeding the drive electronics shall be
+    protected by a residual-current device (RCD), considering
+    the combination of high-voltage wiring and outdoor
+    exposure to moisture.
 \end{itemize}
+
 
 \subsection{Non-Functional Requirements}
 \label{subsec:nonfunc-req}
 
+In the system specification, these requirements are classified
+under \textit{Other Qualities}. They address reliability,
+maintainability, usability, and affordability.
+
 \begin{itemize}
-    \item \textbf{REQ\_08\_USABILITY:} [An operator with \ldots training
-          shall be able to \ldots]
-    \item \textbf{REQ\_09\_MODULARITY:} [The \ldots subsystem shall be
-          detachable from \ldots]
+    \item \textbf{OQ1 -- Reliability:}
+    Shoot-through and overcurrent protection shall be
+    validated on a milled test board before construction
+    of the full-scale variable-frequency drive (VFD)
+    assembly.
+
+    \item \textbf{OQ2 -- Maintainability:}
+    The core controller board shall be designed as reusable,
+    general-purpose laboratory infrastructure, providing
+    local analogue acquisition and data logging independently
+    of any single year's design problem.
+
+    \item \textbf{OQ3 -- Usability:}
+    The dashboard shall present telemetry and controls so
+    that an operator can safely command the system after
+    a brief orientation, without requiring specialist RF
+    or embedded-systems knowledge.
+
+    \item \textbf{OQ4 -- Affordability:}
+    Component costs shall remain within the stated constraints
+    for each work package, including a cost below R250 for
+    the lateral-movement motor. The total system cost per
+    group shall not exceed R5,000, inclusive of all
+    work-package procurement.
 \end{itemize}
+
+
+\subsection{Design and Construction Requirements}
+\label{subsec:design-req}
+
+The following design requirements constrain the permitted
+implementation choices.
+
+\begin{itemize}
+    \item \textbf{DR1 -- Lateral-movement motor:}
+    The lateral-movement drive motor shall be a COTS DC motor
+    costing less than R250.
+
+    \item \textbf{DR2 -- Spooling gearbox:}
+    The spooling gearbox shall not use a worm-gear configuration.
+    The spooling work-package scope further specifies a
+    minimum two-stage gearbox.
+
+    \item \textbf{DR3 -- Electromagnet construction:}
+    The magnetic load attachment shall not use a complete
+    COTS electromagnet or solenoid. COTS core material is
+    permitted, but the electromagnets must be manufactured
+    as part of the project.
+
+    \item \textbf{DR4 -- Wireless module:}
+    The wireless link shall use the nRF24L01 module.
+
+    \item \textbf{DR5 -- Embedded controller:}
+    The embedded controller shall be based on the
+    ESP32-S3-WROOM-1 (N8R2) module.
+\end{itemize}
+
+
+\subsection{Interface Requirements}
+\label{subsec:interface-req}
+
+The controller shall provide the interfaces required to
+coordinate the five work packages.
+
+\begin{itemize}
+    \item \textbf{IR1 -- Drive electronics interface:}
+    The controller shall provide an isolated six-line
+    gate/PWM interface to EEII I for three-phase motor
+    control, together with one reserve line. A current-sense
+    input shall also be provided.
+
+    \item \textbf{IR2 -- Magnetic attachment interface:}
+    The controller shall provide an isolated PWM interface
+    and a single-ended current-sense input of no more than
+    2.048\,V to EEII II.
+
+    \item \textbf{IR3 -- Lateral movement interface:}
+    The controller shall provide direction, PWM, and
+    quadrature-encoder interfaces to MCTR I.
+
+    \item \textbf{IR4 -- Spooling interface:}
+    The controller shall provide a load-cell input and
+    brake-control interface to MCTR II. The load-cell
+    acquisition path remains to be finalised between an
+    ADS1220 differential input and a dedicated HX711.
+
+    \item \textbf{IR5 -- Expansion interface:}
+    The controller shall provide a five-pin, protocol-agnostic
+    expansion header for group-specific extensions. The
+    header shall be documented as a low-voltage digital-logic
+    interface only.
+\end{itemize}
+
+
+\subsection{Environmental and Resource Requirements}
+\label{subsec:environmental-req}
+
+The system shall satisfy the following environmental and
+external-resource requirements.
+
+\begin{itemize}
+    \item The system shall operate on the existing I-beam rail
+    and gantry structure located outdoors on the NWU North Campus.
+
+    \item The system shall operate outdoors under ambient
+    weather conditions typical of the site, including
+    temperature variation, precipitation, solar and UV
+    exposure, wind, and dust. It shall also operate in the
+    presence of other groups' systems on shared or adjacent
+    rail infrastructure.
+
+    \item Electrical enclosures and wiring shall provide
+    protection against rain, dust, and incidental moisture.
+    Exposed materials, including 3D-printed or polymer
+    components, shall be selected or rated for sustained
+    outdoor UV and temperature exposure over the semester.
+
+    \item The system shall remain operational throughout the
+    design, build, integration, and demonstration phases of
+    the 2026 academic semester.
+
+    \item The system shall receive electrical power through
+    one dedicated single-phase, 50\,Hz, 230\,VAC mains
+    supply point per group.
+
+    \item System-level integration, including the main
+    on/off switch and distribution of mains power to the
+    HV bus and to the selected COTS low-voltage supplies
+    of the individual work packages, shall be assigned
+    to EEII I.
+\end{itemize}
+
+
+\subsection{Operating States and Modes}
+\label{subsec:states-modes}
+
+The system specification defines three operating states and
+two operating modes.
+
+\textbf{Operating states:}
+\begin{itemize}
+    \item \textbf{Idle:} The system is powered but is not
+    executing a commanded motion, hoisting, or
+    magnet-engagement action.
+
+    \item \textbf{Operational:} The system is actively
+    executing a commanded lateral movement, hoisting, or
+    magnet-engagement function under either operating mode.
+
+    \item \textbf{Fault / E-Stopped:} The hardware emergency
+    stop has removed power from the HV bus. All motive
+    functions are inhibited independently of the software
+    or firmware state.
+\end{itemize}
+
+\textbf{Operating modes:}
+\begin{itemize}
+    \item \textbf{Dashboard-controlled:} The operator controls
+    the system through the REII PC-based dashboard over the
+    nRF24L01 wireless link.
+
+    \item \textbf{Standalone:} The operator controls the system
+    directly through the controller's built-in Wi-Fi/UDP
+    interface, without requiring a dashboard.
+\end{itemize}
+
+At power-up, the system shall begin in the Idle state. Both
+operating modes shall be available in the Operational state.
+The Fault / E-Stopped state shall take precedence over either
+mode and shall inhibit motive outputs regardless of the mode
+active when the emergency stop was activated.
+
+
+\subsection{Open Requirements and Verification}
+\label{subsec:open-req-verification}
+
+The system specification identifies the following items as
+requiring further definition or implementation-level verification.
+
+\begin{itemize}
+    \item The numerical disturbance-force threshold for PT3
+    remains open pending further dynamics modelling.
+
+    \item The spooling load-cell acquisition path remains an
+    implementation choice between an ADS1220 differential
+    input and a dedicated HX711.
+
+    \item The system requirements must be assigned explicit
+    verification methods, including defined test procedures,
+    measurement methods, and acceptance criteria.
+
+    \item Shoot-through and overcurrent protection shall be
+    validated on the milled test board before the full-scale
+    VFD assembly is constructed.
+\end{itemize}
+
+Functional requirements shall be verified as pass/fail
+against their stated behaviour. Performance targets PT1--PT3
+shall be assessed according to the degree to which the
+specified targets are achieved. Open numerical thresholds
+shall not be treated as fully defined acceptance criteria
+until they have been resolved.
+
 
 \section{Risk Analysis}
 \label{sec:risk-analysis}
 
-[Summarise the risk analysis methodology and the most significant
-risks identified. A full risk register with likelihood/impact ratings
-and mitigation strategies is provided in
-Appendix~\ref{app:risk}.]
+The risk analysis shall identify hazards and implementation
+risks associated with the mechanical, electrical, magnetic,
+and control subsystems. Particular attention shall be given
+to the high-voltage drive electronics, outdoor operation,
+payload retention, moving mechanisms, and emergency-stop
+functionality.
+
+The risk register shall document each identified risk,
+its likelihood and impact, mitigation measures, and any
+residual risk following mitigation. The detailed risk
+register is provided in Appendix~\ref{app:risk}.
+

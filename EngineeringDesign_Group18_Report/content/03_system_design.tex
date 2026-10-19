@@ -2,63 +2,169 @@
 %  CHAPTER 3 – System Design
 % ============================================================
 \chapter{System Design}
-\label{ch:system design}
+\label{ch:system-design}
+This chapter divides the work amongst 5 engineering students according to their role presented by their degree. Each of the roles are responsible for a functional section of the design. Section~\ref{sec:functional-flow} covers the functional flow diagrams of the system. Section~\ref{sec:architecture} gives the overview of the system design with the top-most architecture, which is then split amongs the five roles in subsections \ref{sec:}. These  
 
-\section{}
-\label{sec:case-studies}
+\section{Functional Flow Diagrams}
+\label{sec:functional-flow}
 
-[Review published research relevant to your problem. Group related
-work into subsections. Always cite your sources~\cite{example_ref}.]
+[Describe the life-cycle and operational flows of the system.
+Reference each diagram in the text before it appears.]
 
-\subsection{Case Study 1 – [Topic]}
-
-[Discussion of the first body of literature.]
-
-\subsection{Case Study 2 – [Topic]}
-
-[Discussion of the second body of literature.]
-
-\section{Existing Solutions}
-\label{sec:existing-solutions}
-
-[Describe and critically evaluate commercial or academic solutions
-that already address (partly or fully) the problem. Highlight
-limitations that motivate your own design.]
-
-\section{Possible Solutions}
-\label{sec:possible-solutions}
-
-[Identify two or three candidate high-level solution strategies.
-Evaluate each against the requirements established in
-Chapter~\ref{ch:problem} and justify the approach selected for
-further development.]
-
-\section{Display Data}
-\label{sec:display-data}
-
-[If your literature study surfaces specific data (experimental
-results, performance benchmarks, standards) that will inform the
-design, present it here with tables or figures as appropriate.]
-
-% Example figure
 \begin{figure}[H]
     \centering
-    %\includegraphics[width=0.75\textwidth]{example_figure}
-    \caption{[Caption describing the figure and its source~\cite{example_ref}].}
-    \label{fig:lit-example}
+    \includegraphics[width = \textwidth]{figures/Fig_LifeCycleofGantryCrane.png}
+    \caption{Functional flow diagram illustrating the system life-cycle.}
+    \label{fig:ffd-lifecycle}
 \end{figure}
 
-% Example table
+\section{System Architecture}
+\label{sec:system-architecture}
+
+
+
+\subsection{Level 0 System}
+\label{subsec:top-level-system}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{figures/Fig_Arch_Level0.png}
+    \caption{System Architecture on Level 0}
+    \label{fig:arch-level0}
+\end{figure}
+
+\subsection{Level 1: Gantry System F/U 1.0}
+\label{subsec:gantry-system-fu}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{figures/Fig_Arch_Level1_GantrySystem.png}
+    \caption{System Architecture on Level 1}
+    \label{fig:arch-level1}
+\end{figure}
+
+
+
+\section{Level 2: Functional Units}
+\label{sec:functional units}
+Each subsection handles on of the first level functional units introduced in section~\ref{sec:system-architecture}.
+
+\subsection{EERI I: Drive Electronics: F/U 1.1}
+\label{subsec:eeri1-fu1p1}
+EERI I Drive Electroncics by Jopie Roux.
+
 \begin{table}[H]
     \centering
-    \caption{[Table title~\cite{example_ref}].}
-    \label{tab:lit-example}
-    \begin{tabular}{@{} l c c @{}}
+    \caption{Operational Functional Units.}
+    \label{tab:functional-units}
+    \begin{tabular}{@{} l l p{7cm} @{}}
         \toprule
-        \textbf{Parameter} & \textbf{Option A} & \textbf{Option B} \\
+        \textbf{F/U ID} & \textbf{Name} & \textbf{Description} \\
         \midrule
-        Criterion 1 & Value & Value \\
-        Criterion 2 & Value & Value \\
+        F/U 1.0 & [Subsystem A] & [What this functional unit does.] \\
+        F/U 2.0 & [Subsystem B] & [What this functional unit does.] \\
+        F/U 3.0 & [Subsystem C] & [What this functional unit does.] \\
         \bottomrule
     \end{tabular}
 \end{table}
+
+\subsection{EERI II: Magnetic Load Attachment: F/U 1.2}
+\label{subsec:eeri2-fu1p2}
+EERI II Magnetic Load Attachment by JP Smith.
+
+\begin{table}[H]
+    \centering
+    \caption{Operational Functional Units.}
+    \label{tab:functional-units}
+    \begin{tabular}{@{} l l p{7cm} @{}}
+        \toprule
+        \textbf{F/U ID} & \textbf{Name} & \textbf{Description} \\
+        \midrule
+        F/U 1.0 & [Subsystem A] & [What this functional unit does.] \\
+        F/U 2.0 & [Subsystem B] & [What this functional unit does.] \\
+        F/U 3.0 & [Subsystem C] & [What this functional unit does.] \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{MCTR I: Lateral Movement: F/U 1.3}
+\label{subsec:mctr1-fu1p3}
+MCTR I Lateral Movement by Romeo Mapasa.
+\begin{table}[H]
+    \centering
+    \caption{Operational Functional Units.}
+    \label{tab:functional-units}
+    \begin{tabular}{@{} l l p{7cm} @{}}
+        \toprule
+        \textbf{F/U ID} & \textbf{Name} & \textbf{Description} \\
+        \midrule
+        F/U 1.0 & [Subsystem A] & [What this functional unit does.] \\
+        F/U 2.0 & [Subsystem B] & [What this functional unit does.] \\
+        F/U 3.0 & [Subsystem C] & [What this functional unit does.] \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+\subsection{MCTR II: Spooling: F/U 1.4}
+\label{subsec:mctr2-fu1p4}
+MCTR II Spooling by Juan Fourie.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{figures/Fig_Arch_Level2_MCTRII.png}
+    \caption{System Architecture of F/U 1.4 of the Spooling Subsystem}
+    \label{fig:arch-mctr2}
+\end{figure}
+
+
+\begin{table}[H]
+    \centering
+    \caption{Operational Functional Units.}
+    \label{tab:functional-units}
+    \begin{tabular}{@{} l l p{7cm} @{}}
+        \toprule
+        \textbf{F/U ID} & \textbf{Name} & \textbf{Description} \\
+        \midrule
+        F/U 1.0 & [Subsystem A] & [What this functional unit does.] \\
+        F/U 2.0 & [Subsystem B] & [What this functional unit does.] \\
+        F/U 3.0 & [Subsystem C] & [What this functional unit does.] \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{REII: Remote Control Dashboard: F/U 1.5}
+\label{subsec:reii-fu1p5}
+REII Remote Control Dashboard by Anton Swanepoel.
+
+\begin{table}[H]
+    \centering
+    \caption{Operational Functional Units.}
+    \label{tab:functional-units}
+    \begin{tabular}{@{} l l p{7cm} @{}}
+        \toprule
+        \textbf{F/U ID} & \textbf{Name} & \textbf{Description} \\
+        \midrule
+        F/U 1.0 & [Subsystem A] & [What this functional unit does.] \\
+        F/U 2.0 & [Subsystem B] & [What this functional unit does.] \\
+        F/U 3.0 & [Subsystem C] & [What this functional unit does.] \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Summary of Interfaces}
+\label{sec:summary-of-interfaces}
+This section lists each of the interfaces introduced above organised according to their nature, which is either mechanical, electrical, signal, or general. These interfacees are then assigned to each role in chapter \ref{ch:interface-control}.
+
+\subsection{Mechanical Interfaces}
+\label{subsec:mechanical-interfaces}
+
+\subsection{Electrical Interfaces}
+\label{subsec:electrical-interfaces}
+
+\subsection{Signal Interfaces}
+\label{subsec:signal-interfaces}
+
+\subsection{General Interfaces}
+\label{subsec:general-interfaces}

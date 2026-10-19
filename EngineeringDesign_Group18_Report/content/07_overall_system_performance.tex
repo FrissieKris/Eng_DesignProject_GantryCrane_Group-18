@@ -1,88 +1,411 @@
+
 % ============================================================
-%  CHAPTER 7 – IMPLEMENTATION
+%  CHAPTER 7 -- System Performance
 % ============================================================
-\chapter{Implementation}
-\label{ch:implementation}
+\chapter{System Performance}
+\label{ch:system-performance}
 
-[Describe how the design was physically realised. This chapter
-bridges the design (Chapters~\ref{ch:preliminary}–\ref{ch:detailed})
-and the testing (Chapter~\ref{ch:testing}).]
+This chapter evaluates the performance of the five subsystems
+comprising the gantry crane system: EERI I, EERI II, MCTR I,
+MCTR II, and REII. The performance of each subsystem is assessed
+against its design requirements using appropriate measurable
+indicators and verification methods. The interactions between
+subsystems are also considered to determine whether the integrated
+system satisfies the overall design objectives.
 
-\section{Electrical Implementation}
-\label{sec:elec-impl}
+\section{Performance Evaluation Methodology}
+\label{sec:performance-methodology}
 
-[Describe the PCB or wiring assembly process, any soldering or
-crimping work, cable management, and final continuity / short-circuit
-checks performed before power-on.]
+The performance of each subsystem shall be evaluated by comparing
+its specified design requirements with the results obtained during
+testing. Each performance indicator shall have a defined target,
+a measurement method, and an acceptance criterion.
 
-\begin{figure}[H]
+The following information shall be recorded for each indicator:
+\begin{itemize}
+    \item \textbf{Design requirement:} The required subsystem
+    functionality or performance.
+    \item \textbf{Performance indicator:} The measurable quantity
+    used to evaluate the requirement.
+    \item \textbf{Target value:} The value or operating range
+    specified during the design process.
+    \item \textbf{Measured result:} The value obtained during testing.
+    \item \textbf{Assessment:} Whether the measured result satisfies
+    the specified acceptance criterion.
+\end{itemize}
+
+\section{EERI I Performance}
+\label{sec:eeri-i-performance}
+
+This section evaluates the performance of EERI I with respect to
+its assigned function within the gantry crane system. The indicators
+selected for evaluation shall correspond to the subsystem's
+functional and engineering requirements.
+
+\begin{table}[H]
     \centering
-    %\includegraphics[width=0.85\textwidth]{wiring_diagram}
-    \caption{Electrical hardware component layout and wiring diagram.}
-    \label{fig:wiring}
-\end{figure}
+    \caption{Performance indicators for EERI I.}
+    \label{tab:eeri-i-performance}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|X|X|X|X|}
+        \hline
+        \textbf{Performance indicator} &
+        \textbf{Target value} &
+        \textbf{Measured result} &
+        \textbf{Assessment} \\
+        \hline
+        Primary functional performance &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Operational accuracy or output quality &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Response time or operating speed &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Power consumption or operating efficiency,
+        where applicable &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Reliability under specified operating conditions &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+    \end{tabularx}
+\end{table}
 
-\begin{figure}[H]
+The results shall be used to determine whether EERI I satisfies
+its allocated requirements. Any deviations from the target values
+shall be documented together with their probable causes and
+effects on the overall system.
+
+\section{EERI II Performance}
+\label{sec:eeri-ii-performance}
+
+The performance of EERI II shall be assessed according to its
+role in the gantry crane system. Particular attention shall be
+given to its principal function, the consistency of its output,
+and its ability to operate within the specified design limits.
+
+\begin{table}[H]
     \centering
-    %\includegraphics[width=0.70\textwidth]{elec_photo}
-    \caption{Photograph of the assembled electrical system.}
-    \label{fig:elec-photo}
-\end{figure}
+    \caption{Performance indicators for EERI II.}
+    \label{tab:eeri-ii-performance}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|X|X|X|X|}
+        \hline
+        \textbf{Performance indicator} &
+        \textbf{Target value} &
+        \textbf{Measured result} &
+        \textbf{Assessment} \\
+        \hline
+        Primary functional performance &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Output accuracy or consistency &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Response time or operating speed &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Operating range or capacity, where applicable &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Reliability under specified operating conditions &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+    \end{tabularx}
+\end{table}
 
-\section{Mechanical Implementation}
-\label{sec:mech-impl}
+The measured results shall establish whether EERI II performs
+within its required operating range and whether its output is
+suitable for the subsystem or subsystems with which it interacts.
 
-[Describe the fabrication and assembly of all mechanical parts.
-Include materials used, tolerances achieved, and any challenges
-encountered during construction.]
+\section{MCTR I Performance}
+\label{sec:mctr-i-performance}
 
-\begin{figure}[H]
+This section evaluates MCTR I in terms of its principal function
+and its contribution to the mechanical and operational performance
+of the gantry crane. Where applicable, the assessment shall include
+load capacity, positional accuracy, motion, structural behaviour,
+or other indicators relevant to the subsystem's actual design.
+
+\begin{table}[H]
     \centering
-    %\includegraphics[width=0.60\textwidth]{mech_assembly_photo}
-    \caption{Photograph of the mechanical assembly.}
-    \label{fig:mech-photo}
-\end{figure}
+    \caption{Performance indicators for MCTR I.}
+    \label{tab:mctr-i-performance}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|X|X|X|X|}
+        \hline
+        \textbf{Performance indicator} &
+        \textbf{Target value} &
+        \textbf{Measured result} &
+        \textbf{Assessment} \\
+        \hline
+        Primary functional performance &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Load capacity or operating capacity,
+        where applicable &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Positional accuracy or dimensional tolerance,
+        where applicable &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Operating speed or cycle time,
+        where applicable &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Mechanical integrity or stability,
+        where applicable &
+        [Specified criterion] &
+        [Observed result] &
+        [Pass/Fail] \\
+        \hline
+    \end{tabularx}
+\end{table}
 
-\section{Software Implementation}
-\label{sec:sw-impl}
+The results shall indicate whether MCTR I meets its required
+functional and mechanical performance. Any observed deflection,
+misalignment, excessive friction, instability, or other deviation
+shall be documented where relevant to the subsystem.
 
-[Describe how the software was written, structured, and tested
-informally during development. Highlight any algorithms, third-party
-libraries used, or non-trivial design patterns.]
+\section{MCTR II Performance}
+\label{sec:mctr-ii-performance}
 
-% Code listing example
-\begin{lstlisting}[language=Python,
-                   caption={Sensor initialisation routine.},
-                   label=lst:sensor-init]
-import sensor_library as sl
+MCTR II shall be evaluated against the requirements associated
+with its assigned function. The assessment shall consider its
+operational performance and any relevant mechanical, electrical,
+or control-related characteristics.
 
-def init_sensor(pin: int, baud: int = 9600) -> sl.Sensor:
-    """Initialise and calibrate the sensor on the given GPIO pin."""
-    sensor = sl.Sensor(pin=pin, baud=baud)
-    sensor.calibrate()
-    return sensor
-\end{lstlisting}
-
-\section{Final System}
-\label{sec:final-system}
-
-[Present photographs of the completed system from multiple angles.
-Briefly confirm that it matches the design intent before formal
-testing begins.]
-
-\begin{figure}[H]
+\begin{table}[H]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        %\includegraphics[width=\textwidth]{final_front}
-        \caption{Front view.}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.45\textwidth}
-        \centering
-        %\includegraphics[width=\textwidth]{final_side}
-        \caption{Side view.}
-    \end{subfigure}
-    \caption{Final assembled system.}
-    \label{fig:final-system}
-\end{figure}
+    \caption{Performance indicators for MCTR II.}
+    \label{tab:mctr-ii-performance}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|X|X|X|X|}
+        \hline
+        \textbf{Performance indicator} &
+        \textbf{Target value} &
+        \textbf{Measured result} &
+        \textbf{Assessment} \\
+        \hline
+        Primary functional performance &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Operating capacity or load handling,
+        where applicable &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Positioning accuracy or repeatability,
+        where applicable &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Response time or operating cycle time &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Reliability and safe operation under
+        specified conditions &
+        [Specified criterion] &
+        [Observed result] &
+        [Pass/Fail] \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+The results shall be compared with those of MCTR I where the
+subsystems have related functions or operate together. This
+comparison shall identify any performance differences that affect
+the coordinated operation of the gantry crane.
+
+\section{REII Performance}
+\label{sec:reii-performance}
+
+The performance of REII shall be evaluated against the requirements
+associated with its designated role in the system. The selected
+indicators shall reflect the subsystem's primary function and
+the requirements imposed on it by the complete gantry crane.
+
+\begin{table}[H]
+    \centering
+    \caption{Performance indicators for REII.}
+    \label{tab:reii-performance}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|X|X|X|X|}
+        \hline
+        \textbf{Performance indicator} &
+        \textbf{Target value} &
+        \textbf{Measured result} &
+        \textbf{Assessment} \\
+        \hline
+        Primary functional performance &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Output accuracy or operational effectiveness &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Response time or operating speed,
+        where applicable &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Operating capacity or efficiency,
+        where applicable &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Reliability or required safe response &
+        [Specified criterion] &
+        [Observed result] &
+        [Pass/Fail] \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+The results shall establish whether REII satisfies its allocated
+requirements and whether its operation introduces any limitations
+or dependencies affecting the performance of the complete system.
+
+\section{Integrated System Performance}
+\label{sec:integrated-performance}
+
+The integrated performance assessment considers the interactions
+between EERI I, EERI II, MCTR I, MCTR II, and REII. Individual
+subsystem performance does not necessarily guarantee correct
+system operation; therefore, the interfaces and coordinated
+operating sequences shall also be evaluated.
+
+\begin{table}[H]
+    \centering
+    \caption{Integrated system performance indicators.}
+    \label{tab:integrated-performance}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|X|X|X|X|}
+        \hline
+        \textbf{Performance indicator} &
+        \textbf{Target value} &
+        \textbf{Measured result} &
+        \textbf{Assessment} \\
+        \hline
+        Correct operation of subsystem interfaces &
+        [Specified criterion] &
+        [Observed result] &
+        [Pass/Fail] \\
+        \hline
+        Completion of the required operating sequence &
+        [Specified criterion] &
+        [Observed result] &
+        [Pass/Fail] \\
+        \hline
+        Overall operating time or cycle time &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        System performance under the specified load
+        or operating conditions &
+        [Specified target] &
+        [Measured result] &
+        [Pass/Fail] \\
+        \hline
+        Fault handling and required safe-state behaviour &
+        [Specified criterion] &
+        [Observed result] &
+        [Pass/Fail] \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+Integration testing shall verify that signals, loads, power, and
+other relevant quantities are transferred correctly across each
+required interface. The complete operating sequence shall be
+evaluated to identify delays, incompatibilities, or performance
+limitations arising from interactions between subsystems.
+
+\section{Summary of System Performance}
+\label{sec:system-performance-summary}
+
+The performance results for all five subsystems and the integrated
+system shall be consolidated to assess compliance with the design
+requirements.
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of subsystem performance.}
+    \label{tab:system-performance-summary}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|X|X|X|X|}
+        \hline
+        \textbf{Subsystem} &
+        \textbf{Requirements assessed} &
+        \textbf{Requirements satisfied} &
+        \textbf{Outstanding issues} \\
+        \hline
+        EERI I & [Number or reference] &
+        [Number or percentage] & [Details] \\
+        \hline
+        EERI II & [Number or reference] &
+        [Number or percentage] & [Details] \\
+        \hline
+        MCTR I & [Number or reference] &
+        [Number or percentage] & [Details] \\
+        \hline
+        MCTR II & [Number or reference] &
+        [Number or percentage] & [Details] \\
+        \hline
+        REII & [Number or reference] &
+        [Number or percentage] & [Details] \\
+        \hline
+        Integrated system & [Number or reference] &
+        [Number or percentage] & [Details] \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+The final assessment shall identify which requirements have been
+satisfied, which remain outstanding, and whether corrective action
+or further testing is required. The system shall be considered to
+meet its performance objectives only when the relevant acceptance
+criteria have been demonstrated by the recorded results.

@@ -1,61 +1,94 @@
 % ============================================================
-%  CHAPTER 4 – CONCEPT DESIGN
+%  CHAPTER 4 – INTERFACES
 % ============================================================
-\chapter{Concept Design}
-\label{ch:concept}
+\chapter{Interface Control}
+\label{ch:interface-control}
+This chapter describes each of the interfaces introduced in chapter~\ref{ch:system-design}. Each interface listed in section~\ref{sec:summary-of-interfaces}, is described and allocated to a role in section~\ref{sec:work-allocation}.
 
-[Describe the high-level solution strategy. Focus on \textit{what}
-the system must do, not yet \textit{how} it will do it. Use
-functional flow diagrams and architecture diagrams to illustrate
-the concept.]
+\section{Work Allocation}
+\label{sec:work-allocation}
+This section ascribes each interface sa the responsibility of the role under which it is described. Each member read and confirmed their responsibilities and interfaces under their jurisdiction as indicated below. By having their name printed next to their role they have accepted the responsibility and are the liable person for all interfaces listed in their section.
 
-\section{Functional Flow Diagrams}
-\label{sec:functional-flow}
-
-[Describe the life-cycle and operational flows of the system.
-Reference each diagram in the text before it appears.]
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width = \textwidth]{figures/LifeCycleofGantryCrane_Diagram.png}
-    \caption{Functional flow diagram illustrating the system life-cycle.}
-    \label{fig:ffd-lifecycle}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-   % \includegraphics[width=0.80\textwidth]{functional_flow_operational}
-    \caption{Functional flow diagram illustrating the operational flow.}
-    \label{fig:ffd-operational}
-\end{figure}
-
-\section{System Architecture}
-\label{sec:architecture}
-
-[Describe the operational levels of the system (Level 0, Level 1,
-Level 2, etc.) with a block diagram for each.]
-
-\begin{figure}[H]
-    \centering
-    %\includegraphics[width=0.70\textwidth]{architecture_L0}
-    \caption{Operational Level 0 architecture.}
-    \label{fig:arch-l0}
-\end{figure}
-
+\subsection{EERI I:  }
+\label{subsec:eeri1-interfaces}
+EERI I Drive Electroncics by Jopie Roux.
 \begin{table}[H]
     \centering
-    \caption{Operational Functional Units.}
-    \label{tab:functional-units}
-    \begin{tabular}{@{} l l p{7cm} @{}}
+    \caption{Operational Interfaces.}
+    \label{tab:interfaces}
+    \begin{tabular}{@{} l l l p{5cm} @{}}
         \toprule
-        \textbf{F/U ID} & \textbf{Name} & \textbf{Description} \\
+        \textbf{Interface} & \textbf{From} & \textbf{To} & \textbf{Description} \\
         \midrule
-        F/U 1.0 & [Subsystem A] & [What this functional unit does.] \\
-        F/U 2.0 & [Subsystem B] & [What this functional unit does.] \\
-        F/U 3.0 & [Subsystem C] & [What this functional unit does.] \\
+        I1 & F/U 1.0 & F/U 2.0 & [Description of data/power/signal.] \\
+        I2 & F/U 2.0 & F/U 3.0 & [Description.] \\
         \bottomrule
     \end{tabular}
 \end{table}
+
+
+
+\subsection{EERI II: }
+\label{subsec:eeri2-interfaces}
+EERI II Magnetic Load Attachment by JP Smith.
+\begin{table}[H]
+    \centering
+    \caption{Operational Interfaces.}
+    \label{tab:interfaces}
+    \begin{tabular}{@{} l l l p{5cm} @{}}
+        \toprule
+        \textbf{Interface} & \textbf{From} & \textbf{To} & \textbf{Description} \\
+        \midrule
+        I1 & F/U 1.0 & F/U 2.0 & [Description of data/power/signal.] \\
+        I2 & F/U 2.0 & F/U 3.0 & [Description.] \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+
+\subsection{MCTR I: }
+\label{subsec:mctr1-interfaces}
+MCTR I Lateral Movement by Romeo Mapasa.
+\begin{table}[H]
+    \centering
+    \caption{Operational Interfaces.}
+    \label{tab:interfaces}
+    \begin{tabular}{@{} l l l p{5cm} @{}}
+        \toprule
+        \textbf{Interface} & \textbf{From} & \textbf{To} & \textbf{Description} \\
+        \midrule
+        I1 & F/U 1.0 & F/U 2.0 & [Description of data/power/signal.] \\
+        I2 & F/U 2.0 & F/U 3.0 & [Description.] \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+
+
+\subsection{MCTR II: Juan Fourie}
+\label{subsec:mctr2-interfaces}
+MCTR II Spooling by Juan Fourie.
+\begin{table}[H]
+    \centering
+    \caption{Operational Interfaces.}
+    \label{tab:interfaces}
+    \begin{tabular}{@{} l l l p{5cm} @{}}
+        \toprule
+        \textbf{Interface} & \textbf{From} & \textbf{To} & \textbf{Description} \\
+        \midrule
+        I1 & F/U 1.0 & F/U 2.0 & [Description of data/power/signal.] \\
+        I2 & F/U 2.0 & F/U 3.0 & [Description.] \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+
+\subsection{REII: }
+\label{subsec:reii-interfaces}
+REII Remote Control Dashboard by Anton Swanepoel.
 
 \begin{table}[H]
     \centering
@@ -70,3 +103,7 @@ Level 2, etc.) with a block diagram for each.]
         \bottomrule
     \end{tabular}
 \end{table}
+
+
+
+
