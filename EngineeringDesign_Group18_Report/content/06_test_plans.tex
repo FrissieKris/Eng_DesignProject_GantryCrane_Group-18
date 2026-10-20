@@ -1,107 +1,409 @@
 % ============================================================
-%  CHAPTER 6 – DETAILED DESIGN
+%  CHAPTER 6 – TEST PLAN
 % ============================================================
-\chapter{Detailed Design}
-\label{ch:detailed}
+\chapter{Test Plan}
+\label{ch:test-plan}
+This chapter discusses the test individual~\ref{}, integration, and full system test plans to be implemented to ensure the functioning of each subsystem as a whole. The persons responsible for collaboration on the test plan are the 2 persons who have the role in the subsection title. Testing is divided into individual subsystem verification,
+subsystem integration testing, and full-system validation.
 
-[Specify every design decision at the component level. Include
-exact part numbers, electrical parameters, mechanical dimensions,
-software data structures, and algorithms.]
+Each test shall specify the initial conditions, test procedure,
+expected result, and acceptance criteria. The actual result and
+test status shall be recorded during execution.
 
-\section{Detailed Hardware Decisions}
-\label{sec:detailed-hw}
+\section{Test Procedure and Acceptance Criteria}
+The following information shall be documented for each test:
+\begin{itemize}
+    \item \textbf{Test ID:} A unique identifier for the test.
+    \item \textbf{Objective:} The functionality or requirement
+    being verified.
+    \item \textbf{Initial conditions:} The required system
+    configuration before testing.
+    \item \textbf{Procedure:} The steps followed to perform the test.
+    \item \textbf{Expected result:} The anticipated system response.
+    \item \textbf{Acceptance criteria:} The measurable conditions
+    required for the test to pass.
+    \item \textbf{Actual result:} The observed outcome.
+    \item \textbf{Status:} Pass, Fail, or Not Tested.
+\end{itemize}
 
-% ── Component specifications ─────────────────────────────────
-\subsection{[Component A Specifications]}
-\label{subsec:comp-a}
+\section{Individual Test Plans}
+\label{sec:individual-tests}
 
-[Describe the component and why the exact variant was chosen.
-Refer to the datasheet.]
+Each subsystem shall first be tested independently, where
+practical, to establish that its functionality meets the
+specified design requirements before integration testing.
 
-\begin{table}[H]
+
+\subsection{EERI I}
+\label{subsec:eeri-i-tests}
+
+\textbf{Subsystem function:} [Insert the function of EERI I.]
+
+\textbf{Test setup:} [Insert the required equipment, configuration,
+and initial conditions.]
+
+\begin{table}[htbp]
     \centering
-    \caption{[Component A] specifications.}
-    \label{tab:comp-a-specs}
-    \begin{tabular}{@{} l l @{}}
-        \toprule
-        \textbf{Parameter}       & \textbf{Value} \\
-        \midrule
-        Supply voltage           & \SI{5}{\volt} \\
-        Operating current        & \SI{500}{\milli\ampere} \\
-        Dimensions               & \SI{85}{\mm} $\times$ \SI{56}{\mm} \\
-        Mass                     & \SI{45}{\gram} \\
-        Interface                & USB 3.0, MIPI CSI-2 \\
-        \bottomrule
-    \end{tabular}
+    \caption{EERI I test plan}
+    \label{tab:eeri-i-tests}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|l|X|X|X|X|}
+        \hline
+        \textbf{Test ID} &
+        \textbf{Test description} &
+        \textbf{Procedure} &
+        \textbf{Expected result} &
+        \textbf{Status} \\
+        \hline
+        EI-01 & [Functional test] &
+        [Test procedure] &
+        [Expected behaviour] &
+        [Pass/Fail/NT] \\
+        \hline
+        EI-02 & [Performance test] &
+        [Test procedure] &
+        [Acceptance criterion] &
+        [Pass/Fail/NT] \\
+        \hline
+        EI-03 & [Safety or fault test] &
+        [Test procedure] &
+        [Expected safe response] &
+        [Pass/Fail/NT] \\
+        \hline
+    \end{tabularx}
 \end{table}
 
-\subsection{[Component B Specifications]}
-\label{subsec:comp-b}
 
-\begin{table}[H]
+\subsection{EERI II}
+\label{subsec:eeri-ii-tests}
+
+\textbf{Subsystem function:} [Insert the function of EERI II.]
+
+\textbf{Test setup:} [Insert the required equipment, configuration,
+and initial conditions.]
+
+\begin{table}[htbp]
     \centering
-    \caption{[Component B] specifications.}
-    \label{tab:comp-b-specs}
-    \begin{tabular}{@{} l l @{}}
-        \toprule
-        \textbf{Parameter} & \textbf{Value} \\
-        \midrule
-        Parameter 1        & Value \\
-        Parameter 2        & Value \\
-        \bottomrule
-    \end{tabular}
+    \caption{EERI II test plan}
+    \label{tab:eeri-ii-tests}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|l|X|X|X|X|}
+        \hline
+        \textbf{Test ID} &
+        \textbf{Test description} &
+        \textbf{Procedure} &
+        \textbf{Expected result} &
+        \textbf{Status} \\
+        \hline
+        EII-01 & [Functional test] &
+        [Test procedure] &
+        [Expected behaviour] &
+        [Pass/Fail/NT] \\
+        \hline
+        EII-02 & [Performance test] &
+        [Test procedure] &
+        [Acceptance criterion] &
+        [Pass/Fail/NT] \\
+        \hline
+        EII-03 & [Safety or fault test] &
+        [Test procedure] &
+        [Expected safe response] &
+        [Pass/Fail/NT] \\
+        \hline
+    \end{tabularx}
 \end{table}
 
-\section{Detailed Software Decisions}
-\label{sec:detailed-sw}
 
-[Describe the software architecture in detail: threading model,
-communication protocols, data structures, and key algorithms.
-Include a software block diagram or state machine where helpful.]
+\subsection{MCTR I}
+\label{subsec:mctr-i-tests}
 
-\begin{figure}[H]
+\textbf{Subsystem function:} [Insert the function of MCTR I.]
+
+\textbf{Test setup:} [Insert the required equipment, configuration,
+and initial conditions.]
+
+\begin{table}[htbp]
     \centering
-    %\includegraphics[width=0.80\textwidth]{software_architecture}
-    \caption{Software architecture diagram.}
-    \label{fig:sw-arch}
-\end{figure}
+    \caption{MCTR I test plan}
+    \label{tab:mctr-i-tests}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|l|X|X|X|X|}
+        \hline
+        \textbf{Test ID} &
+        \textbf{Test description} &
+        \textbf{Procedure} &
+        \textbf{Expected result} &
+        \textbf{Status} \\
+        \hline
+        MCI-01 & [Functional test] &
+        [Test procedure] &
+        [Expected behaviour] &
+        [Pass/Fail/NT] \\
+        \hline
+        MCI-02 & [Performance test] &
+        [Test procedure] &
+        [Acceptance criterion] &
+        [Pass/Fail/NT] \\
+        \hline
+        MCI-03 & [Safety or fault test] &
+        [Test procedure] &
+        [Expected safe response] &
+        [Pass/Fail/NT] \\
+        \hline
+    \end{tabularx}
+\end{table}
 
-\section{CAD Designs}
-\label{sec:cad}
 
-[Present all custom-fabricated mechanical parts with isometric CAD
-views and key dimensions annotated.]
+\subsection{MCTR II}
+\label{subsec:mctr-ii-tests}
 
-\subsection{[Assembly A - e.g. Probe Enclosure]}
+\textbf{Subsystem function:} [Insert the function of MCTR II.]
 
-[Description of the part, material choice, and manufacturing method.]
+\textbf{Test setup:} [Insert the required equipment, configuration,
+and initial conditions.]
 
-\begin{figure}[H]
+\begin{table}[htbp]
     \centering
-    %\includegraphics[width=0.55\textwidth]{cad_assembly_a}
-    \caption{Isometric CAD drawing of [Assembly A].}
-    \label{fig:cad-assembly-a}
-\end{figure}
+    \caption{MCTR II test plan}
+    \label{tab:mctr-ii-tests}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|l|X|X|X|X|}
+        \hline
+        \textbf{Test ID} &
+        \textbf{Test description} &
+        \textbf{Procedure} &
+        \textbf{Expected result} &
+        \textbf{Status} \\
+        \hline
+        MCII-01 & [Functional test] &
+        [Test procedure] &
+        [Expected behaviour] &
+        [Pass/Fail/NT] \\
+        \hline
+        MCII-02 & [Performance test] &
+        [Test procedure] &
+        [Acceptance criterion] &
+        [Pass/Fail/NT] \\
+        \hline
+        MCII-03 & [Safety or fault test] &
+        [Test procedure] &
+        [Expected safe response] &
+        [Pass/Fail/NT] \\
+        \hline
+    \end{tabularx}
+\end{table}
 
-\subsection{[Assembly B - e.g. Cable Reel]}
 
-\begin{figure}[H]
+\subsection{REII}
+\label{subsec:reii-tests}
+
+\textbf{Subsystem function:} [Insert the function of REII.]
+
+\textbf{Test setup:} [Insert the required equipment, configuration,
+and initial conditions.]
+
+\begin{table}[htbp]
     \centering
-    %\includegraphics[width=0.55\textwidth]{cad_assembly_b}
-    \caption{Isometric CAD drawing of [Assembly B].}
-    \label{fig:cad-assembly-b}
-\end{figure}
+    \caption{REII test plan}
+    \label{tab:reii-tests}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|l|X|X|X|X|}
+        \hline
+        \textbf{Test ID} &
+        \textbf{Test description} &
+        \textbf{Procedure} &
+        \textbf{Expected result} &
+        \textbf{Status} \\
+        \hline
+        RE-01 & [Functional test] &
+        [Test procedure] &
+        [Expected behaviour] &
+        [Pass/Fail/NT] \\
+        \hline
+        RE-02 & [Performance test] &
+        [Test procedure] &
+        [Acceptance criterion] &
+        [Pass/Fail/NT] \\
+        \hline
+        RE-03 & [Safety or fault test] &
+        [Test procedure] &
+        [Expected safe response] &
+        [Pass/Fail/NT] \\
+        \hline
+    \end{tabularx}
+\end{table}
 
-\section{Electrical Design}
-\label{sec:elec-design}
+\section{Subsystem Interface Analysis}
+\label{sec:interface-analysis}
 
-[Present the full electrical schematic or wiring diagram.
-Describe the power distribution, signal routing, and any
-protection circuits (fuses, TVS diodes, etc.).]
+The subsystem interface analysis identifies the direct interactions
+between subsystems. These interfaces may involve mechanical loads,
+electrical power, control signals, communication, or physical
+connections, as applicable to the design.
 
-\begin{figure}[H]
+\begin{table}[htbp]
     \centering
-    %\includegraphics[width=0.90\textwidth]{schematic_full}
-    \caption{Full electrical schematic of the system.}
-    \label{fig:schematic}
-\end{figure}
+    \caption{Subsystem interface matrix}
+    \label{tab:interface-matrix}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|X|c|c|c|c|c|}
+        \hline
+        \textbf{Subsystem} &
+        \textbf{EERI I} &
+        \textbf{EERI II} &
+        \textbf{MCTR I} &
+        \textbf{MCTR II} &
+        \textbf{REII} \\
+        \hline
+        EERI I   & -- & [X] & [X] & [X] & [X] \\
+        \hline
+        EERI II  & [X] & -- & [X] & [X] & [X] \\
+        \hline
+        MCTR I   & [X] & [X] & -- & [X] & [X] \\
+        \hline
+        MCTR II  & [X] & [X] & [X] & -- & [X] \\
+        \hline
+        REII     & [X] & [X] & [X] & [X] & -- \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+In Table~\ref{tab:interface-matrix}, replace \texttt{[X]} with
+\texttt{X} where a direct interface exists and leave the cell
+blank where no direct interface exists. The matrix shall be
+used to determine the required integration tests.
+
+\section{Subsystem Integration Test Plan}
+\label{sec:integration-tests}
+
+Integration testing verifies that connected subsystems operate
+together correctly and that their interfaces satisfy the design
+requirements. Testing shall be performed after the relevant
+individual subsystem tests have been completed.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Subsystem integration test plan}
+    \label{tab:integration-tests}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|l|X|X|X|X|}
+        \hline
+        \textbf{Test ID} &
+        \textbf{Subsystems} &
+        \textbf{Test objective} &
+        \textbf{Expected result} &
+        \textbf{Status} \\
+        \hline
+        INT-01 & [Subsystem A and B] &
+        Verify the interface between the subsystems &
+        [Specified interface behaviour] &
+        [Pass/Fail/NT] \\
+        \hline
+        INT-02 & [Subsystem A and C] &
+        Verify coordinated operation &
+        [Specified response] &
+        [Pass/Fail/NT] \\
+        \hline
+        INT-03 & [Subsystem B and D] &
+        Verify signal, load, or power transfer, as applicable &
+        [Specified transfer behaviour] &
+        [Pass/Fail/NT] \\
+        \hline
+        INT-04 & [Relevant subsystems] &
+        Verify a multi-subsystem operating sequence &
+        [Specified sequence completed correctly] &
+        [Pass/Fail/NT] \\
+        \hline
+        INT-05 & [Relevant subsystems] &
+        Verify fault propagation and safe response &
+        [Specified fault-handling behaviour] &
+        [Pass/Fail/NT] \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+For each integration test, record the initial conditions, test
+procedure, measured or observed results, and applicable
+acceptance criteria. Tests shall cover every required interface
+identified in Table~\ref{tab:interface-matrix}.
+
+
+\section{Full-System Validation}
+\label{sec:system-validation}
+
+Full-system validation shall be conducted after the individual
+subsystem and integration tests have been completed. The purpose
+is to determine whether the complete gantry crane system satisfies
+its overall functional, performance, and safety requirements.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Full-system validation plan}
+    \label{tab:system-validation}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|l|X|X|X|}
+        \hline
+        \textbf{Test ID} &
+        \textbf{Test scenario} &
+        \textbf{Acceptance criteria} &
+        \textbf{Status} \\
+        \hline
+        SYS-01 & Normal startup and shutdown &
+        [System starts and stops as specified] &
+        [Pass/Fail/NT] \\
+        \hline
+        SYS-02 & Complete operating cycle &
+        [Required sequence is completed] &
+        [Pass/Fail/NT] \\
+        \hline
+        SYS-03 & Operation under specified load &
+        [Performance remains within limits] &
+        [Pass/Fail/NT] \\
+        \hline
+        SYS-04 & Fault handling and emergency stop &
+        [Required safe response is achieved] &
+        [Pass/Fail/NT] \\
+        \hline
+        SYS-05 & Repeated operation &
+        [Required repeatability or reliability criteria] &
+        [Pass/Fail/NT] \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+
+\section{Test Results Summary}
+\label{sec:test-results-summary}
+
+The results of the subsystem, integration, and full-system tests
+shall be consolidated to assess overall system readiness.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Summary of test outcomes}
+    \label{tab:test-summary}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|X|c|c|c|c|}
+        \hline
+        \textbf{Test category} &
+        \textbf{Passed} &
+        \textbf{Failed} &
+        \textbf{Not tested} &
+        \textbf{Total} \\
+        \hline
+        Individual subsystem tests & [\,] & [\,] & [\,] & [\,] \\
+        \hline
+        Integration tests & [\,] & [\,] & [\,] & [\,] \\
+        \hline
+        Full-system validation & [\,] & [\,] & [\,] & [\,] \\
+        \hline
+        \textbf{Total} & [\,] & [\,] & [\,] & [\,] \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+Any failed or incomplete tests shall be documented together with
+the observed behaviour, likely cause, corrective action, and
+retesting requirements. The system shall only be declared to have
+passed validation when the applicable acceptance criteria have
+been met.
