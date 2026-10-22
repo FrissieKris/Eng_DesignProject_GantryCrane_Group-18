@@ -178,3 +178,65 @@ D_b = D_p \cos{\alpha}
     \label{eq:rig_torque}
     \tau = F \times d
 \end{equation}
+
+\textbf{Subsystem function:} Raise and lower a payload of up to \InMassRated\,kg through
+a \InStroke\,m stroke on a rope and drum, hold it without drift when power or command is
+lost, and report the on-hook load to the controller (FR4, FR5, FR6, PT2).
+ 
+\textbf{Test setup:} Complete hoist assembly (motor, coupling, gearbox, brake, drum, rope,
+load cell with sheave, HX711) bolted to the test frame; VSD or bench supply for the motor;
+48\,V brake supply and relay; controller or bench read-out of the HX711; calibrated
+reference masses (5, 10, 20, 30\,kg); stopwatch or encoder for timing; tape measure for drift.
+Protect the area below the load. The 30\,kg proof test is performed last.
+ 
+\begin{table}[htbp]
+    \centering
+    \caption{MCTR II test plan}
+    \label{tab:mctr-ii-tests}
+    \small
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{|l|X|X|X|X|}
+        \hline
+        \textbf{Test ID} &
+        \textbf{Test description} &
+        \textbf{Procedure} &
+        \textbf{Expected result} &
+        \textbf{Status} \\
+        \hline
+        MCII-01 & Functional: raise and lower (FR4) &
+        Command raise then lower with \InMassRated\,kg over the full stroke. &
+        Moves in the commanded direction over the full \InStroke\,m without slip or rope overlap. &
+        [Pass/Fail/NT] \\
+        \hline
+        MCII-02 & Performance: hoist rate (PT2) &
+        Time a full-stroke raise with \InMassRated\,kg at the VSD frequency available. &
+        Stroke time $\le \InTimeReq$\,s; predicted \showv{Tstroke}{1}{s} at \InVsdF\,Hz. &
+        [Pass/Fail/NT] \\
+        \hline
+        MCII-03 & Safety: fail-safe brake (FR6) &
+        Hold \InMassRated\,kg mid-stroke, remove brake power, then remove command signal. &
+        Brake engages; drift $\le$ \tbd{mm} in \tbd{min}. &
+        [Pass/Fail/NT] \\
+        \hline
+        MCII-04 & Functional: load feedback (FR5) &
+        Hang 0, 5, 10, 20, 30\,kg and record the HX711 reading; fit a two-point calibration. &
+        Reading within \tbd{\%} of the reference mass over the range; resolution about \showv{ResG}{0}{g}. &
+        [Pass/Fail/NT] \\
+        \hline
+        MCII-05 & Safety: overload interlock &
+        Raise a mass above the trip level of \showv{Mtrip}{1}{kg}. &
+        Raising stops and the brake engages within \showv{Latency}{0}{ms}. &
+        [Pass/Fail/NT] \\
+        \hline
+        MCII-06 & Performance: structural proof &
+        Hold \InMassDesign\,kg statically for 60\,s on the rig. &
+        No visible deformation or tooth damage; shaft safety factor $\ge$ \InSFreq\ in Appendix~\ref{app:technical}. &
+        [Pass/Fail/NT] \\
+        \hline
+        MCII-07 & Performance: gear test pair &
+        Load a printed stage~B pair in the rig through a torque arm to failure. &
+        Failure torque gives the measured allowable stress replacing \InSigAllow\,MPa. &
+        [Pass/Fail/NT] \\
+        \hline
+    \end{tabularx}
+\end{table}

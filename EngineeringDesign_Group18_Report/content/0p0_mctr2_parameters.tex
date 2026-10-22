@@ -1,0 +1,199 @@
+% =====================================================================
+%  mctr2_parameters.tex  --  MCTR II (Spooling) parameter + calculation sheet
+%
+%  HOW TO USE
+%   * Edit ONLY the \In... values in Section 1. Everything in Section 2
+%     (\Raw... results) is computed from them by \fpeval, so every
+%     table, equation and sentence that quotes a result updates on the
+%     next compile.
+%   * Units are noted per line. Torques in N.m unless stated.
+%   * Display helpers:  \shown{Name}{digits}        -> number only
+%                       \showv{Name}{digits}{unit}  -> number + unit
+%   * This file is safe to \input from several chapters (loads once).
+%   * Needs: LaTeX >= 2021 (\fpeval in kernel), amsmath, xcolor.
+% =====================================================================
+\ifdefined\MCTRIIparamsloaded\else
+\def\MCTRIIparamsloaded{}
+
+\providecommand{\tbd}[1]{\textcolor{red}{\textbf{[TBD: #1]}}}
+\newcommand{\val}[2]{\ensuremath{#1\,\mathrm{#2}}}
+\newcommand{\shown}[2]{\fpeval{round(\csname Raw#1\endcsname,#2)}}
+\newcommand{\showv}[3]{\val{\fpeval{round(\csname Raw#1\endcsname,#2)}}{#3}}
+% PASS/FAIL helpers: \passge{value}{limit} passes when value >= limit
+\newcommand{\passge}[2]{\ifdim #1pt<#2pt \textcolor{red}{\textbf{FAIL}}\else\textcolor{green!45!black}{\textbf{PASS}}\fi}
+\newcommand{\passle}[2]{\ifdim #1pt>#2pt \textcolor{red}{\textbf{FAIL}}\else\textcolor{green!45!black}{\textbf{PASS}}\fi}
+
+% Functional-unit number of MCTR II (Level 1 drawing: F/U 1.4).
+% NOTE: the Level 2 drawing currently labels sub-units 1.3.x; change the
+% drawing to 1.4.x (or set this to 1.3 to match the drawing, but 1.3 is MCTR I).
+\newcommand{\fuMII}{1.3}
+
+% ---------------------------------------------------------------------
+% 1. INPUTS  (edit these)
+% ---------------------------------------------------------------------
+% -- Loads, stroke, timing
+\newcommand{\InMassRated}{20}    % kg   rated payload (PHY1)
+\newcommand{\InMassDesign}{30}   % kg   design overload case (analysis only)
+\newcommand{\InMassAttach}{2}    % kg   magnet + hook hanging on rope  [TBD: weigh]
+\newcommand{\InGrav}{9.81}       % m/s^2
+\newcommand{\InStroke}{1.6}      % m     hoist stroke (PT2)
+\newcommand{\InTimeReq}{20}      % s     max stroke time (PT2)
+\newcommand{\InServiceF}{1.5}    % -     service factor on drum torque
+\newcommand{\InSFreq}{1.5}       % -     minimum acceptable safety factor (strength checks)
+% -- Drum and rope
+\newcommand{\InDrumD}{50}        % mm    drum core diameter (FROZEN; 70 mm entry removed)
+\newcommand{\InDrumH}{60}        % mm    drum usable length
+\newcommand{\InRopeD}{5}         % mm    rope diameter
+\newcommand{\InRopeCentre}{1}    % 1 = tension acts at rope centre-line (D+d); 0 = old spreadsheet (D only)
+% -- Motor and VSD
+\newcommand{\InMotorP}{180}      % W     Askari MS632-4
+\newcommand{\InMotorN}{1360}     % rpm   at rated frequency
+\newcommand{\InMotorF}{50}       % Hz    rated frequency
+\newcommand{\InVsdF}{50}         % Hz    frequency VSD will actually deliver  [TBD: EEII I to confirm]
+% -- Gearbox (stage A = motor side, stage B = drum side)
+\newcommand{\InNpA}{16}   \newcommand{\InNgA}{102}   % pinion / gear teeth, stage A
+\newcommand{\InNpB}{16}   \newcommand{\InNgB}{102}   % pinion / gear teeth, stage B
+\newcommand{\InModA}{1.5} \newcommand{\InModB}{2}    % mm module
+\newcommand{\InFwA}{10}   \newcommand{\InFwB}{15}    % mm face width
+\newcommand{\InPhi}{25}          % deg   pressure angle (use 24 if Inventor forces it; both gears of a mesh must match)
+\newcommand{\InYpA}{0.296}       % Lewis form factor, pinion  (Shigley Tbl 14-2, 20 deg value: conservative for 25 deg)
+\newcommand{\InYgA}{0.447}       % Lewis form factor, gear
+\newcommand{\InYpB}{0.296}
+\newcommand{\InYgB}{0.447}
+\newcommand{\InEta}{0.95}        % -     efficiency per gear stage
+\newcommand{\InSigAllow}{20}     % MPa   allowable PETG root stress [GUESS: replace with printed-coupon result / SF]
+\newcommand{\InClear}{0.25}      % mm    added centre-distance clearance (printed backlash)
+\newcommand{\InBed}{220}         % mm    print bed edge length [TBD: confirm printer]
+% -- Shaft, hub and fastener
+\newcommand{\InShaftD}{10}       % mm    shaft diameter
+\newcommand{\InSpan}{100}        % mm    bearing span (centre-to-centre)
+\newcommand{\InKt}{2}            % -     bending stress-concentration factor, cross-hole
+\newcommand{\InKts}{2}           % -     torsion stress-concentration factor, cross-hole
+\newcommand{\InSy}{250}          % MPa   yield strength  [TBD: replace with certified grade, e.g. EN8 bright bar]
+\newcommand{\InBoltD}{4}         % mm    cross-bolt diameter
+\newcommand{\InHubWall}{8}       % mm    hub wall length bearing on bolt
+\newcommand{\InHubAllow}{20}     % MPa   allowable PETG bearing stress [GUESS]
+% -- Brake
+\newcommand{\InBrakeSF}{2}       % -     brake torque safety factor
+\newcommand{\InBrakeRated}{0}    % N.m   datasheet holding torque; 0 = not yet known  [TBD: datasheet]
+% -- Load cell and HX711
+\newcommand{\InCellCap}{100}     % kg    YZC-516 rated capacity
+\newcommand{\InCellSens}{2}      % mV/V  rated output [TBD: datasheet]
+\newcommand{\InExc}{5}           % V     excitation (HX711 supply)
+\newcommand{\InGain}{128}        % -     HX711 channel A gain
+\newcommand{\InSps}{80}          % SPS   HX711 output rate (RATE pin high)
+\newcommand{\InFilt}{4}          % -     samples averaged by interlock filter
+\newcommand{\InNoise}{500}       % counts peak-to-peak noise [GUESS: measure with motor running]
+\newcommand{\InTrip}{1.25}       % -     overload trip as multiple of (rated + attachment)
+% -- Cost (R, incl. VAT and shipping, from Cost_and_Budget.xlsx)
+\newcommand{\InBudget}{5000}
+\newcommand{\InCostBearings}{116.24}
+\newcommand{\InCostCell}{429.00}     % [CHECK: sheet unit 493.35 + 135.70 shipping = 629.05]
+\newcommand{\InCostHX}{179.40}       % [CHECK: unit price 43.70]
+\newcommand{\InCostPSU}{390.17}
+\newcommand{\InCostBrake}{907.68}    % excluded from the sheet's own subtotal
+
+% ---------------------------------------------------------------------
+% 2. DERIVED RESULTS  (do not edit)
+% ---------------------------------------------------------------------
+% -- Kinematics
+\newcommand{\RawDeff}{\fpeval{\InDrumD+\InRopeCentre*\InRopeD}}
+\newcommand{\RawVreq}{\fpeval{\InStroke*1000/\InTimeReq}}
+\newcommand{\RawWraps}{\fpeval{\InStroke*1000/(pi*\RawDeff)}}
+\newcommand{\RawWrapsFit}{\fpeval{floor(\InDrumH/\InRopeD)}}
+\newcommand{\RawiA}{\fpeval{\InNgA/\InNpA}}
+\newcommand{\RawiB}{\fpeval{\InNgB/\InNpB}}
+\newcommand{\RawiT}{\fpeval{\RawiA*\RawiB}}
+\newcommand{\RawNmot}{\fpeval{\InMotorN*\InVsdF/\InMotorF}}
+\newcommand{\RawNdrum}{\fpeval{\RawNmot/\RawiT}}
+\newcommand{\RawVline}{\fpeval{pi*\RawDeff*\RawNdrum/60}}
+\newcommand{\RawTstroke}{\fpeval{\InStroke*1000/\RawVline}}
+\newcommand{\RawSpeedMargin}{\fpeval{(\RawVline/\RawVreq-1)*100}}
+\newcommand{\RawiReq}{\fpeval{pi*\RawDeff*\RawNmot/(60*\RawVreq)}}
+\newcommand{\RawFmin}{\fpeval{\RawVreq*60*\RawiT/(pi*\RawDeff)*\InMotorF/\InMotorN}}
+% -- Drum torque, motor sizing
+\newcommand{\RawFropeR}{\fpeval{\InMassRated*\InGrav}}
+\newcommand{\RawFropeD}{\fpeval{\InMassDesign*\InGrav}}
+\newcommand{\RawTdrR}{\fpeval{\InMassRated*\InGrav*\RawDeff/2000}}
+\newcommand{\RawTdrD}{\fpeval{\InMassDesign*\InGrav*\RawDeff/2000*\InServiceF}}
+\newcommand{\RawTdrSheet}{\fpeval{\InMassDesign*\InGrav*\InDrumD/2000*\InServiceF}}
+\newcommand{\RawEtaGB}{\fpeval{\InEta*\InEta}}
+\newcommand{\RawTmReq}{\fpeval{\RawTdrR/(\RawiT*\RawEtaGB)}}
+\newcommand{\RawTmRated}{\fpeval{\InMotorP/(2*pi*\InMotorN/60)}}
+\newcommand{\RawTmMargin}{\fpeval{\RawTmRated/\RawTmReq}}
+\newcommand{\RawPmech}{\fpeval{\InMassRated*\InGrav*\RawVline/1000/\RawEtaGB}}
+\newcommand{\RawPavail}{\fpeval{\InMotorP*\InVsdF/\InMotorF}}
+% -- Gear loads (design case) and Lewis stress
+\newcommand{\RawTtwo}{\fpeval{\RawTdrD/(\RawiB*\InEta)}}
+\newcommand{\RawTone}{\fpeval{\RawTtwo/(\RawiA*\InEta)}}
+\newcommand{\RawFtB}{\fpeval{2*\RawTtwo*1000/(\InModB*\InNpB)}}
+\newcommand{\RawFtA}{\fpeval{2*\RawTone*1000/(\InModA*\InNpA)}}
+\newcommand{\RawFnB}{\fpeval{\RawFtB/cosd(\InPhi)}}
+\newcommand{\RawFnA}{\fpeval{\RawFtA/cosd(\InPhi)}}
+\newcommand{\RawFrB}{\fpeval{\RawFtB*tand(\InPhi)}}
+\newcommand{\RawSigPA}{\fpeval{\RawFtA/(\InFwA*\InModA*\InYpA)}}
+\newcommand{\RawSigGA}{\fpeval{\RawFtA/(\InFwA*\InModA*\InYgA)}}
+\newcommand{\RawSigPB}{\fpeval{\RawFtB/(\InFwB*\InModB*\InYpB)}}
+\newcommand{\RawSigGB}{\fpeval{\RawFtB/(\InFwB*\InModB*\InYgB)}}
+\newcommand{\RawSFpA}{\fpeval{\InSigAllow/\RawSigPA}}
+\newcommand{\RawSFpB}{\fpeval{\InSigAllow/\RawSigPB}}
+% -- Gear geometry
+\newcommand{\RawDpinA}{\fpeval{\InModA*\InNpA}}
+\newcommand{\RawDgearA}{\fpeval{\InModA*\InNgA}}
+\newcommand{\RawDpinB}{\fpeval{\InModB*\InNpB}}
+\newcommand{\RawDgearB}{\fpeval{\InModB*\InNgB}}
+\newcommand{\RawDoGearA}{\fpeval{\InModA*(\InNgA+2)}}
+\newcommand{\RawDoGearB}{\fpeval{\InModB*(\InNgB+2)}}
+\newcommand{\RawCdA}{\fpeval{\InModA*(\InNpA+\InNgA)/2+\InClear}}
+\newcommand{\RawCdB}{\fpeval{\InModB*(\InNpB+\InNgB)/2+\InClear}}
+\newcommand{\RawZmin}{\fpeval{2/(sind(\InPhi)^2)}}
+\newcommand{\RawDbPinB}{\fpeval{\RawDpinB*cosd(\InPhi)}}
+\newcommand{\RawBedUse}{\fpeval{max(\RawDoGearA,\RawDoGearB)/\InBed*100}}
+% -- Shaft (macros with arguments: #1 = payload mass kg, #2 = torque factor)
+\newcommand{\Tdr}[2]{\fpeval{#1*\InGrav*\RawDeff/2*#2}}                                   % N.mm
+\newcommand{\FgB}[2]{\fpeval{2*\Tdr{#1}{#2}/(\InEta*\InModB*\InNgB*cosd(\InPhi))}}        % N
+\newcommand{\Msh}[2]{\fpeval{(#1*\InGrav+\FgB{#1}{#2})*\InSpan/4}}                        % N.mm
+\newcommand{\SigBsh}[2]{\fpeval{32*\Msh{#1}{#2}/(pi*\InShaftD^3)}}                        % MPa
+\newcommand{\Taush}[2]{\fpeval{16*\Tdr{#1}{#2}/(pi*\InShaftD^3)}}                         % MPa
+\newcommand{\VMsh}[2]{\fpeval{sqrt((\InKt*\SigBsh{#1}{#2})^2+3*(\InKts*\Taush{#1}{#2})^2)}} % MPa
+\newcommand{\RawFgD}{\FgB{\InMassDesign}{\InServiceF}}
+\newcommand{\RawMshD}{\Msh{\InMassDesign}{\InServiceF}}
+\newcommand{\RawSigBD}{\SigBsh{\InMassDesign}{\InServiceF}}
+\newcommand{\RawTauD}{\Taush{\InMassDesign}{\InServiceF}}
+\newcommand{\RawVMD}{\VMsh{\InMassDesign}{\InServiceF}}
+\newcommand{\RawVMR}{\VMsh{\InMassRated}{1}}
+\newcommand{\RawSFsD}{\fpeval{\InSy/\RawVMD}}
+\newcommand{\RawSFsR}{\fpeval{\InSy/\RawVMR}}
+% -- Hub / cross-bolt (design case, drum shaft)
+\newcommand{\RawFside}{\fpeval{\RawTdrD*1000/\InShaftD}}
+\newcommand{\RawSigHub}{\fpeval{\RawFside/(\InBoltD*\InHubWall)}}
+\newcommand{\RawTauBolt}{\fpeval{\RawFside/(pi*\InBoltD^2/4)}}
+\newcommand{\RawSFhub}{\fpeval{\InHubAllow/\RawSigHub}}
+% -- Rated-case (20 kg, no service factor) checks for gears and hub
+\newcommand{\RawLoadRatio}{\fpeval{\RawTdrR/\RawTdrD}}
+\newcommand{\RawSFpAR}{\fpeval{\RawSFpA/\RawLoadRatio}}
+\newcommand{\RawSFpBR}{\fpeval{\RawSFpB/\RawLoadRatio}}
+\newcommand{\RawSigHubR}{\fpeval{\RawSigHub*\RawLoadRatio}}
+\newcommand{\RawSFhubR}{\fpeval{\InHubAllow/\RawSigHubR}}
+% -- Brake
+\newcommand{\RawTholdDrum}{\fpeval{\InMassDesign*\InGrav*\RawDeff/2000}}
+\newcommand{\RawTholdIn}{\fpeval{\RawTholdDrum/\RawiT}}
+\newcommand{\RawBrakeReqDrum}{\fpeval{\RawTholdDrum*\InBrakeSF}}
+\newcommand{\RawBrakeReqIn}{\fpeval{\RawTholdIn*\InBrakeSF}}
+\newcommand{\BrakeMarginIn}{\ifdim\InBrakeRated pt=0pt\tbd{datasheet torque}\else\fpeval{round(\InBrakeRated/\RawBrakeReqIn,1)}\fi}
+\newcommand{\BrakeMarginDrum}{\ifdim\InBrakeRated pt=0pt\tbd{datasheet torque}\else\fpeval{round(\InBrakeRated/\RawBrakeReqDrum,1)}\fi}
+% -- Load cell and HX711
+\newcommand{\RawFcell}{\fpeval{(\InMassRated+\InMassAttach)*\InGrav}}
+\newcommand{\RawMtrip}{\fpeval{(\InMassRated+\InMassAttach)*\InTrip}}
+\newcommand{\RawCellUse}{\fpeval{\RawMtrip/\InCellCap*100}}
+\newcommand{\RawSigFS}{\fpeval{\InCellSens*\InExc}}
+\newcommand{\RawAdcRange}{\fpeval{0.5*\InExc/\InGain*1000}}
+\newcommand{\RawCntPerKg}{\fpeval{\InCellSens/1000/\InCellCap*\InGain/0.5*2^23}}
+\newcommand{\RawResG}{\fpeval{\InNoise/\RawCntPerKg*1000}}
+\newcommand{\RawLatency}{\fpeval{\InFilt/\InSps*1000}}
+\newcommand{\RawTravel}{\fpeval{\RawVline*\RawLatency/1000}}
+% -- Cost
+\newcommand{\RawCostTot}{\fpeval{\InCostBearings+\InCostCell+\InCostHX+\InCostPSU+\InCostBrake}}
+\newcommand{\RawBudgetLeft}{\fpeval{\InBudget-\RawCostTot}}
+\newcommand{\RawBudgetUse}{\fpeval{\RawCostTot/\InBudget*100}}
+\fi
