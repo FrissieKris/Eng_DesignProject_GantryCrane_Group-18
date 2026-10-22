@@ -291,31 +291,94 @@ bearing. The baseplate is 6061-T6 aluminium with machine-cut bearing bores.
 \section{REII: Subsystem: Remote Control Dashboard}
 \label{sec:reii-subsystem-remote-control-dashboard}
 
-[Discuss the criteria for selecting this component (resolution,
-power, size, cost, etc.). Present the options in a comparison
-table.]
+The proposed design prioritises reliable command delivery,
+dashboard responsiveness and local fault handling.
+Earlier tests used two ESP32 boards and two 1000-packet trials
+per condition, at distances up to 16~m.
+Table~\ref{tab:reii-options} compares the radio configurations;
+Appendix~C.3 records the trial counts.
+\cite{reii_measurements2026}
 
 \begin{table}[H]
     \centering
-    \caption{Available [Subsystem 1] options.}
+    \footnotesize
+    \caption{Available radio configurations.}
     \label{tab:reii-options}
-    \begin{tabular}{@{} l c c c c @{}}
+
+    \begin{tabularx}{\textwidth}{@{}
+        >{\raggedright\arraybackslash}p{3.5cm}
+        *{4}{>{\centering\arraybackslash}X}
+    @{}}
         \toprule
-        \textbf{Component} & \textbf{Criterion A} & \textbf{Criterion B}
-            & \textbf{Criterion C} & \textbf{Selected} \\
+        \textbf{Configuration} &
+        \textbf{Loss at 8~m}\newline ACK off &
+        \textbf{Loss at 16~m}\newline ACK on &
+        \textbf{Reported Wi-Fi channel 1 overlap} &
+        \textbf{Selected} \\
         \midrule
-        Option 1 & & & & \\
-        Option 2 & & & & \checkmark \\
-        Option 3 & & & & \\
+
+        Channel 76, 250~kbps &
+        3.30\% & 0.00\% & No & Yes \\[3pt]
+
+        Channel 76, 2~Mbps &
+        4.40\% & 0.05\% & No & No \\[3pt]
+
+        Channel 12, 250~kbps &
+        16.10\% & Not tested & Yes & No \\[3pt]
+
+        Channel 12, 2~Mbps &
+        5.50\% & Not tested & Yes & No \\
+
         \bottomrule
-    \end{tabular}
+    \end{tabularx}
 \end{table}
 
-[Justify the selected option in one or two paragraphs.]
+\noindent
+\textbf{Radio configuration.}
+Channel 76 and 250~kbps are provisionally selected for lower
+packet loss at longer tested distances, favouring reliable
+delivery over nominal data rate. Channel 12 overlapped the
+reported laboratory Wi-Fi allocation. Acknowledgements and
+retries improved delivery in the earlier tests.
+\cite{reii_measurements2026}
+The runtime power setting of 2 and final ESP32-S3 response
+times still require validation.
+
+\noindent
+\textbf{Communication and local control.}
+Communication is handled separately from the dashboard
+controls to keep the interface responsive while waiting
+for replies. Messages have a fixed length of 32 bytes to
+simplify processing. A radio acknowledgement confirms
+message delivery; a separate controller reply indicates
+whether the command was accepted. The ESP32-S3 would
+generate control outputs and respond to communication
+loss locally. The dashboard would calculate anti-sway
+motion profiles and paths around known obstacles, which
+the controller would execute through MCTR I's lateral
+drive.
+\cite{nwu_reii_scope2026}
+These functions still require validation.
+
+\noindent
+\textbf{Starting reference.}
+Marked upper-hoist parking with clearance and a marked
+trolley position would provide a repeatable starting
+condition. While stationary and disarmed, the operator
+would select \emph{Confirm starting position} to set
+the lateral reference before arming, without automatic
+movement. Encoder feedback would then track lateral
+position. This feature remains to be implemented.
 
 \begin{figure}[H]
     \centering
-    %\includegraphics[width=0.40\textwidth]{subsystem1_photo}
-    \caption{Selected [Subsystem 1] component.}
+    \includegraphics[width=0.80\textwidth]
+        {figures/Figure_5_5_Radio_Performance.png}
+    \caption{Radio packet loss versus distance on channel 76,
+        supporting the provisional 250~kbps selection.
+        Acknowledgements and retries were disabled.
+        Points are means of two trials; bars show the
+        two trial values.
+        \cite{reii_measurements2026}}
     \label{fig:reii-subsystem}
 \end{figure}
