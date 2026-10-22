@@ -340,3 +340,94 @@ Protect the area below the load. The 30\,kg proof test is performed last.
         \hline
     \end{tabularx}
 \end{table}
+
+\clearpage
+\section{REII Preliminary ESP32 Radio Tests}
+\label{sec:reii-radio-tests}
+
+These earlier tests used two original ESP32 development
+boards and nRF24L01 radios, before the final ESP32-S3
+course-board integration. They support
+Section~\ref{sec:reii-subsystem-remote-control-dashboard}
+but do not establish final S3 or crane performance.
+Figure~\ref{fig:reii-implementation} shows the temporary
+assembly.
+\cite{reii_measurements2026}
+
+\noindent
+\textbf{Test method:}
+The tests used the TMRh20 RF24 library, regulated 3.3~V
+radio supplies, and fixed antenna orientation and height
+in the same laboratory. Each condition had two trials
+of 1000 sequentially numbered packets.
+Table~\ref{tab:reii-radio-measurements} retains each
+trial's received count; mean packet loss is calculated
+from 2000 sent packets per condition. ACK-on tests
+allowed up to three retries with a
+1000~$\mu$s retry delay.
+
+\begin{table}[H]
+    \centering
+    \footnotesize
+    \renewcommand{\arraystretch}{1.1}
+    \setlength{\tabcolsep}{3pt}
+    \caption{Earlier ESP32 radio measurements.}
+    \label{tab:reii-radio-measurements}
+
+    \begin{tabularx}{\textwidth}{@{}
+        *{7}{>{\centering\arraybackslash}X}
+    @{}}
+        \toprule
+        \textbf{Distance}\newline (m) &
+        \textbf{Rate}\newline (kbps) &
+        \textbf{Channel} &
+        \textbf{ACK /}\newline \textbf{max retries} &
+        \textbf{Received}\newline \textbf{trial 1} &
+        \textbf{Received}\newline \textbf{trial 2} &
+        \textbf{Mean loss}\newline (\%) \\
+        \midrule
+
+         1 &  250 & 76 & Off / 0 &  997 &  907 &  4.80 \\
+         1 & 2000 & 76 & Off / 0 &  971 &  985 &  2.20 \\
+         2 &  250 & 76 & Off / 0 &  984 &  901 &  5.75 \\
+         2 & 2000 & 76 & Off / 0 &  987 &  976 &  1.85 \\
+         4 &  250 & 76 & Off / 0 &  992 &  974 &  1.70 \\
+         4 & 2000 & 76 & Off / 0 &  956 &  977 &  3.35 \\
+         8 &  250 & 76 & Off / 0 &  997 &  937 &  3.30 \\
+         8 & 2000 & 76 & Off / 0 &  942 &  970 &  4.40 \\
+        12 &  250 & 76 & Off / 0 &  953 &  960 &  4.35 \\
+        12 & 2000 & 76 & Off / 0 &  942 &  939 &  5.95 \\
+        16 &  250 & 76 & Off / 0 &  970 &  853 &  8.85 \\
+        16 & 2000 & 76 & Off / 0 &  897 &  877 & 11.30 \\
+        \midrule
+
+         8 &  250 & 12 & Off / 0 &  836 &  842 & 16.10 \\
+         8 & 2000 & 12 & Off / 0 &  970 &  920 &  5.50 \\
+        \midrule
+
+         1 &  250 & 76 & On / 3 & 1000 & 1000 & 0.00 \\
+         1 & 2000 & 76 & On / 3 & 1000 & 1000 & 0.00 \\
+        16 &  250 & 76 & On / 3 & 1000 & 1000 & 0.00 \\
+        16 & 2000 & 76 & On / 3 & 1000 &  999 & 0.05 \\
+
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\noindent
+\textbf{Findings:}
+With ACK disabled on channel 76, 250~kbps had lower mean
+packet loss than 2~Mbps at the tested distances from
+4 to 16~m. With acknowledgements and retries enabled,
+both 250~kbps trials received all 1000 packets at
+1~m and 16~m. Variation between repeated trials limits
+generalisation.
+\cite{reii_measurements2026}
+
+\noindent
+\textbf{Limitations:}
+The workbook records 0~dBm throughout; the current
+runtime power setting (code 2) was not compared.
+No latency measurements were recorded. Final S3
+communication, response time and integrated fault
+behaviour remain unvalidated.
