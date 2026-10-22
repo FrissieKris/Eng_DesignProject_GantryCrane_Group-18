@@ -178,38 +178,48 @@ demonstrate how MCTR II was constructed.
 \label{sec:reii-evidence}
 \label{sec:sw-impl}
 
-This section documents the implementation of REII and presents
-the evidence available to demonstrate that its intended design
-was realised.
+This section presents the available evidence from earlier
+REII hardware testing and software development.
+Implementation of the final ESP32-S3 crane system remains
+incomplete.
 
 \subsection{Physical Implementation}
 
-Figure~\ref{fig:reii-implementation} shows the implemented
-REII subsystem.
+Figure~\ref{fig:reii-implementation} shows the earlier
+radio bench comprising two ESP32 boards and two nRF24
+modules. Later bench firmware generated physical PWM
+outputs while motion and sensor readings were simulated.
+The current controller is the university-supplied
+ESP32-S3 board, which still requires firmware migration
+and crane integration.
 
 \begin{figure}[H]
     \centering
-    % \includegraphics[width=0.8\textwidth]
-    % {img/reii_implementation}
-    \caption{Implemented REII subsystem.}
+    \includegraphics[width=0.32\textwidth]
+        {figures/Figure_8_9_Radio_Assembly.jpg}
+    \caption{Earlier two-ESP32/nRF24 radio bench assembly.}
     \label{fig:reii-implementation}
 \end{figure}
 
-The description should identify the principal components,
-their arrangement, and the method by which the subsystem
-is incorporated into the overall system.
-
 \subsection{Supporting Design Evidence}
 
-Relevant evidence may include engineering drawings, schematics,
-component documentation, photographs, and software artefacts,
-depending on the function and implementation of REII.
+Figure~\ref{fig:reii-design} shows the proposed software
+arrangement linking the Python dashboard, STM32 ground
+station and ESP32-S3 controller. The existing dashboard,
+STM32 bridge and earlier ESP32 controller software would
+provide the basis for this implementation.
+
+The Excel workbook records the earlier radio measurements.
+\cite{reii_measurements2026}
+Migration to the ESP32-S3 and integrated testing of the
+sensors, brake and complete crane remain outstanding.
 
 \begin{figure}[H]
     \centering
-    % \includegraphics[width=0.8\textwidth]
-    % {img/reii_design}
-    \caption{Design documentation for REII.}
+    \includegraphics[width=0.95\textwidth]
+        {figures/Figure_8_10_Software_Sources.png}
+    \caption{Proposed REII software arrangement.
+        ESP32-S3 migration remains incomplete.}
     \label{fig:reii-design}
 \end{figure}
 
