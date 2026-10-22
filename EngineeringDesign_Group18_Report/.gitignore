@@ -8,6 +8,7 @@
 *.db_latexmk
 *.bcf
 *.bbl-SAVE-ERROR
+*.bcf-SAVE-ERROR
 *.aux
 *.bbl
 *.toc
