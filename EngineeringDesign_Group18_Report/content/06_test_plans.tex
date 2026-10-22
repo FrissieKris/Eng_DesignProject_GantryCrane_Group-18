@@ -225,17 +225,38 @@ Protect the area below the load. The 30\,kg proof test is performed last.
 \subsection{REII}
 \label{subsec:reii-tests}
 
-\textbf{Subsystem function:} [Insert the function of REII.]
+\textbf{Subsystem function:}
+Transfer motion, hoist and magnet commands; display
+position, speed, load, current, fault and grip status;
+and perform local signal generation, sensor acquisition
+and interlock checks independently of dashboard
+communication (FR12--FR14).
+\cite{nwu_sysrs2026,nwu_reii_scope2026}
 
-\textbf{Test setup:} [Insert the required equipment, configuration,
-and initial conditions.]
+\textbf{Test setup:}
+PC with Python dashboard; UART-connected STM32;
+two nRF24 radios; ESP32-S3 course board; regulated
+supplies; known sensor/status inputs; and an oscilloscope
+or logic analyser. Start disarmed with actuator power
+stages disconnected. Record commands, replies and timing.
+Agree outstanding acceptance limits before testing.
+NT means Not Tested.
 
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
-    \caption{REII test plan}
+    \footnotesize
+    \caption{REII test plan before integration.}
     \label{tab:reii-tests}
-    \renewcommand{\arraystretch}{1.4}
-    \begin{tabularx}{\textwidth}{|l|X|X|X|X|}
+    \renewcommand{\arraystretch}{1.15}
+    \setlength{\tabcolsep}{4pt}
+
+    \begin{tabularx}{\textwidth}{|
+        >{\raggedright\arraybackslash}p{1.2cm}|
+        >{\raggedright\arraybackslash}p{1.9cm}|
+        >{\raggedright\arraybackslash}X|
+        >{\raggedright\arraybackslash}X|
+        >{\centering\arraybackslash}p{1.2cm}|
+    }
         \hline
         \textbf{Test ID} &
         \textbf{Test description} &
@@ -243,20 +264,66 @@ and initial conditions.]
         \textbf{Expected result} &
         \textbf{Status} \\
         \hline
-        RE-01 & [Functional test] &
-        [Test procedure] &
-        [Expected behaviour] &
-        [Pass/Fail/NT] \\
+
+        RE-01 &
+        Inputs and commands &
+        Apply known sensor/status inputs, including a fault
+        condition. Confirm the lateral reference and test
+        arm, disarm, lateral/hoist jog, stop and magnet
+        commands. &
+        Displayed values and replies match the inputs and
+        commands. An unconfirmed reference blocks arming;
+        faults and disarm inhibit motion. Stop cancels
+        movement. Agreed command interlocks are enforced. &
+        NT \\
         \hline
-        RE-02 & [Performance test] &
-        [Test procedure] &
-        [Acceptance criterion] &
-        [Pass/Fail/NT] \\
+
+        RE-02 &
+        Radio communication &
+        Test across the intended operating area with nearby
+        radios active. Record sent/received packets,
+        retries and reply times. &
+        Received replies match their requests. Packet loss
+        and reply times meet the limits agreed before
+        testing. &
+        NT \\
         \hline
-        RE-03 & [Safety or fault test] &
-        [Test procedure] &
-        [Expected safe response] &
-        [Pass/Fail/NT] \\
+
+        RE-03 &
+        Output signals &
+        Confirm the reference, arm and issue drive and
+        magnet commands. Measure outputs with power
+        stages disconnected. &
+        Output order, frequency, duty, direction, dead time
+        where applicable, and disabled states match the
+        agreed driver specifications. &
+        NT \\
+        \hline
+
+        RE-04 &
+        Link loss and recovery &
+        Arm and jog, then test button release and interrupted
+        communication. Apply known sensor/fault inputs
+        during the interruption. Reconnect and record
+        outputs and controller state. &
+        Verify the proposed 200~ms jog-command expiry and
+        500~ms communication timeout. Contact loss stops
+        motion and disarms. Local sensing and interlocks
+        remain active. Record motion-output disable delay;
+        reconnection causes no automatic restart. &
+        NT \\
+        \hline
+
+        RE-05 &
+        Motion planning &
+        Generate and simulate lateral anti-sway profiles
+        and a path around a known obstacle. Compare
+        results with the motion model. &
+        Simulated responses meet the agreed model
+        tolerances and the path maintains the agreed
+        obstacle clearance. Record model inputs and
+        results. &
+        NT \\
         \hline
     \end{tabularx}
 \end{table}
