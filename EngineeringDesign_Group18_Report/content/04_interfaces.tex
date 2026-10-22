@@ -166,23 +166,171 @@ which duplicates MCTR I (F/U 1.3), so they are renumbered 1.4.x here.
 
 
 
-\subsection{REII: }
+\subsection{REII: Anton Swanepoel}
 \label{subsec:reii-interfaces}
 REII Remote Control Dashboard by Anton Swanepoel.
 
+Tables~\ref{tab:reii-external} and~\ref{tab:reii-internal}
+define the proposed external and internal interfaces in Figure~3.5.
+TBD parameters require agreement.
+\cite{nwu_sysrs2026,nwu_reii_scope2026}
+
+\begingroup
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+
+% External and internal tables share a number, with (a)/(b) suffixes.
+\renewcommand{\thetable}{\thechapter.\arabic{table}(a)}
+\renewcommand{\theHtable}{reii-external}
+
 \begin{table}[H]
     \centering
-    \caption{Operational Interfaces.}
-    \label{tab:interfaces-reii}
-    \begin{tabular}{@{} l l l p{5cm} @{}}
+    \footnotesize
+    \caption{External interfaces of REII (F/U 1.5, Level 1).}
+    \label{tab:reii-external}
+
+    \begin{tabularx}{\textwidth}{@{}
+        >{\raggedright\arraybackslash}p{2.15cm}
+        >{\raggedright\arraybackslash}p{2.7cm}
+        >{\raggedright\arraybackslash}p{2.9cm}
+        >{\raggedright\arraybackslash}X
+    @{}}
         \toprule
-        \textbf{Interface} & \textbf{From} & \textbf{To} & \textbf{Description} \\
+        \textbf{Interface} &
+        \textbf{From} &
+        \textbf{To} &
+        \textbf{Description and key parameters} \\
         \midrule
-        I1 & F/U 1.0 & F/U 2.0 & [Description of data/power/signal.] \\
-        I2 & F/U 2.0 & F/U 3.0 & [Description.] \\
+
+        Operator link\newline (1.5.1) &
+        Operator &
+        Python dashboard\newline (F/U 1.5.1) &
+        Operator commands enter; displayed telemetry and faults return.
+        \\[3pt]
+
+        Ground supply\newline (1.5.2) &
+        PC supply &
+        Ground station and radio\newline (F/U 1.5.2, 1.5.3) &
+        PC USB power supplies the UART-connected ground station;
+        its radio uses regulated 3.3~V.
+        \\[3pt]
+
+        Crane supply\newline (1.5.3) &
+        Crane supply &
+        Controller and hoist radio\newline (F/U 1.5.5, 1.5.4) &
+        Regulated 5~V would feed the S3 board; its 3.3~V
+        peripheral rail would supply the radio.
+        \\[3pt]
+
+        Inverter control\newline (1.5.4) &
+        ESP32-S3 controller\newline (F/U 1.5.5) &
+        Drive electronics\newline (F/U 1.1) &
+        Six isolated PWM paths plus reserve; current feedback
+        below 2.048~V for fault inference.
+        \textcolor{red}{[TBD: PWM timing and active levels.]}
+        \\[3pt]
+
+        Magnet control\newline (1.5.5) &
+        ESP32-S3 controller\newline (F/U 1.5.5) &
+        Magnetic attachment\newline (F/U 1.2) &
+        Isolated magnet PWM; current feedback below 2.048~V
+        for investigating an on-load indicator.
+        \textcolor{red}{[TBD: current-signature discrimination,
+        calibration and load-support criterion.]}
+        \\[3pt]
+
+        Lateral control\newline (1.5.6) &
+        ESP32-S3 controller\newline (F/U 1.5.5) &
+        Lateral movement\newline (F/U 1.3) &
+        PWM and direction commands; quadrature encoder feedback
+        for lateral position and speed.
+        \textcolor{red}{[TBD: encoder scale and polarity.]}
+        \\[3pt]
+
+        Spooling interface\newline (1.5.7) &
+        ESP32-S3 controller\newline (F/U 1.5.5) &
+        Spooling subsystem\newline (F/U 1.4) &
+        REII would power the HX711 (3.3~V/GND), drive SCK
+        and read DAT. The proposed optocoupler brake command
+        is HIGH to release and LOW to hold; loss of brake
+        power would engage the brake. Group links:
+        I/F~1.9 load and I/F~1.10 brake.
+        \textcolor{red}{[TBD: load calibration and final brake polarity.]}
+        \\[3pt]
+
+        Protection status\newline (1.5.8) &
+        Local protection &
+        ESP32-S3 controller\newline (F/U 1.5.5) &
+        The hardware E-stop would remove power from the drive
+        electronics independently of software (PHY2).
+        \textcolor{red}{[TBD: E-stop circuit arrangement and
+        integration verification.]}
+        \\
+
         \bottomrule
-    \end{tabular}
+    \end{tabularx}
 \end{table}
+
+\addtocounter{table}{-1}
+\renewcommand{\thetable}{\thechapter.\arabic{table}(b)}
+\renewcommand{\theHtable}{reii-internal}
+
+\begin{table}[H]
+    \centering
+    \footnotesize
+    \caption{Internal interfaces of REII (F/U 1.5, Level 2).}
+    \label{tab:reii-internal}
+
+    \begin{tabularx}{\textwidth}{@{}
+        >{\raggedright\arraybackslash}p{2.15cm}
+        >{\raggedright\arraybackslash}p{2.7cm}
+        >{\raggedright\arraybackslash}p{2.9cm}
+        >{\raggedright\arraybackslash}X
+    @{}}
+        \toprule
+        \textbf{Interface} &
+        \textbf{From} &
+        \textbf{To} &
+        \textbf{Description and key parameters} \\
+        \midrule
+
+        PC serial link\newline (1.5.1.1) &
+        Python dashboard\newline (F/U 1.5.1) &
+        STM32 ground station\newline (F/U 1.5.2) &
+        UART serial requests; replies and diagnostics return
+        at 115200~bit/s, 8N1.
+        \\[3pt]
+
+        Ground radio SPI\newline (1.5.2.1) &
+        STM32 ground station\newline (F/U 1.5.2) &
+        Ground radio\newline (F/U 1.5.3) &
+        SPI and radio-control signals; received frames and
+        radio status return.
+        \\[3pt]
+
+        Wireless link\newline (1.5.3.1) &
+        Ground radio\newline (F/U 1.5.3) &
+        Hoist radio\newline (F/U 1.5.4) &
+        Bidirectional nRF24 link carrying commands, results
+        and operational telemetry.
+        \\[3pt]
+
+        Hoist radio SPI\newline (1.5.4.1) &
+        Hoist radio\newline (F/U 1.5.4) &
+        ESP32-S3 controller\newline (F/U 1.5.5) &
+        Received commands pass to the controller; SPI control
+        and reply data return.
+        \\
+
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\endgroup
+
+\noindent
+Controller logic operates at 3.3~V.
+\cite{nwu_s3_board2026}
 
 
 
