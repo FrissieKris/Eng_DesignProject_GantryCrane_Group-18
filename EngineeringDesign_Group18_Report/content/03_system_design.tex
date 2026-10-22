@@ -161,22 +161,62 @@ subsystem through interface I/F~1.7~E and I/F~1.8~M. The gearbox and spool itsel
 
 \subsection{REII: Remote Control Dashboard: F/U 1.5}
 \label{subsec:reii-fu1p5}
-REII Remote Control Dashboard by Anton Swanepoel.
+REII Remote Control Dashboard by Anton Swanepoel
+
+The proposed REII subsystem would provide crane commands and display
+lateral position, speed, load, current, fault and the current grip status.
+Figure~\ref{fig:reii-architecture} shows the architecture;
+Table~\ref{tab:functional-units-reii} lists five functional units.
+Commands would pass from the Python dashboard through the STM32 UART
+ground station and nRF24 radios to the ESP32-S3; telemetry would return
+along this path. \cite{nwu_sysrs2026,nwu_reii_scope2026}
+
+I/F~1.5.4 would link the controller to EERI~I's inverter, while
+I/F~1.5.5 would connect it to EERI~II's magnet. Both would return
+current feedback for fault or grip inference. MCTR~I would receive
+lateral commands and return encoder feedback through I/F~1.5.6.
+Through I/F~1.5.7, REII would command MCTR~II's brake, power the HX711,
+drive SCK and read DAT. Chapter~\ref{ch:interface-control} details these
+interfaces. Final integration remains incomplete.
+\cite{nwu_sysrs2026,nwu_reii_scope2026,nwu_s3_board2026}
 
 \begin{table}[H]
     \centering
-    \caption{Operational Functional Units.}
+    \caption{Operational functional units of REII.}
     \label{tab:functional-units-reii}
-    \begin{tabular}{@{} l l p{7cm} @{}}
+    \begin{tabularx}{\textwidth}{@{}
+        l
+        >{\raggedright\arraybackslash}p{4cm}
+        >{\raggedright\arraybackslash}X
+    @{}}
         \toprule
         \textbf{F/U ID} & \textbf{Name} & \textbf{Description} \\
         \midrule
-        F/U 1.0 & [Subsystem A] & [What this functional unit does.] \\
-        F/U 2.0 & [Subsystem B] & [What this functional unit does.] \\
-        F/U 3.0 & [Subsystem C] & [What this functional unit does.] \\
+        F/U~1.5.1 & Python dashboard &
+        Accept operator commands and display telemetry and faults. \\
+
+        F/U~1.5.2 & STM32 ground station &
+        Transfer messages between the PC serial connection and the radio. \\
+
+        F/U~1.5.3 & Ground radio &
+        Send commands and receive controller replies. \\
+
+        F/U~1.5.4 & Hoist radio &
+        Receive commands and return results and telemetry. \\
+
+        F/U~1.5.5 & ESP32-S3 controller &
+        Check requests, generate control outputs and collect subsystem data. \\
         \bottomrule
-    \end{tabular}
+    \end{tabularx}
 \end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]
+        {figures/Figure_3_5_System_Architecture.png}
+    \caption{Proposed system architecture of REII F/U~1.5.}
+    \label{fig:reii-architecture}
+\end{figure}
 
 \section{Summary of Interfaces}
 \label{sec:summary-of-interfaces}
