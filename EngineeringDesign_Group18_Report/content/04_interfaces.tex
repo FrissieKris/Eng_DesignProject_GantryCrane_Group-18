@@ -12,6 +12,7 @@ This section ascribes each interface sa the responsibility of the role under whi
 \subsection{EERI I:  }
 \label{subsec:eeri1-interfaces}
 EERI I Drive Electroncics by Jopie Roux.
+
 \begin{table}[H]
     \centering
     \caption{Operational Interfaces.}
@@ -20,13 +21,23 @@ EERI I Drive Electroncics by Jopie Roux.
         \toprule
         \textbf{Interface} & \textbf{From} & \textbf{To} & \textbf{Description} \\
         \midrule
-        I1 & F/U 1.0 & F/U 2.0 & Description of data/power/signal. \\
-        I/F 1.2 & F/U 2.0 & F/U 3.0 & Description. \\
-        I/F 1.2 & F/U 2.0 & F/U 3.0 & Description. \\
-        I/F 1.2 & F/U 2.0 & F/U 3.0 & Description. \\
-        I/F 1.2 & F/U 2.0 & F/U 3.0 & Description. \\
-        I/F 1.2 & F/U 2.0 & F/U 3.0 & Description. \\
-        I/F 1.2 & F/U 2.0 & F/U 3.0 & Description. \\
+        I/F 1.0 E & F/U 2.0 & F/U 1.1.1 & 
+        Single-phase 230VAC, 50 Hz mains input to dirve electronics. The input is routeed through the 
+        required main switching and protection using 15A trip switches before being distributed to the\
+        rest of the system.\\
+        I/F 1.2 E & F/U 1.1.1 & F/U 1.2 & 
+        Protected mains supply to the 12VDC power supply.\\
+        I/F 1.6 E & F/U 1.1.1 & F/U 1.4 & 
+        Protected mains supply to the 12VDC power supply.\\
+        I/F 1.5 S & F/U 1.1 & F/U 1.1 & 
+        Control and feedback interface between the REII controller and the drive electronics.
+        The controller provides isolated PWM signals used used by the driver ICs to switch the DC bus voltage.
+        EEII I returns a current sense signal via a ACS72981xLR hall effect currents sensor. The output voltage
+        is limited below 2.048 V.\\
+        I/F 1.7 E & F/U 1.1.5 & F/U 1.7 & 
+        3-Phase AC from the inverter to the 180W induction motor.\\
+        I/F 1.8 M & F/U 1.7 & F/U 1.3.1 & 
+        Mechanical transfer of motor torque from the 11mm motor shaft to MCTR II's gearbox input.\\
         \bottomrule
     \end{tabular}
 \end{table}
