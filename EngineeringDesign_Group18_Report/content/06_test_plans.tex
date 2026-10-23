@@ -156,16 +156,24 @@ and initial conditions.]
 
 \subsection{MCTR II}
 \label{subsec:mctr-ii-tests}
+\input{content/0p0_mctr2_parameters}
 
-\textbf{Subsystem function:} [Insert the function of MCTR II.]
 
-\textbf{Test setup:} [Insert the required equipment, configuration,
-and initial conditions.]
-
+\textbf{Subsystem function:} Raise and lower a payload of up to \InMassRated\,kg through
+a \InStroke\,m stroke on a rope and drum, hold it without drift when power or command is
+lost, and report the on-hook load to the controller (FR4, FR5, FR6, PT2).
+ 
+\textbf{Test setup:} Complete hoist assembly (motor, coupling, gearbox, brake, drum, rope,
+load cell with sheave, HX711) bolted to the test frame; VSD or bench supply for the motor;
+48\,V brake supply and relay; controller or bench read-out of the HX711; calibrated
+reference masses (5, 10, 20, 30\,kg); stopwatch or encoder for timing; tape measure for drift.
+Protect the area below the load. The 30\,kg proof test is performed last.
+ 
 \begin{table}[htbp]
     \centering
     \caption{MCTR II test plan}
     \label{tab:mctr-ii-tests}
+    \small
     \renewcommand{\arraystretch}{1.4}
     \begin{tabularx}{\textwidth}{|l|X|X|X|X|}
         \hline
@@ -175,39 +183,80 @@ and initial conditions.]
         \textbf{Expected result} &
         \textbf{Status} \\
         \hline
-        MCII-01 & [Functional test] &
-        [Test procedure] &
-        [Expected behaviour] &
+        MCII-01 & Functional: raise and lower (FR4) &
+        Command raise then lower with \InMassRated\,kg over the full stroke. &
+        Moves in the commanded direction over the full \InStroke\,m without slip or rope overlap. &
         [Pass/Fail/NT] \\
         \hline
-        MCII-02 & [Performance test] &
-        [Test procedure] &
-        [Acceptance criterion] &
+        MCII-02 & Performance: hoist rate (PT2) &
+        Time a full-stroke raise with \InMassRated\,kg at the VSD frequency available. &
+        Stroke time $\le \InTimeReq$\,s; predicted \showv{Tstroke}{1}{s} at \InVsdF\,Hz. &
         [Pass/Fail/NT] \\
         \hline
-        MCII-03 & [Safety or fault test] &
-        [Test procedure] &
-        [Expected safe response] &
+        MCII-03 & Safety: fail-safe brake (FR6) &
+        Hold \InMassRated\,kg mid-stroke, remove brake power, then remove command signal. &
+        Brake engages; drift $\le$ \tbd{mm} in \tbd{min}. &
+        [Pass/Fail/NT] \\
+        \hline
+        MCII-04 & Functional: load feedback (FR5) &
+        Hang 0, 5, 10, 20, 30\,kg and record the HX711 reading; fit a two-point calibration. &
+        Reading within \tbd{\%} of the reference mass over the range; resolution about \showv{ResG}{0}{g}. &
+        [Pass/Fail/NT] \\
+        \hline
+        MCII-05 & Safety: overload interlock &
+        Raise a mass above the trip level of \showv{Mtrip}{1}{kg}. &
+        Raising stops and the brake engages within \showv{Latency}{0}{ms}. &
+        [Pass/Fail/NT] \\
+        \hline
+        MCII-06 & Performance: structural proof &
+        Hold \InMassDesign\,kg statically for 60\,s on the rig. &
+        No visible deformation or tooth damage; shaft safety factor $\ge$ \InSFreq\ in Appendix~\ref{app:technical}. &
+        [Pass/Fail/NT] \\
+        \hline
+        MCII-07 & Performance: gear test pair &
+        Load a printed stage~B pair in the rig through a torque arm to failure. &
+        Failure torque gives the measured allowable stress replacing \InSigAllow\,MPa. &
         [Pass/Fail/NT] \\
         \hline
     \end{tabularx}
 \end{table}
 
-
+\clearpage
 \subsection{REII}
 \label{subsec:reii-tests}
 
-\textbf{Subsystem function:} [Insert the function of REII.]
+\textbf{Subsystem function:}
+Transfer motion, hoist and magnet commands; display
+position, speed, load, current, fault and grip status;
+and perform local signal generation, sensor acquisition
+and interlock checks independently of dashboard
+communication (FR12--FR14).
+\cite{nwu_sysrs2026,nwu_reii_scope2026}
 
-\textbf{Test setup:} [Insert the required equipment, configuration,
-and initial conditions.]
+\textbf{Test setup:}
+PC with Python dashboard; UART-connected STM32;
+two nRF24 radios; ESP32-S3 course board; regulated
+supplies; known sensor/status inputs; and an oscilloscope
+or logic analyser. Start disarmed with actuator power
+stages disconnected. Record commands, replies and timing.
+Agree outstanding acceptance limits before testing.
+NT means Not Tested.
 
-\begin{table}[htbp]
+\begin{table}[H]
     \centering
-    \caption{REII test plan}
+    \footnotesize
+    \caption{REII test plan before integration.}
     \label{tab:reii-tests}
-    \renewcommand{\arraystretch}{1.4}
-    \begin{tabularx}{\textwidth}{|l|X|X|X|X|}
+    \renewcommand{\arraystretch}{1.15}
+    \setlength{\tabcolsep}{4pt}
+
+    \begin{tabularx}{\textwidth}{|
+        >{\raggedright\arraybackslash}p{1.2cm}|
+        >{\raggedright\arraybackslash}p{1.9cm}|
+        >{\raggedright\arraybackslash}X|
+        >{\raggedright\arraybackslash}X|
+        >{\centering\arraybackslash}p{1.2cm}|
+    }
         \hline
         \textbf{Test ID} &
         \textbf{Test description} &
@@ -215,20 +264,66 @@ and initial conditions.]
         \textbf{Expected result} &
         \textbf{Status} \\
         \hline
-        RE-01 & [Functional test] &
-        [Test procedure] &
-        [Expected behaviour] &
-        [Pass/Fail/NT] \\
+
+        RE-01 &
+        Inputs and commands &
+        Apply known sensor/status inputs, including a fault
+        condition. Confirm the lateral reference and test
+        arm, disarm, lateral/hoist jog, stop and magnet
+        commands. &
+        Displayed values and replies match the inputs and
+        commands. An unconfirmed reference blocks arming;
+        faults and disarm inhibit motion. Stop cancels
+        movement. Agreed command interlocks are enforced. &
+        NT \\
         \hline
-        RE-02 & [Performance test] &
-        [Test procedure] &
-        [Acceptance criterion] &
-        [Pass/Fail/NT] \\
+
+        RE-02 &
+        Radio communication &
+        Test across the intended operating area with nearby
+        radios active. Record sent/received packets,
+        retries and reply times. &
+        Received replies match their requests. Packet loss
+        and reply times meet the limits agreed before
+        testing. &
+        NT \\
         \hline
-        RE-03 & [Safety or fault test] &
-        [Test procedure] &
-        [Expected safe response] &
-        [Pass/Fail/NT] \\
+
+        RE-03 &
+        Output signals &
+        Confirm the reference, arm and issue drive and
+        magnet commands. Measure outputs with power
+        stages disconnected. &
+        Output order, frequency, duty, direction, dead time
+        where applicable, and disabled states match the
+        agreed driver specifications. &
+        NT \\
+        \hline
+
+        RE-04 &
+        Link loss and recovery &
+        Arm and jog, then test button release and interrupted
+        communication. Apply known sensor/fault inputs
+        during the interruption. Reconnect and record
+        outputs and controller state. &
+        Verify the proposed 200~ms jog-command expiry and
+        500~ms communication timeout. Contact loss stops
+        motion and disarms. Local sensing and interlocks
+        remain active. Record motion-output disable delay;
+        reconnection causes no automatic restart. &
+        NT \\
+        \hline
+
+        RE-05 &
+        Motion planning &
+        Generate and simulate lateral anti-sway profiles
+        and a path around a known obstacle. Compare
+        results with the motion model. &
+        Simulated responses meet the agreed model
+        tolerances and the path maintains the agreed
+        obstacle clearance. Record model inputs and
+        results. &
+        NT \\
         \hline
     \end{tabularx}
 \end{table}

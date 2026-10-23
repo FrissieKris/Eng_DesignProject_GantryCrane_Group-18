@@ -8,8 +8,7 @@ This chapter divides the work amongst 5 engineering students according to their 
 \section{Functional Flow Diagrams}
 \label{sec:functional-flow}
 
-[Describe the life-cycle and operational flows of the system.
-Reference each diagram in the text before it appears.]
+The flow system operation runs from development, deployment, mounting, operation and maintenance until its decomission or failure as indicated in figure~\ref{fig:ffd-lifecycle}.
 
 \begin{figure}[H]
     \centering
@@ -18,14 +17,9 @@ Reference each diagram in the text before it appears.]
     \label{fig:ffd-lifecycle}
 \end{figure}
 
-\section{System Architecture}
-\label{sec:system-architecture}
-
-
-
-\subsection{Level 0 System}
+\subsection{Level 0 System Architecture}
 \label{subsec:top-level-system}
-
+The top level 0 archictecture of the system entails its interaction through the operator, support rail, power grid, environment and the payload as in figure~\ref{fig:arch-level0}
 
 \begin{figure}[H]
     \centering
@@ -36,7 +30,7 @@ Reference each diagram in the text before it appears.]
 
 \subsection{Level 1: Gantry System F/U 1.0}
 \label{subsec:gantry-system-fu}
-
+The gantry system itself is divided up into five functional units as per the roles assigned to each group member as displayed in figure~\ref{fig:arch-level1}. Their subsequent interfaces and lower level functional units are covered by each member responsible.
 \begin{figure}[H]
     \centering
     \includegraphics[width = \textwidth]{figures/Fig_Arch_Level1_GantrySystem.png}
@@ -48,12 +42,11 @@ Reference each diagram in the text before it appears.]
 
 \section{Level 2: Functional Units}
 \label{sec:functional-units}
-\label{sec:functional units}
-Each subsection handles on of the first level functional units introduced in section~\ref{sec:system-architecture}.
+Each subsection handles one of the first level functional units introduced in section~\ref{sec:functional-units}.
 
 \subsection{EERI I: Drive Electronics: F/U 1.1}
 \label{subsec:eeri1-fu1p1}
-EERI I Drive Electroncics by Jopie Roux.
+EERI I Drive Electroncics by Jopie Roux. This took too long to get running.
 
 \begin{table}[H]
     \centering
@@ -114,6 +107,15 @@ MCTR I Lateral Movement by Romeo Mapasa.
 \subsection{MCTR II: Spooling: F/U 1.4}
 \label{subsec:mctr2-fu1p4}
 MCTR II Spooling by Juan Fourie.
+\input{content/0p0_mctr2_parameters}
+
+The spooling subsystem raises and lowers the payload on a rope wound onto a
+drum, holds it safely when unpowered, and reports the on-hook load to the
+controller. Figure~\ref{fig:arch-mctr2} shows its internal architecture and
+Table~\ref{tab:fu-mctr2} lists its six functional units. The induction motor
+that drives the gearbox is supplied and powered by EEII~I and enters this
+subsystem through interface I/F~1.7~E and I/F~1.8~M. The gearbox and spool itself is mounted to the frame of MCTR~I through I/F~1.1~M. The brake signal is received from REII through I/F~1.9~S and the load cell telemetry with the power and ground required by the HX711 is sent and received by REII through I/F~1.10~S. EERI~II has its electromagnet and electrical/signal wiring connected through I/F~1.3~M.
+(Chapter~\ref{ch:interface-control}).
 
 \begin{figure}[H]
     \centering
@@ -122,40 +124,102 @@ MCTR II Spooling by Juan Fourie.
     \label{fig:arch-mctr2}
 \end{figure}
 
-
 \begin{table}[H]
     \centering
-    \caption{Operational Functional Units.}
-    \label{tab:functional-units-mctr2}
-    \begin{tabular}{@{} l l p{7cm} @{}}
+      \caption{Functional units of the MCTR II spooling subsystem (F/U \fuMII).}
+    \label{tab:fu-mctr2}
+    \small
+    \begin{tabularx}{\textwidth}{@{} l l X @{}}
         \toprule
         \textbf{F/U ID} & \textbf{Name} & \textbf{Description} \\
         \midrule
-        F/U 1.0 & [Subsystem A] & [What this functional unit does.] \\
-        F/U 2.0 & [Subsystem B] & [What this functional unit does.] \\
-        F/U 3.0 & [Subsystem C] & [What this functional unit does.] \\
+        F/U \fuMII.1 & Gearbox &
+            Two-stage compound spur gearbox (3D-printed PETG, no worm gear,
+            DR2). Reduces motor speed (\showv{Nmot}{0}{rpm}) by an overall
+            ratio of \shown{iT}{2}:1 to \showv{Ndrum}{1}{rpm} at the drum and
+            multiplies motor torque to \showv{TdrR}{2}{N\,m} (rated load). \\
+        F/U \fuMII.2 & Brake PSU &
+            Stand-alone 48\,V DC supply for the brake coil, fed from the
+            mains distribution provided by EEII~I. Switched through a relay
+            that defaults to the de-energised state. \\
+        F/U \fuMII.3 & Brake &
+            Spring-applied, electrically released holding brake. Engages
+            automatically on loss of power or command and holds the payload
+            without drift (FR6). \\
+        F/U \fuMII.4 & Drum &
+            \InDrumD\,mm drum carrying \InRopeD\,mm rope in a single layer
+            (\shown{Wraps}{1} wraps for the \InStroke\,m stroke, capacity
+            \shown{WrapsFit}{0} wraps). Output shaft of the gearbox drives it
+            through a hub with a cross-bolt. \\
+        F/U \fuMII.5 & Load cell &
+            S-type load cell (\InCellCap\,kg) carrying a sheave through which
+            the rope passes; measures the on-hook load for telemetry and
+            overload interlock (FR5). \\
+        F/U \fuMII.6 & HX711 &
+            24-bit bridge ADC converting the load-cell signal to a 2-wire
+            digital stream (\InSps\,SPS) for the controller. \\
         \bottomrule
-    \end{tabular}
+    \end{tabularx}
 \end{table}
 
 \subsection{REII: Remote Control Dashboard: F/U 1.5}
 \label{subsec:reii-fu1p5}
-REII Remote Control Dashboard by Anton Swanepoel.
+REII Remote Control Dashboard by Anton Swanepoel
+
+The proposed REII subsystem would provide crane commands and display
+lateral position, speed, load, current, fault and the current grip status.
+Figure~\ref{fig:reii-architecture} shows the architecture;
+Table~\ref{tab:functional-units-reii} lists five functional units.
+Commands would pass from the Python dashboard through the STM32 UART
+ground station and nRF24 radios to the ESP32-S3; telemetry would return
+along this path. \cite{nwu_sysrs2026,nwu_reii_scope2026}
+
+I/F~1.5.4 would link the controller to EERI~I's inverter, while
+I/F~1.5.5 would connect it to EERI~II's magnet. Both would return
+current feedback for fault or grip inference. MCTR~I would receive
+lateral commands and return encoder feedback through I/F~1.5.6.
+Through I/F~1.5.7, REII would command MCTR~II's brake, power the HX711,
+drive SCK and read DAT. Chapter~\ref{ch:interface-control} details these
+interfaces. Final integration remains incomplete.
+\cite{nwu_sysrs2026,nwu_reii_scope2026,nwu_s3_board2026}
 
 \begin{table}[H]
     \centering
-    \caption{Operational Functional Units.}
+    \caption{Operational functional units of REII.}
     \label{tab:functional-units-reii}
-    \begin{tabular}{@{} l l p{7cm} @{}}
+    \begin{tabularx}{\textwidth}{@{}
+        l
+        >{\raggedright\arraybackslash}p{4cm}
+        >{\raggedright\arraybackslash}X
+    @{}}
         \toprule
         \textbf{F/U ID} & \textbf{Name} & \textbf{Description} \\
         \midrule
-        F/U 1.0 & [Subsystem A] & [What this functional unit does.] \\
-        F/U 2.0 & [Subsystem B] & [What this functional unit does.] \\
-        F/U 3.0 & [Subsystem C] & [What this functional unit does.] \\
+        F/U~1.5.1 & Python dashboard &
+        Accept operator commands and display telemetry and faults. \\
+
+        F/U~1.5.2 & STM32 ground station &
+        Transfer messages between the PC serial connection and the radio. \\
+
+        F/U~1.5.3 & Ground radio &
+        Send commands and receive controller replies. \\
+
+        F/U~1.5.4 & Hoist radio &
+        Receive commands and return results and telemetry. \\
+
+        F/U~1.5.5 & ESP32-S3 controller &
+        Check requests, generate control outputs and collect subsystem data. \\
         \bottomrule
-    \end{tabular}
+    \end{tabularx}
 \end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]
+        {figures/Figure_3_5_System_Architecture.png}
+    \caption{Proposed system architecture of REII F/U~1.5.}
+    \label{fig:reii-architecture}
+\end{figure}
 
 \section{Summary of Interfaces}
 \label{sec:summary-of-interfaces}
@@ -163,12 +227,21 @@ This section lists each of the interfaces introduced above organised according t
 
 \subsection{Mechanical Interfaces}
 \label{subsec:mechanical-interfaces}
+\begin{itemize}
+    \item \textbf{MCTR II:} I/F 1.1~M (hoist baseplate to MCTR I mounting plate), I/F 1.3~M (rope to magnetic attachment), I/F 1.8~M (motor shaft to gearbox), and internal I/F \fuMII.1~M (gearbox to drum), \fuMII.3~M (brake to shaft), \fuMII.4~M (rope to load cell).
+\end{itemize}
 
 \subsection{Electrical Interfaces}
 \label{subsec:electrical-interfaces}
+\begin{itemize}
+    \item \textbf{MCTR II:} I/F 1.7~E (motor power from EEII~I) and internal I/F \fuMII.2~E (Brake PSU to brake coil).
+\end{itemize}
 
 \subsection{Signal Interfaces}
 \label{subsec:signal-interfaces}
+\begin{itemize}
+    \item \textbf{MCTR II:} I/F 1.9~S (HX711 to controller), I/F 1.10~S (brake release command) and internal I/F \fuMII.5~S (load cell to HX711).
+\end{itemize}
 
 \subsection{General Interfaces}
 \label{subsec:general-interfaces}

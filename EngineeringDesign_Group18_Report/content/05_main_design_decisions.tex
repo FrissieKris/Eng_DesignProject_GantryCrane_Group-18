@@ -104,64 +104,281 @@ table.]
 
 \section{MCTR II: Subsystem: Spooling}
 \label{sec:mctr2-subsystem-spooling}
+\input{content/0p0_mctr2_parameters}
 
-[Discuss the criteria for selecting this component (resolution,
-power, size, cost, etc.). Present the options in a comparison
-table.]
 
+The spooling subsystem was selected against five criteria: \textbf{fail-safe
+behaviour} (the load must be held when power or command is lost, FR6),
+\textbf{compliance} with the design requirements (no worm gear, DR2; minimum
+two stages), \textbf{cost} within the R\InBudget{} group cap, \textbf{manufacturability}
+with the workshop tools available (3D printing, drill press), and
+\textbf{verifiability} by the tests in Chapter~\ref{ch:test-plan}. All strength
+figures below are produced by the parameter sheet in Appendix~\ref{app:technical};
+changing an input there updates every number quoted here.
+ 
+\subsection{Holding brake type}
 \begin{table}[H]
     \centering
-    \caption{Available [Subsystem 1] options.}
-    \label{tab:mctr2-options}
-    \begin{tabular}{@{} l c c c c @{}}
+    \caption{Available holding-brake options for MCTR II.}
+    \label{tab:mctr2-brake-type}
+    \small
+    \begin{tabular}{@{} l c c c c c @{}}
         \toprule
-        \textbf{Component} & \textbf{Criterion A} & \textbf{Criterion B}
-            & \textbf{Criterion C} & \textbf{Selected} \\
+        \textbf{Option} & \textbf{Fail-safe} & \textbf{Bidirectional} & \textbf{DR2 ok}
+            & \textbf{Cost} & \textbf{Selected} \\
         \midrule
-        Option 1 & & & & \\
-        Option 2 & & & & \checkmark \\
-        Option 3 & & & & \\
+        One-way (sprag) clutch            & No  & No  & Yes & Low  & \\
+        Self-locking worm gear            & Yes & Yes & No  & Low  & \\
+        VSD / DC-injection braking only   & No  & Yes & Yes & None & \\
+        Spring-applied, electrically released brake & Yes & Yes & Yes & Medium & \checkmark \\
         \bottomrule
     \end{tabular}
 \end{table}
-
-[Justify the selected option in one or two paragraphs.]
-
+A one-way clutch locks in one direction only, so it cannot permit powered
+lowering and has no engaged or released state to monitor. A worm gear is
+prohibited by DR2. Electrical braking disappears with the power it relies on.
+A spring-applied brake that is released by energising its coil engages when
+power is lost, which is exactly the behaviour FR6 requires.
+ 
+\subsection{Brake source and mounting position}
+A trolley drive-motor brake assembly (R\InCostBrake{} including shipping) was
+chosen because the next commercially available option cost about R5\,000,
+which alone would exhaust the project budget. It is released by a separate
+48\,V supply.
+\begin{table}[H]
+    \centering
+    \caption{Brake mounting position options.}
+    \label{tab:mctr2-brake-pos}
+    \small
+    \begin{tabular}{@{} l c p{5.2cm} c @{}}
+        \toprule
+        \textbf{Position} & \textbf{Torque to hold} & \textbf{Protects against} & \textbf{Selected} \\
+        \midrule
+        Motor shaft & $<$ input value & Motor loss only; fan side not free & \\
+        Gearbox input stub shaft & \showv{BrakeReqIn}{2}{N\,m} & Motor, coupling and stage~A failure & \checkmark\ (provisional) \\
+        Drum shaft & \showv{BrakeReqDrum}{1}{N\,m} & Everything including gear failure & \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+The input stub shaft needs only a small holding torque, which suits a
+low-cost brake. The residual risk is that a stripped stage~B tooth would
+release the load, and this must be accepted explicitly or the brake moved to
+the drum shaft. The datasheet holding torque, coil voltage and shaft bore of the
+purchased brake are not yet verified: \tbd{enter in \texttt{\textbackslash InBrakeRated}; margin is currently
+\BrakeMarginIn}.
+ 
+\subsection{Gearbox configuration and gear material}
+A two-stage compound spur gearbox in 3D-printed PETG was chosen. A single
+stage would violate the two-stage minimum of the work-package scope and would need
+a gear of unmanageable diameter, and a planetary train is too difficult to print
+with the required accuracy. Stage A (motor side) uses module \InModA\,mm and stage B
+(drum side) module \InModB\,mm: stage A is limited by what a printer can form, not
+by strength, while stage B carries the load. The tooth counts are
+$N_p=\InNpA$, $N_g=\InNgA$ per stage, giving an overall ratio of \shown{iT}{2}:1.
+Pressure angle is \InPhi$^\circ$ for every gear (both gears of a mesh must share it).
+The largest gear has an outside diameter of \showv{DoGearB}{0}{mm}, which uses
+\shown{BedUse}{0}\% of the assumed \InBed\,mm print bed.
+ 
+Lewis bending stress at the rated load gives a stage~B pinion safety factor
+of \shown{SFpBR}{2} against the assumed allowable of \InSigAllow\,MPa. That allowable
+is a guess until a printed test pair has been loaded to failure on the test rig;
+the failure torque divided by the safety factor then replaces it.
+The full workings are in Appendix~\ref{app:technical}.
+ 
+\subsection{Shaft material and gear fastening}
+\begin{table}[H]
+    \centering
+    \caption{Options for fastening gears and drum to the shafts.}
+    \label{tab:mctr2-fastening}
+    \small
+    \begin{tabular}{@{} l c c c c @{}}
+        \toprule
+        \textbf{Option} & \textbf{Makeable in workshop} & \textbf{Stiffness}
+            & \textbf{Stress raiser} & \textbf{Selected} \\
+        \midrule
+        Taper-lock bush                         & No (needs precise taper) & High & Low    & \\
+        Flexible (spider) coupling between gear and shaft & Yes & Low (backlash) & Low & \\
+        Keyway in shaft                          & Hard on 10\,mm bar       & High & High   & \\
+        Hub with cross-bolt through reamed hole  & Yes (drill press + jig)  & High & Medium & \checkmark \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+Each gear gets a printed hub through which a bolt passes into a hole drilled
+through the shaft, retained by a nut. A flexible coupling between a gear and its shaft
+would add torsional compliance exactly where holding stiffness matters, so
+flexible couplings are used only between the motor and the gearbox.
+ 
+The test rig failure was traced to poor shaft design: standard steel of unknown
+grade, weakened by stress concentrations from poor milling and drilling. The
+following measures answer that cause directly: certified bright bar of known grade,
+holes drilled and reamed on a drill press with a jig and deburred, and no holes near shoulders.
+The shaft check at the design overload (\InMassDesign\,kg with service factor
+\InServiceF) gives a von Mises stress of \showv{VMD}{0}{MPa} and a safety factor of
+\shown{SFsD}{2}, which \ifdim\RawSFsD pt<\InSFreq pt\textcolor{red}{\textbf{does not meet}}\else meets\fi\ the
+required \InSFreq. At the rated payload the safety factor is \shown{SFsR}{2}.
+If the check does not close with the certified grade, the drum shaft becomes 12\,mm
+(only the coupling and bearing bores change).
+ 
+\subsection{Motor-to-gearbox coupling}
+\begin{table}[H]
+    \centering
+    \caption{Motor coupling options.}
+    \label{tab:mctr2-coupling}
+    \small
+    \begin{tabular}{@{} l c c c @{}}
+        \toprule
+        \textbf{Option} & \textbf{Absorbs misalignment} & \textbf{Protects motor bearings} & \textbf{Selected} \\
+        \midrule
+        Rigid coupling                      & No  & Yes if stub on bearings & \\
+        Pinion overhung on motor shaft      & No  & No (gear radial load)   & \\
+        Flexible jaw/spider coupling to a separately supported stub shaft & Yes & Yes & \checkmark \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+The motor shaft is 11\,mm with a $4\times16$\,mm keyway and the gearbox input shaft is
+\InShaftD\,mm. A coupling sized for one shaft will be bored out for the other.
+Torque at this interface is only \showv{TmReq}{2}{N\,m} against a motor rating of
+\showv{TmRated}{2}{N\,m}.
+ 
+\subsection{On-hook load measurement}
+\begin{table}[H]
+    \centering
+    \caption{Load measurement options.}
+    \label{tab:mctr2-loadcell}
+    \small
+    \begin{tabular}{@{} l c c c @{}}
+        \toprule
+        \textbf{Option} & \textbf{Cost} & \textbf{Interlock speed} & \textbf{Selected} \\
+        \midrule
+        ADS1220 24-bit SPI ADC & Not affordable locally & High (up to 2\,kSPS) & \\
+        HX711 module           & About R48              & \InSps\,SPS when RATE pin high & \checkmark \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+The HX711 is selected on cost. Many modules tie the rate pin low (10\,SPS); the
+purchased board must be checked and modified for \InSps\,SPS. With a
+\InFilt-sample filter the detection latency is \showv{Latency}{0}{ms}, during which the
+rope moves \showv{Travel}{1}{mm} at full speed. A \InCellCap\,kg S-type cell is used,
+operating at \shown{CellUse}{0}\% of capacity at the overload trip. The rope passes over
+a sheave suspended from the cell rather than through a fixed hook or sleeve, whose
+friction would corrupt the reading. The drum-side rope leg must be horizontal so that
+only the payload weight acts along the cell axis.
+ 
+\subsection{Bearings and base plate}
+Eight 6000-2RS bearings (10\,mm bore) match the shaft size. A printed housing wall is
+not to rely on interference alone: a shoulder and a bolted retaining plate hold each
+bearing. The baseplate is 6061-T6 aluminium with machine-cut bearing bores.
+ 
+\subsection{Assumptions and limitations}
+\begin{itemize}
+    \item The payload electromagnet fails safe (or not) under the responsibility of the
+          engineer for EEII~II. The hoist brake holds the rope, not the payload attachment.
+    \item The assembly exists for about five days and runs for about 30 minutes, so
+          creep of PETG is not considered a governing mechanism.
+    \item The 30\,kg case is an analysis margin; the rated payload is \InMassRated\,kg (PHY1).
+    \item The motor may not reach \InMotorN\,rpm on the custom VSD. At \InVsdF\,Hz the stroke
+          takes \showv{Tstroke}{1}{s}; the VSD must deliver at least \showv{Fmin}{1}{Hz} to meet
+          the \InTimeReq\,s requirement.
+\end{itemize}
+ 
 \begin{figure}[H]
     \centering
-    %\includegraphics[width=0.40\textwidth]{subsystem1_photo}
-    \caption{Selected [Subsystem 1] component.}
-    \label{fig:mctr2-subsystem}
+    %\includegraphics[width=0.40\textwidth]{mctr2_selected}
+    \caption{Selected MCTR II components (photograph to be added).}
+    \label{fig:mctr2-selected}
 \end{figure}
 
 \section{REII: Subsystem: Remote Control Dashboard}
 \label{sec:reii-subsystem-remote-control-dashboard}
 
-[Discuss the criteria for selecting this component (resolution,
-power, size, cost, etc.). Present the options in a comparison
-table.]
+The proposed design prioritises reliable command delivery,
+dashboard responsiveness and local fault handling.
+Earlier tests used two ESP32 boards and two 1000-packet trials
+per condition, at distances up to 16~m.
+Table~\ref{tab:reii-options} compares the radio configurations;
+Appendix~C.3 records the trial counts.
+\cite{reii_measurements2026}
 
 \begin{table}[H]
     \centering
-    \caption{Available [Subsystem 1] options.}
+    \footnotesize
+    \caption{Available radio configurations.}
     \label{tab:reii-options}
-    \begin{tabular}{@{} l c c c c @{}}
+
+    \begin{tabularx}{\textwidth}{@{}
+        >{\raggedright\arraybackslash}p{3.5cm}
+        *{4}{>{\centering\arraybackslash}X}
+    @{}}
         \toprule
-        \textbf{Component} & \textbf{Criterion A} & \textbf{Criterion B}
-            & \textbf{Criterion C} & \textbf{Selected} \\
+        \textbf{Configuration} &
+        \textbf{Loss at 8~m}\newline ACK off &
+        \textbf{Loss at 16~m}\newline ACK on &
+        \textbf{Reported Wi-Fi channel 1 overlap} &
+        \textbf{Selected} \\
         \midrule
-        Option 1 & & & & \\
-        Option 2 & & & & \checkmark \\
-        Option 3 & & & & \\
+
+        Channel 76, 250~kbps &
+        3.30\% & 0.00\% & No & Yes \\[3pt]
+
+        Channel 76, 2~Mbps &
+        4.40\% & 0.05\% & No & No \\[3pt]
+
+        Channel 12, 250~kbps &
+        16.10\% & Not tested & Yes & No \\[3pt]
+
+        Channel 12, 2~Mbps &
+        5.50\% & Not tested & Yes & No \\
+
         \bottomrule
-    \end{tabular}
+    \end{tabularx}
 \end{table}
 
-[Justify the selected option in one or two paragraphs.]
+\noindent
+\textbf{Radio configuration.}
+Channel 76 and 250~kbps are provisionally selected for lower
+packet loss at longer tested distances, favouring reliable
+delivery over nominal data rate. Channel 12 overlapped the
+reported laboratory Wi-Fi allocation. Acknowledgements and
+retries improved delivery in the earlier tests.
+\cite{reii_measurements2026}
+The runtime power setting of 2 and final ESP32-S3 response
+times still require validation.
+
+\noindent
+\textbf{Communication and local control.}
+Communication is handled separately from the dashboard
+controls to keep the interface responsive while waiting
+for replies. Messages have a fixed length of 32 bytes to
+simplify processing. A radio acknowledgement confirms
+message delivery; a separate controller reply indicates
+whether the command was accepted. The ESP32-S3 would
+generate control outputs and respond to communication
+loss locally. The dashboard would calculate anti-sway
+motion profiles and paths around known obstacles, which
+the controller would execute through MCTR I's lateral
+drive.
+\cite{nwu_reii_scope2026}
+These functions still require validation.
+
+\noindent
+\textbf{Starting reference.}
+Marked upper-hoist parking with clearance and a marked
+trolley position would provide a repeatable starting
+condition. While stationary and disarmed, the operator
+would select \emph{Confirm starting position} to set
+the lateral reference before arming, without automatic
+movement. Encoder feedback would then track lateral
+position. This feature remains to be implemented.
 
 \begin{figure}[H]
     \centering
-    %\includegraphics[width=0.40\textwidth]{subsystem1_photo}
-    \caption{Selected [Subsystem 1] component.}
+    \includegraphics[width=0.80\textwidth]
+        {figures/Figure_5_5_Radio_Performance.png}
+    \caption{Radio packet loss versus distance on channel 76,
+        supporting the provisional 250~kbps selection.
+        Acknowledgements and retries were disabled.
+        Points are means of two trials; bars show the
+        two trial values.
+        \cite{reii_measurements2026}}
     \label{fig:reii-subsystem}
 \end{figure}
