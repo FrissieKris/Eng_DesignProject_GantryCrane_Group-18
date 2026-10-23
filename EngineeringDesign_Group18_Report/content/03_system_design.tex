@@ -82,19 +82,22 @@ supplies current measurement feedback to the REII controller.
 
 \subsection{EERI II: Magnetic Load Attachment: F/U 1.2}
 \label{subsec:eeri2-fu1p2}
-EERI II Magnetic Load Attachment by JP Smith.
+The EERI II subsystem, engineered by J.P. Smith,
+provides electromagnetic payload retention,
+fast power switching and analog current sensing.
+The subsystem decomposes into four lower level functional units (Table~).\ref{tab:functional-units-eeri2}.
 
 \begin{table}[H]
     \centering
-    \caption{Operational Functional Units.}
-    \label{tab:functional-units-eeri2}
-    \begin{tabular}{@{} l l p{7cm} @{}}
+    \caption{EERI II Operational Functional Units.}
+    \label{tab:eeri2-functional-units}
+    \begin{tabular}{@{} l l p{8.5cm} @{}}
         \toprule
         \textbf{F/U ID} & \textbf{Name} & \textbf{Description} \\
         \midrule
-        F/U 1.0 & [Subsystem A] & [What this functional unit does.] \\
-        F/U 2.0 & [Subsystem B] & [What this functional unit does.] \\
-        F/U 3.0 & [Subsystem C] & [What this functional unit does.] \\
+        F/U 1.2.1 & Magnetic Circuit \& Coils & Three-point U-core electromagnet assembly incorporating six custom bobbins ($28\,\text{m}$ of $1.0\,\text{mm}$ OD enamelled copper wire each, 286~turns/spool) providing $\ge 268.7\,\text{N}$ static holding capacity on $\ge 5\,\text{mm}$ steel plates. \\
+        F/U 1.2.2 & Power Switching \& Gate Drive & High-current low-side switching stage using an IRF540Z power MOSFET driven by a TC4420 6\,A non-inverting driver from the $+13.88\,\text{V}$ rail, protected by an MBR1060 Schottky flyback diode. \\
+        F/U 1.2.3 & Current Sensing \& Conditioning & Galvanically isolated COTS ACS712-30A Hall-effect module conditioned via dual LM358 op-amp differential gain and offset subtraction, scaling $0\text{--}3\,\text{A}$ to $0.015\text{--}1.980\,\text{V} \le 2.048\,\text{V}$. \\
         \bottomrule
     \end{tabular}
 \end{table}
