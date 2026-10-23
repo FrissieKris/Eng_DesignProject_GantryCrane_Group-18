@@ -40,13 +40,30 @@ The gantry system itself is divided up into five functional units as per the rol
 
 
 
+
 \section{Level 2: Functional Units}
 \label{sec:functional-units}
 Each subsection handles one of the first level functional units introduced in section~\ref{sec:functional-units}.
 
 \subsection{EERI I: Drive Electronics: F/U 1.1}
 \label{subsec:eeri1-fu1p1}
-EERI I Drive Electroncics by Jopie Roux. This took too long to get running.
+EERI I Drive Electroncics by Jopie Roux.
+
+The drive electronics subsystem converts the available single-phase 230VAC main supply to a 
+controlled 3-phase supply for the induction motor. This interfaces with MCTR II through I/F 1.7 E
+and 1.8 M. Figure~\ref{fig:arch-eeri1} shows the internal architecture of the subsystem and 
+Table~\ref{tab:functional-units-eeri1} lists its three functional units. I additon to supplying them motor
+EEII I is responsible for mains protection and distirubtion to the low voltage power supplies.
+The subsystem also provides local protection against overcurrent and shoot-through conditions and
+supplies current measurement feedback to the REII controller.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{figures/Fig_Arch_Level2_EEII1.png}
+    \caption{System Architecture of F/U 1.1 of the Drive Electronics Subsystem}
+    \label{fig:arch-eeri1}
+\end{figure}
+
 
 \begin{table}[H]
     \centering
