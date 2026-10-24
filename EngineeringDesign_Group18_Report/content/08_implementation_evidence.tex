@@ -61,24 +61,37 @@ $100\,\mathrm{k}\Omega$. The 4N25 optocoupler was tested seperately, the test re
     \centering
     \includegraphics[width=0.8\textwidth]
     {figures/Opto_results}
-    \caption{Single phase breadboard ciruit.}
+    \caption{Optocouper test results}
     \label{fig:eeri-i-implementation3}
 \end{figure}
 
-The test was conducted using a 50\% duty cycle square wave, the blue trace represents the output on the load side of the
+The test was conducted using a 50\% duty cycle 10kHz square wave, the blue trace represents the output on the load side of the
 optocoupler. 
 
 \subsection{Supporting Design Evidence}
 
-[kicad circuits]
+The circuit used to test the single phase is given in Figure \ref{fig:eeri-i-design1} below.
 
 \begin{figure}[H]
     \centering
-    % \includegraphics[width=0.8\textwidth]
-    % {img/eeri_i_design}
-    \caption{Design documentation for EERI I.}
-    \label{fig:eeri-i-design}
+    \includegraphics[width=0.8\textwidth]
+    {figures/Single_phase_circuit}
+    \caption{Single phase circuit}
+    \label{fig:eeri-i-design1}
 \end{figure}
+
+Figure \ref{fig:eeri-i-design1} shows the circuit used for testing one phase switching with the Driver IC. Figure 
+\ref{fig:eeri-i-design2} shows the optocoupler circuit used.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]
+    {figures/Opto_circuit}
+    \caption{Optocoupler circuit}
+    \label{fig:eeri-i-design2}
+\end{figure}
+
+The output of the optocoupler was mneasured at pin 5 relative to ground.
 
 \section{EERI II Implementation Evidence}
 \label{sec:eeri-ii-evidence}
