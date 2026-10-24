@@ -37,56 +37,107 @@ specified design requirements before integration testing.
 \subsection{EERI I}
 \label{subsec:eeri-i-tests}
 
-\textbf{Subsystem function:} [Insert the function of EERI I.]
+\textbf{Subsystem function:} Convert the single-phase 230VAC to DC and generate a controlled three-phase output for the
+induction motor. The subsystem must also provide isolated swithcing control, current feedback to REIi and hardware
+protection against shoot through and overcurrent conditions.
 
-\textbf{Test setup:} [Insert the required equipment, configuration,
-and initial conditions.]
+\textbf{Test setup:} Complete drive-electronics assembly consisting of the rectifier, DC-link stage, three-phase IGBT 
+inverter, IR2104 gate drivers, isolation circuitry and current-sensing/protection circuit. Initial switching tests shall
+be performed using a current-limited low-voltage DC supply and resistive or RL test load before any high-voltage 
+testing is attempted. Required equipment includes a function generator or controller PWM source, oscilloscope, 
+differential probe where required, multimeter, current-limited bench supply and suitable test loads. High-voltage 
+DC-bus and mains tests shall only be performed using the required electrical protection and under appropriate 
+laboratory supervision.
 
 \begin{table}[htbp]
     \centering
     \caption{EERI I test plan}
     \label{tab:eeri-i-tests}
-    \renewcommand{\arraystretch}{1.4}
-    \begin{tabularx}{\textwidth}{|l|X|X|X|X|}
+
+    \renewcommand{\arraystretch}{1.2}
+    \footnotesize
+
+    \begin{tabularx}{\textwidth}{|l|X|X|X|l|}
         \hline
-        \textbf{Test ID} &
-        \textbf{Test description} &
+        \textbf{ID} &
+        \textbf{Test} &
         \textbf{Procedure} &
         \textbf{Expected result} &
         \textbf{Status} \\
         \hline
-        EI-01 & [Functional test] &
-        [Test procedure] &
-        [Expected behaviour] &
-        [Pass/Fail/NT] \\
+
+        EI-01 &
+        Half-bridge switching &
+        Apply 50\% PWM to one inverter leg using a low-voltage DC bus. Measure gate and output voltages. &
+        IGBTs switch correctly and the output follows the PWM signal. &
+        NT \\
         \hline
-        EI-02 & [Performance test] &
-        [Test procedure] &
-        [Acceptance criterion] &
-        [Pass/Fail/NT] \\
+
+        EI-02 &
+        Three-phase output &
+        Apply three phase-shifted PWM signals and measure the inverter outputs. &
+        Balanced outputs with approximately 120$^\circ$ phase displacement. &
+        NT \\
         \hline
-        EI-03 & [Safety or fault test] &
-        [Test procedure] &
-        [Expected safe response] &
-        [Pass/Fail/NT] \\
+
+        EI-03 &
+        Dead time &
+        Measure high- and low-side gate signals of each inverter leg. &
+        No simultaneous conduction; dead time is at least 400 ns. &
+        NT \\
         \hline
+
+        EI-04 &
+        Overcurrent protection &
+        Apply a controlled overload until the protection threshold is exceeded. &
+        Gate signals are disabled when the trip threshold is exceeded. &
+        NT \\
+        \hline
+
+        EI-05 &
+        Current feedback &
+        Apply known currents to the ACS72981 and measure its controller output. &
+        Output follows current and remains below 2.048 V. &
+        NT \\
+        \hline
+
+        EI-06 &
+        Rectifier and DC bus &
+        Apply AC to the rectifier/DC-link stage and measure the DC-bus voltage. &
+        Correct polarity and stable DC output are obtained. &
+        NT \\
+        \hline
+
+        EI-07 &
+        Emergency shutdown &
+        Operate the drive and activate the hardware emergency stop. &
+        HV supply is disconnected and inverter switching stops. &
+        NT \\
+        \hline
+
     \end{tabularx}
 \end{table}
-
 
 \subsection{EERI II}
 \label{subsec:eeri-ii-tests}
 
-\textbf{Subsystem function:} [Insert the function of EERI II.]
+\textbf{Subsystem function:}
+The EERI II subsystem provides magnetic attachment for up to 20\,kg of steel plate (FR10),
+on-load status through current sensing (FR11),
+solid-state switching with flyback protection,
+and thermal stability.
 
-\textbf{Test setup:} [Insert the required equipment, configuration,
-and initial conditions.]
++\textbf{Test setup:}
+Tests are conducted using a 22\,kg steel test plate (from the scrapyard), a digital oscilloscope, an ACS712-30A current sensor,
+a variable DC power supply,
+and a thermal camera.
 
 \begin{table}[htbp]
     \centering
-    \caption{EERI II test plan}
+    \small
+    \caption{EERI II test plan.}
     \label{tab:eeri-ii-tests}
-    \renewcommand{\arraystretch}{1.4}
+    \renewcommand{\arraystretch}{1.15}
     \begin{tabularx}{\textwidth}{|l|X|X|X|X|}
         \hline
         \textbf{Test ID} &
@@ -95,24 +146,54 @@ and initial conditions.]
         \textbf{Expected result} &
         \textbf{Status} \\
         \hline
-        EII-01 & [Functional test] &
-        [Test procedure] &
-        [Expected behaviour] &
-        [Pass/Fail/NT] \\
+        EII-01 & Static holding capacity &
+        Place the 22\,kg steel test plate against the 3 U-cores. Energise coils at $13.5\,\text{V}$.
+        Pick up the magnet and see if it holds. &
+        By desighn it will hold a 22\,kg steel plate, verifying a safety factor at least 1.1&
+        Pass, see Fig.~\ref{fig:eeri2-magnet-lift} \\
         \hline
-        EII-02 & [Performance test] &
-        [Test procedure] &
-        [Acceptance criterion] &
-        [Pass/Fail/NT] \\
+        EII-02 & On-load current transient test (FR11, IR2) &
+        Connect oscilloscope to ACS712, and connect magnets to DC power supply. Turn on unloaded and loaded.
+        Measure rise time constant $\tau$ and verify $V_{\mathrm{ISENSE}} \le 2.048\,\text{V}$. &
+        Unloaded time constant $\tau_{\mathrm{off}} \approx 31.1\,\text{ms}$, and loaded time constant $\tau_{\mathrm{on}} \approx 88.2\,\text{ms}$. Sense voltage remains below $2.048\,\text{V}$. &
+        Pass, see Fig.~\ref{fig:eeri2-magnet-response} \\
         \hline
-        EII-03 & [Safety or fault test] &
-        [Test procedure] &
-        [Expected safe response] &
-        [Pass/Fail/NT] \\
+        EII-03 & Thermal stability while on. &
+        place one core on thw plate and point a thermal camera at it. Turn on the magnet in still air at and at 4.5\,V.
+        Record temperature and current every 30 seconds for 16 minutes. &
+        Surface temperature stabilizes at $\le 40^\circ\text{C}$, well below the limit of the insulation.
+        Current drop due the copper heating up, but still remains above 2.5\,A. &
+        Pass, see Fig.~\ref{fig:eeri2-magnet-temp} \\
+        \hline
+        EII-04 & Inductive flyback test (FR8) &
+        Connect a $10\times$ oscilloscope probe across the IRF540Z drain and source.
+        Energise coils and turn off again. Capture peak drain to source voltage and demagnetisation duration. &
+        The MBR1060 Schottky diode will clamp flyback voltage to $\le 15.0\,\text{V}$, witch is below the $100\,\text{V}$ MOSFET rating. &
+        Not yet done. \\
         \hline
     \end{tabularx}
 \end{table}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/Mag_lift.jpg}
+    \caption{Magnets lifting 22Kg test plate.}
+    \label{fig:eeri2-magnet-lift}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/JP_Magnet_response.pdf}
+    \caption{Magnets response to a step input.}
+    \label{fig:eeri2-magnet-response}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/JP_Mag_Thermals.pdf}
+    \caption{Magnets temperature and current over 16 minutes.}
+    \label{fig:eeri2-magnet-temp}
+\end{figure}
 
 \subsection{MCTR I}
 \label{subsec:mctr-i-tests}

@@ -53,6 +53,8 @@ derating the current capability remains well above the expected operating requir
 
 \subsection{IGBT Selection}
 
+In Table \ref{tab:eeri1-igbt-options} below the available IGBTs for EEII are compared. 
+
 \begin{table}[H]
     \centering
     \caption{Available IGBT options for EEII I.}
@@ -94,38 +96,150 @@ STGP7NC60HD. This places a greater load on the gate drivers and can increase los
 because the intended switching frequency is relatively low and low-voltage prototype testing confirmed that the 
 selected IR2104 driver and IGBT combination could successfully switch the test DC bus.
 
-\section{EERI II: Subsystem: Magnetic Load Attachment}
-\label{sec:eeri2-subsystem-magnetic-load-attachment}
+\subsection{Optocoupler Selection}
 
-
-[Discuss the criteria for selecting this component (resolution,
-power, size, cost, etc.). Present the options in a comparison
-table.]
+In Table \ref{tab:eeri1-optocoupler-options} below the available optocouplers for EEII are compared. 
 
 \begin{table}[H]
     \centering
-    \caption{Available [Subsystem 1] options.}
-    \label{tab:eeri2-options}
+    \caption{Available optocoupler options for EEII I.}
+    \label{tab:eeri1-optocoupler-options}
+
+    \small
     \begin{tabular}{@{} l c c c c @{}}
         \toprule
-        \textbf{Component} & \textbf{Criterion A} & \textbf{Criterion B}
-            & \textbf{Criterion C} & \textbf{Selected} \\
+        \textbf{Component} &
+        \shortstack{\textbf{Isolation}\\\textbf{Voltage}} &
+        \shortstack{\textbf{Typical Response}\\\textbf{Time}} &
+        \shortstack{\textbf{Current Transfer}\\\textbf{Ratio}} &
+        \textbf{Selected} \\
         \midrule
-        Option 1 & & & & \\
-        Option 2 & & & & \checkmark \\
-        Option 3 & & & & \\
+
+        PC817 &
+        5000 V RMS &
+        \shortstack{$t_r \approx 4\,\mu$s\\$t_f \approx 3\,\mu$s} &
+        50--600\% &
+        \\
+
+        4N25 &
+        5300 V RMS &
+        \shortstack{$t_{on} \approx 4\,\mu$s\\$t_{off} \approx 3\,\mu$s} &
+        20\% min. &
+        \checkmark \\
+
         \bottomrule
     \end{tabular}
 \end{table}
 
-[Justify the selected option in one or two paragraphs.]
+Both devices in Table \ref{tab:eeri1-optocoupler-options} provide galvanic isolation well above the 
+voltage present in the inverter. The PC817 provides approximately 5000V RMS isolation, while the 4N25 is
+rated for 5300 V RMS input-to-output isolation. Their typical switching speeds are also similar: the PC817 
+has typical rise and fall times of approximately 4 µs and 3 µs, while the 4N25 specifies typical turn-on and 
+turn-off times of approximately 4 µs and 3 µs.
 
+The 4N25 was selected because it provides the required galvanic isolation function, a slightly higher isolation
+voltage, and was succesfully obtained and tested as part of the prototype drive circuit. The PC817 has a higher 
+current-transfer ratio, so the 4n25 is not superior in every electrical parameter but that is not the primary selection
+criterion because the optocoupler is used to transmit logic-level PWM information rather than a analogue signal.
+
+\subsection{Gate Driver Selection}
+
+The IR2104 was selected as the half-bridge gate-driver IC. One IR2104 controls the high- and low-side IGBTs of 
+each inverter leg, resulting in three driver ICs for the complete three-phase inverter. The device supports a 
+floating high-side voltage of up to 600 V and operates from a 10 V to 20 V gate-drive supply. It is also compatible
+with 3.3 V and 5 V logic levels.
+
+An important reason for selecting the IR2104 is its integrated cross-conduction prevention and approximately 
+520 ns internal dead time. These functions reduce the probability of simultaneous high- and low-side conduction 
+within an inverter leg. The shutdown input can additionally disable both outputs, allowing the hardware protection
+circuit to inhibit the inverter following an overcurrent fault.
+
+\section{EERI II: Subsystem: Magnetic Load Attachment}
+\label{sec:eeri2-subsystem-magnetic-load-attachment}
+The design of the EERI II magnetic load attachment subsystem had the following to conceder:
+the physical configuration and conection of the electromagnet,
+the solid state switching and flyback clamp,
+and the current sensing and analog conditioning.
+ 
+\subsection{Electromagnet Configuration and Core Geometry}
+\label{subsec:eeri2-dec-electromagnet}
+Requirement DR3 strictly prohibits the use of complete COTS electromagnets,
+while permitting COTS cores.
+To safely hoist a 20\,kg steel plate ($196.2\,\text{N}$), the topology and magnetic circuit reluctance were evaluated across three configurations in Table~\ref{tab:eeri2-magnet-tradeoff}.
+
+\begin{table}[H]
+    \centering
+    \small
+    \caption{Trade-off evaluation of electromagnet configurations.}
+    \label{tab:eeri2-magnet-tradeoff}
+    \begin{tabularx}{\textwidth}{@{} >{\raggedright\arraybackslash}X c *{4}{c} c c @{}}
+        \toprule
+        \textbf{Configuration} & \textbf{DR3 Ok} & \textbf{Stability} & \textbf{Reluctance} & \textbf{Manufacture} & \textbf{Thermal} & \textbf{Score} & \textbf{Selected} \\
+        \textit{Criteria weighting} & \textit{0.25} & \textit{0.25} & \textit{0.20} & \textit{0.15} & \textit{0.15} & \textit{(1--5)} & \\
+        \midrule
+        Single central pot core     & 2 & 2 & 4 & 4 & 3 & 2.85 & \\
+        3$\times$ Cylindrical solenoids & 4 & 3 & 2 & 3 & 3 & 3.05 & \\
+        3$\times$ Hand-wound U-cores (Custom) & 5 & 5 & 5 & 4 & 5 & 4.85 & \checkmark \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+A single central pot core fails to provide stability:
+any motion or off-centre loads generate peeling force that works to pray teh contact face away from the payload.
+Three cylindrical solenoids offer 3 point contact,
+but their open magnetic path through air introduces high reluctance,
+requiring large ampere-turns and power.
+
+The custom U-core topology was selected shown in figure \ref{fig:eeri2-magnet}.
+Arranged in an rectangular manner,
+it provides 6 points of contact and stability against and peeling.
+Each U-core is machined from low carbon steel, providing two contact poles $A_{\mathrm{pole}} = 314.16\,\text{mm}^2$ each.
+These cores form a closed magnetic circuit through the steel plate.
+Each leg of the U-core is a separate spool with $N = 286$ turns of $1.00\,\text{mm}$ enamelled copper wire per spool. Simulations in FEMM confirm a flux density of $1.32\,\text{T}$, producing a holding force of $89.56\,\text{N}$ per point.
+The simulation was done with a $0.20\,\text{mm}$ air gap.
+The total force is $F_{\mathrm{total}} = 268.68\,\text{N}$ ($27.39\,\text{kg}$), giving a safety factor of 1.37 fully complying with DR3 and PT3.
 \begin{figure}[H]
     \centering
-    %\includegraphics[width=0.40\textwidth]{subsystem1_photo}
-    \caption{Selected [Subsystem 1] component.}
-    \label{fig:eeri2-subsystem}
+    \includegraphics[width=0.95\textwidth]{figures/Magnets.jpeg}
+    \caption{Physical U-core magnets}
+    \label{fig:eeri2-magnet}
 \end{figure}
+
+\subsection{Power Switching and Gate Driver}
+\label{subsec:eeri2-dec-driver}
+The series coils have a high inductance ($L \approx 0.1\,\text{H}$ on-load) carrying $3\,\text{A}$ at $13.5\,\text{V}$.
+De energising the magnet releases stored energy, causing high voltage spikes. Table~\ref{tab:eeri2-switching-tradeoff} evaluates three candidate switching technologies.
+
+\begin{table}[H]
+    \centering
+    \small
+    \caption{Trade-off evaluation of switching architectures.}
+    \label{tab:eeri2-switching-tradeoff}
+    \begin{tabularx}{\textwidth}{@{} >{\raggedright\arraybackslash}X *{5}{c} c c @{}}
+        \toprule
+        \textbf{Switching Architecture} & \textbf{Efficiency} & \textbf{Speed} & \textbf{Clamping} & \textbf{Life/PWM} & \textbf{Cost} & \textbf{Score} & \textbf{Selected} \\
+        \textit{Criteria weighting} & \textit{0.30} & \textit{0.25} & \textit{0.20} & \textit{0.15} & \textit{0.10} & \textit{(1--5)} & \\
+        \midrule
+        Electromechanical relay (12\,V / 10\,A) & 4 & 1 & 2 & 1 & 5 & 2.50 & \\
+        BJT (TIP120 + 1N4007)        & 2 & 2 & 2 & 3 & 4 & 2.35 & \\
+        Power MOSFET (IRF540Z + TC4420 + MBR1060) & 5 & 5 & 5 & 5 & 4 & 4.90 & \checkmark \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+Electromechanical relays can arc, the contacts bounce, and it wears,
+and are bad at PWM or fast emergency response.
+A BJT (TIP120) exhibits a saturation voltage of 1.6, dissipating a lot of heat at $3,\text{A}$.
+And the 1N4007 diode has a slow reverse recovery time ($> 2\,\mu\text{s}$) that may cause the transistor to be exposed to mutch voltage.
+
+The combination of an IRF540Z N-channel MOSFET,
+a TC4420 6\,A gate driver IC,
+and an MBR1060 Schottky diode was selected.
+The IRF540Z features an on-resistance of $27\,\text{m}\Omega$, this causes low conduction losses:
+The TC4420 driver can source and sink up to $6\,\text{A}$ peak current directly from the $+13.5\,\text{V}$ rail, charging the gate capacitance ($C_{\mathrm{iss}} \approx 1000\,\text{pF}$) in $<25\,\text{ns}$.
+This causes very low switching losses.
+The MBR1060 Schottky diode ($60\,\text{V}$, $10\,\text{A}$) provides a current path across the coils.
+This keeps the voltage over the switch well below the MOSFET rating ($V_{\mathrm{DSS}} = 100\,\text{V}$).
 
 \section{MCTR I: Subsystem: Lateral Movement}
 \label{sec:mctr1-subsystem-lateral-movement}
