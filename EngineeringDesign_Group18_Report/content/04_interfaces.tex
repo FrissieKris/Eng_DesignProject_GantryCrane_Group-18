@@ -7,7 +7,7 @@ This chapter describes each of the interfaces introduced in chapter~\ref{ch:syst
 
 \section{Work Allocation}
 \label{sec:work-allocation}
-This section ascribes each interface sa the responsibility of the role under which it is described. Each member read and confirmed their responsibilities and interfaces under their jurisdiction as indicated below. By having their name printed next to their role they have accepted the responsibility and are the liable person for all interfaces listed in their section.
+This section ascribes each interface is the responsibility of the role under which it is described. Each member read and confirmed their responsibilities and interfaces under their jurisdiction as indicated below. By having their name printed next to their role they have accepted the responsibility and are the liable person for all interfaces listed in their section.
 
 \subsection{EERI I:  }
 \label{subsec:eeri1-interfaces}
@@ -141,7 +141,7 @@ Finally, electromagnetic force ($\ge 268.68\,\text{N}$) is applied to the 20\,kg
 
 
 
-\subsection{MCTR I: }
+\subsection{MCTR I: Romeo Mapasa }
 \label{subsec:mctr1-interfaces}
 MCTR I Lateral Movement by Romeo Mapasa.
 \begin{table}[H]
@@ -172,8 +172,7 @@ Tables~\ref{tab:interfaces-mctr2} and~\ref{tab:interfaces-mctr2-internal} list e
 MCTR II boundary (Level 1 numbering) and every interface between its internal
 functional units (Level 2 numbering). The type letter follows the drawing:
 M = mechanical, E = electrical, S = signal. Entries marked
-\textcolor{red}{TBD} were inferred from the drawing labels and must be
-confirmed by the owner of the other party before sign-off.
+\textcolor{red}{TBD} remain to be confirmed against subsequent design drawings and tests.
  
 \begin{table}[H]
     \centering
@@ -185,30 +184,25 @@ confirmed by the owner of the other party before sign-off.
         \toprule
         \textbf{Interface} & \textbf{From} & \textbf{To} & \textbf{Description and key parameters} \\
         \midrule
-        I/F 1.1 M & F/U 1.3 (mounting plate) & F/U \fuMII &
-            Bolted mounting of the hoist baseplate (6061-T6, \tbd{mm}) on the
-            MCTR I mounting plate. Plate carries the rope reaction of
-            \showv{FropeD}{0}{N} (design case). Hole pattern \tbd{}.
-            \tbd{confirm against drawing} \\
+        I/F 1.1 M & F/U 1.3 & F/U \fuMII &
+            Bolted mounting of the of the loadcell with pulley to MCTR I. Plate carries the rope reaction of
+            \showv{FropeD}{0}{N} (design case). Preliminary design will be M12 bolt hole for eyebolts. This interface also includes the mounting of the gearbox to be mounted on MCTR I. Final gearbox dimensions \tbd{Gearbox Dimensions} \\
         I/F 1.3 M & F/U \fuMII.4 (rope) & F/U 1.2 &
             Rope termination to the magnetic load attachment. Rated payload
-            \InMassRated\,kg plus attachment \InMassAttach\,kg.
-            \tbd{confirm against drawing} \\
+            \InMassRated\,kg plus attachment 10kg conservative headroom for EEII II components. \\
         I/F 1.7 E & F/U 1.1 & F/U \fuMII &
             3-phase power to the induction motor from the VSD
-            (\InMotorP\,W, \InMotorN\,rpm at \InMotorF\,Hz). Delivered
-            frequency \tbd{Hz}. Mains feed to the Brake PSU
-            \tbd{not shown in drawing: add interface or confirm it is part
-            of I/F 1.7 E}. \\
+            (\InMotorP\,W, \InMotorN\,rpm at \InMotorF\,Hz). Frequency designed for is 30Hz, 816Rom for reduction ratio of 26.7:1. Delivered
+            frequency \tbd{Hz}. Mains feed to the Brake PSU. \\
         I/F 1.8 M & F/U 1.1 (motor) & F/U \fuMII.1 &
             Motor shaft (11\,mm, $4\times16$\,mm keyway) to gearbox input
             shaft (\InShaftD\,mm) through a flexible coupling and a separate
-            input stub shaft on its own bearings. Coupling \tbd{part no.}. \\
+            input stub shaft on its own bearings. Flexible spider coupling 11mm adapted to 10mm. \\
         I/F 1.9 S & F/U \fuMII.6 & F/U 1.5 &
             HX711 digital output (DOUT/SCK), 24-bit, \InSps\,SPS, logic level
-            \tbd{3.3/5\,V}. Load reading used for telemetry and interlock. \\
+            3.3 V as agreed to date with REII. Load reading used for telemetry and interlock. \\
         I/F 1.10 S & F/U 1.5 & F/U \fuMII.3 &
-            Brake release command via relay. Active-high releases; the
+            Brake release command. Active-high releases; the
             default (reset, watchdog, power loss) is brake engaged, in
             hardware. \\
         \bottomrule
@@ -226,22 +220,20 @@ confirmed by the owner of the other party before sign-off.
         \textbf{Interface} & \textbf{From} & \textbf{To} & \textbf{Description and key parameters} \\
         \midrule
         I/F \fuMII.1 M & F/U \fuMII.1 & F/U \fuMII.4 &
-            Gearbox output shaft to drum hub; M4 cross-bolt through a reamed
-            hole. Design torque \showv{TdrD}{1}{N\,m} (\InMassDesign\,kg
+            Gearbox output shaft to drum hub. Design torque \showv{TdrD}{1}{N\,m} (\InMassDesign\,kg
             overload with service factor \InServiceF). \\
         I/F \fuMII.2 E & F/U \fuMII.2 & F/U \fuMII.3 &
-            48\,V DC supply to the brake coil through a relay, with
+            48\,V DC supply to the brake coil through switching circuit, with
             flyback suppression. Coil current \tbd{A}. \\
         I/F \fuMII.3 M & F/U \fuMII.3 & F/U \fuMII.1 &
-            Brake on the gearbox input stub shaft (provisional;
+            Brake on the gearbox between two stages, so that one gear stage carries part of the load (provisional;
             drum shaft is the alternative). Required rating
             \showv{BrakeReqIn}{2}{N\,m} (input shaft) or
             \showv{BrakeReqDrum}{1}{N\,m} (drum shaft), safety factor
             \InBrakeSF. \\
         I/F \fuMII.4 M & F/U \fuMII.4 & F/U \fuMII.5 &
             Rope over a sheave suspended from the load cell. Vertical load
-            \showv{Fcell}{0}{N} at rated payload; equal side load on the
-            cell from the horizontal rope leg. \\
+            \showv{Fcell}{0}{N} at rated payload\\
         I/F \fuMII.5 S & F/U \fuMII.5 & F/U \fuMII.6 &
             4-wire bridge signal, \InCellSens\,mV/V rated output, shielded
             cable, full-scale \showv{SigFS}{1}{mV} against an ADC range of
@@ -250,15 +242,6 @@ confirmed by the owner of the other party before sign-off.
     \end{tabularx}
 \end{table}
  
-\noindent\textbf{Open interface questions raised by this table:}
-(i) the mains supply to the Brake PSU, required by the system specification to be
-distributed by EEII~I, does not appear on the drawings; (ii) the power and
-current-sense cable of the magnetic attachment must follow the rope without
-carrying tension, which is a cable interface between MCTR II and EEII~II that
-is also not drawn; (iii) the drawing numbers the MCTR II sub-units 1.3.x,
-which duplicates MCTR I (F/U 1.3), so they are renumbered 1.4.x here.
-
-
 
 \subsection{REII: Anton Swanepoel}
 \label{subsec:reii-interfaces}

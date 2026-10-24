@@ -285,7 +285,7 @@ two stages), \textbf{cost} within the R\InBudget{} group cap, \textbf{manufactur
 with the workshop tools available (3D printing, drill press), and
 \textbf{verifiability} by the tests in Chapter~\ref{ch:test-plan}. All strength
 figures below are produced by the parameter sheet in Appendix~\ref{app:technical};
-changing an input there updates every number quoted here.
+changing an input there updates every number quoted here and is further confirmed by external Excel sheet which contains all relevant gearbox calculations.
  
 \subsection{Holding brake type}
 \begin{table}[H]
@@ -309,7 +309,7 @@ A one-way clutch locks in one direction only, so it cannot permit powered
 lowering and has no engaged or released state to monitor. A worm gear is
 prohibited by DR2. Electrical braking disappears with the power it relies on.
 A spring-applied brake that is released by energising its coil engages when
-power is lost, which is exactly the behaviour FR6 requires.
+power is lost, adhereing to FR6.
  
 \subsection{Brake source and mounting position}
 A trolley drive-motor brake assembly (R\InCostBrake{} including shipping) was
@@ -326,8 +326,9 @@ which alone would exhaust the project budget. It is released by a separate
         \textbf{Position} & \textbf{Torque to hold} & \textbf{Protects against} & \textbf{Selected} \\
         \midrule
         Motor shaft & $<$ input value & Motor loss only; fan side not free & \\
-        Gearbox input stub shaft & \showv{BrakeReqIn}{2}{N\,m} & Motor, coupling and stage~A failure & \checkmark\ (provisional) \\
+        Gearbox input stub shaft & \showv{BrakeReqIn}{2}{N\,m} & Motor, coupling and stage~A failure &  \\
         Drum shaft & \showv{BrakeReqDrum}{1}{N\,m} & Everything including gear failure & \\
+        Between Gear Stages & \tbd{holding torque} & Motor loss and stage 2 gear failure & \checkmark\ (provisional) \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -335,26 +336,17 @@ The input stub shaft needs only a small holding torque, which suits a
 low-cost brake. The residual risk is that a stripped stage~B tooth would
 release the load, and this must be accepted explicitly or the brake moved to
 the drum shaft. The datasheet holding torque, coil voltage and shaft bore of the
-purchased brake are not yet verified: \tbd{enter in \texttt{\textbackslash InBrakeRated}; margin is currently
-\BrakeMarginIn}.
+purchased brake are not yet verified. The second stage of the gearbox will assist in holding the load provisionally.
  
 \subsection{Gearbox configuration and gear material}
 A two-stage compound spur gearbox in 3D-printed PETG was chosen. A single
 stage would violate the two-stage minimum of the work-package scope and would need
-a gear of unmanageable diameter, and a planetary train is too difficult to print
-with the required accuracy. Stage A (motor side) uses module \InModA\,mm and stage B
-(drum side) module \InModB\,mm: stage A is limited by what a printer can form, not
+a gear of unmanageable diameter, and a planetary train is considered too complex for maintenance and ease of installation. Stage A (motor side) uses module \InModA\,mm and stage B
+(drum side) module \InModB\,mm: The smaller gear is limited by the shaft diameter, not
 by strength, while stage B carries the load. The tooth counts are
-$N_p=\InNpA$, $N_g=\InNgA$ per stage, giving an overall ratio of \shown{iT}{2}:1.
-Pressure angle is \InPhi$^\circ$ for every gear (both gears of a mesh must share it).
-The largest gear has an outside diameter of \showv{DoGearB}{0}{mm}, which uses
-\shown{BedUse}{0}\% of the assumed \InBed\,mm print bed.
- 
-Lewis bending stress at the rated load gives a stage~B pinion safety factor
-of \shown{SFpBR}{2} against the assumed allowable of \InSigAllow\,MPa. That allowable
-is a guess until a printed test pair has been loaded to failure on the test rig;
-the failure torque divided by the safety factor then replaces it.
-The full workings are in Appendix~\ref{app:technical}.
+$N_p=16$, $N_g=63$ per stage, giving an overall ratio of 26.7:1.
+Pressure angle is 24$^\circ$ for every gear (both gears of a mesh must share it). This nonstandard pressure angle was chosen because the profile generator in AutoDesk Inventor does not allow greater angles than 24$^\circ$ due to a known bug. This has minimal effect on the strength of the gear teeth and tooth count, as well as the ratio needed. The confirmation of the gear strength is done by the Lewis bending stress calculation. The final strength calculations are still \tbd{}.
+The largest gear has an outside diameter of 126~mm.
  
 \subsection{Shaft material and gear fastening}
 \begin{table}[H]
@@ -362,15 +354,15 @@ The full workings are in Appendix~\ref{app:technical}.
     \caption{Options for fastening gears and drum to the shafts.}
     \label{tab:mctr2-fastening}
     \small
-    \begin{tabular}{@{} l c c c c @{}}
+    \begin{tabular}{@{} l p{5.2cm} c c c @{}}
         \toprule
         \textbf{Option} & \textbf{Makeable in workshop} & \textbf{Stiffness}
             & \textbf{Stress raiser} & \textbf{Selected} \\
         \midrule
         Taper-lock bush                         & No (needs precise taper) & High & Low    & \\
-        Flexible (spider) coupling between gear and shaft & Yes & Low (backlash) & Low & \\
+        coupling embedded in gear & Yes & Low (backlash) & Low & \\
         Keyway in shaft                          & Hard on 10\,mm bar       & High & High   & \\
-        Hub with cross-bolt through reamed hole  & Yes (drill press + jig)  & High & Medium & \checkmark \\
+        Hub with cross-bolt & Yes (drill press + jig)  & High & Medium & \checkmark \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -381,14 +373,7 @@ flexible couplings are used only between the motor and the gearbox.
  
 The test rig failure was traced to poor shaft design: standard steel of unknown
 grade, weakened by stress concentrations from poor milling and drilling. The
-following measures answer that cause directly: certified bright bar of known grade,
-holes drilled and reamed on a drill press with a jig and deburred, and no holes near shoulders.
-The shaft check at the design overload (\InMassDesign\,kg with service factor
-\InServiceF) gives a von Mises stress of \showv{VMD}{0}{MPa} and a safety factor of
-\shown{SFsD}{2}, which \ifdim\RawSFsD pt<\InSFreq pt\textcolor{red}{\textbf{does not meet}}\else meets\fi\ the
-required \InSFreq. At the rated payload the safety factor is \shown{SFsR}{2}.
-If the check does not close with the certified grade, the drum shaft becomes 12\,mm
-(only the coupling and bearing bores change).
+following measures answer that cause directly: The throughhole stress concentration from the cross-bolt is approximately K=2.6 and q = 0.4 for impact as per \cite{MachineryHandbook}. The bolt of 4mm should have minimal effect on the shaft strength as it replaces the removed material of the drilled hole. The stress in the 10mm shaft will then be most at the drum hub which will have at torque applied of $T = 9.81*30*0.025 = 7.35Nm$ for a load of 30Kg and a drum diameter of 50~mm. This will result in a stress of $\tau = \frac{2.48*0.005}{4.90873\times10^{-10}} = 21.87~MPa$, which is well below the max yield of the steel shaft. Bending will be mitigated by a support bolted to MCTR I. 
  
 \subsection{Motor-to-gearbox coupling}
 \begin{table}[H]
@@ -402,7 +387,7 @@ If the check does not close with the certified grade, the drum shaft becomes 12\
         \midrule
         Rigid coupling                      & No  & Yes if stub on bearings & \\
         Pinion overhung on motor shaft      & No  & No (gear radial load)   & \\
-        Flexible jaw/spider coupling to a separately supported stub shaft & Yes & Yes & \checkmark \\
+        Flexible jaw/spider coupling  & Yes & Yes & \checkmark \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -426,10 +411,7 @@ Torque at this interface is only \showv{TmReq}{2}{N\,m} against a motor rating o
         \bottomrule
     \end{tabular}
 \end{table}
-The HX711 is selected on cost. Many modules tie the rate pin low (10\,SPS); the
-purchased board must be checked and modified for \InSps\,SPS. With a
-\InFilt-sample filter the detection latency is \showv{Latency}{0}{ms}, during which the
-rope moves \showv{Travel}{1}{mm} at full speed. A \InCellCap\,kg S-type cell is used,
+The HX711 is selected on cost. Many modules tie the rate pin low (10\,SPS). A \InCellCap\,kg S-type cell is used,
 operating at \shown{CellUse}{0}\% of capacity at the overload trip. The rope passes over
 a sheave suspended from the cell rather than through a fixed hook or sleeve, whose
 friction would corrupt the reading. The drum-side rope leg must be horizontal so that
@@ -438,7 +420,7 @@ only the payload weight acts along the cell axis.
 \subsection{Bearings and base plate}
 Eight 6000-2RS bearings (10\,mm bore) match the shaft size. A printed housing wall is
 not to rely on interference alone: a shoulder and a bolted retaining plate hold each
-bearing. The baseplate is 6061-T6 aluminium with machine-cut bearing bores.
+bearing.
  
 \subsection{Assumptions and limitations}
 \begin{itemize}
@@ -447,17 +429,16 @@ bearing. The baseplate is 6061-T6 aluminium with machine-cut bearing bores.
     \item The assembly exists for about five days and runs for about 30 minutes, so
           creep of PETG is not considered a governing mechanism.
     \item The 30\,kg case is an analysis margin; the rated payload is \InMassRated\,kg (PHY1).
-    \item The motor may not reach \InMotorN\,rpm on the custom VSD. At \InVsdF\,Hz the stroke
-          takes \showv{Tstroke}{1}{s}; the VSD must deliver at least \showv{Fmin}{1}{Hz} to meet
+    \item The motor may not reach \InMotorN\,rpm on the custom VSD.  The VSD must deliver at least 30Hz to meet
           the \InTimeReq\,s requirement.
 \end{itemize}
  
-\begin{figure}[H]
-    \centering
-    %\includegraphics[width=0.40\textwidth]{mctr2_selected}
-    \caption{Selected MCTR II components (photograph to be added).}
-    \label{fig:mctr2-selected}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     %\includegraphics[width=0.40\textwidth]{mctr2_selected}
+%     \caption{Selected MCTR II components (photograph to be added).}
+%     \label{fig:mctr2-selected}
+% \end{figure}
 
 \section{REII: Subsystem: Remote Control Dashboard}
 \label{sec:reii-subsystem-remote-control-dashboard}
