@@ -11,20 +11,29 @@ This chapter discusses each of the major design decisions that have been made by
 The main power-electronic components were selected according to voltage and current requirments and switching
 performance, thermal capacity compatibility with control circuitry and cost. Preference was given to components
 that proivided sufficienty fault and trtansient headroom without exceeding the budget. The selected components 
-were subsequently used during the low voltage test of the drive ciruitry. 
+were subsequently used during the low voltage test of the drive ciruitry.
+
+\subsection{Bridge Rectifier}
 
 \begin{table}[H]
     \centering
-    \caption{Available [Subsystem 1] options.}
-    \label{tab:eeri1-options}
-    \begin{tabular}{@{} l c c c c @{}}
+    \caption{Available bridge rectifiers for EEII I.}
+    \label{tab:eeri1-rectifiers}
+
+    \begin{tabular}{@{} l c c c c c @{}}
         \toprule
-        \textbf{Component} & \textbf{Criterion A} & \textbf{Criterion B}
-            & \textbf{Criterion C} & \textbf{Selected} \\
+        \textbf{Component} &
+        \shortstack{\textbf{Reverse Voltage}\\\textbf{Rating}} &
+        \shortstack{\textbf{Average Current}\\\textbf{Rating}} &
+        \shortstack{\textbf{Surge}\\\textbf{Current}} &
+        \shortstack{\textbf{Thermal}\\\textbf{Resistance}} &
+        \textbf{Selected} \\
         \midrule
-        Option 1 & & & & \\
-        Option 2 & & & & \checkmark \\
-        Option 3 & & & & \\
+
+        GBK25M & 1000 V & 25 A & 350 A & 0.6 $^\circ$C/W & \\
+
+        GBJ1510 & 1000 V & 15 A & 240 A & 0.8 $^\circ$C/W & \checkmark \\
+
         \bottomrule
     \end{tabular}
 \end{table}
