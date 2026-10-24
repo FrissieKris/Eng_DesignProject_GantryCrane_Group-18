@@ -106,19 +106,30 @@ inverter. The inverter also provides current feedback to the REII controller thr
 The EERI II subsystem, engineered by J.P. Smith,
 provides electromagnetic payload retention,
 fast power switching and analog current sensing.
-The subsystem decomposes into four lower level functional units (Table~).\ref{tab:functional-units-eeri2}.
+Figure~\ref{fig:arch-eeri2} shows the internal Level~2 architecture of the subsystem and its interface boundaries.
+The subsystem decomposes into three lower-level functional units (Table~\ref{tab:eeri2-functional-units}).
+The assembly is powered from the EEII~I $+13.5\,\text{V}$ DC bus via interface I/F~1.2~E, is suspended mechanically from the MCTR~II hoist cable hook via I/F~1.3~M,
+and interfaces with the REII controller via I/F~1.10~S to receive PWM signal and transmit current signal ($V_{\mathrm{ISENSE}} \le 2.048\,\text{V}$).
+The physical interface to the 20\,kg flat steel payload plate is designated as I/F~5.0~M.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{figures/JP_EEII_II_Subsystem.pdf}
+    \caption{Level 2 architecture of the EERI II magnetic load attachment subsystem (F/U 1.2).}
+    \label{fig:arch-eeri2}
+\end{figure}
 
 \begin{table}[H]
     \centering
-    \caption{EERI II Operational Functional Units.}
+    \caption{Functional units of the EERI II magnetic load attachment subsystem (F/U 1.2).}
     \label{tab:eeri2-functional-units}
     \begin{tabular}{@{} l l p{8.5cm} @{}}
         \toprule
         \textbf{F/U ID} & \textbf{Name} & \textbf{Description} \\
         \midrule
-        F/U 1.2.1 & Magnetic Circuit \& Coils & Three-point U-core electromagnet assembly incorporating six custom bobbins ($28\,\text{m}$ of $1.0\,\text{mm}$ OD enamelled copper wire each, 286~turns/spool) providing $\ge 268.7\,\text{N}$ static holding capacity on $\ge 5\,\text{mm}$ steel plates. \\
-        F/U 1.2.2 & Power Switching \& Gate Drive & High-current low-side switching stage using an IRF540Z power MOSFET driven by a TC4420 6\,A non-inverting driver from the $+13.88\,\text{V}$ rail, protected by an MBR1060 Schottky flyback diode. \\
-        F/U 1.2.3 & Current Sensing \& Conditioning & Galvanically isolated COTS ACS712-30A Hall-effect module conditioned via dual LM358 op-amp differential gain and offset subtraction, scaling $0\text{--}3\,\text{A}$ to $0.015\text{--}1.980\,\text{V} \le 2.048\,\text{V}$. \\
+        F/U 1.2.1 & Magnetic Circuit \& Coils & Three U-core electromagnet assembly with six bobbins/legs ($28.0\,\text{m}$ of $1.00\,\text{mm}$ OD enamelled copper wire each, 286~turns/spool) providing $\ge 268.68\,\text{N}$ static holding capacity on $\ge 5\,\text{mm}$ steel plates (safety factor 1.37 on 20\,kg payload). \\
+        F/U 1.2.2 & Power Switching  \& Gate Drive & High-current low-side switching using an IRF540Z  MOSFET driven by a TC4420 6\,A MOSFET driver from the $+13.5\,\text{V}$ rail, protected by an MBR1060 Schottky flyback diode. \\
+        F/U 1.2.3 & Current Sensing  \& Conditioning & Galvanically isolated COTS ACS712-30A Hall-effect module conditioned via LM358 op-amp gain and offset subtraction, scaling $0\text{--}3\,\text{A}$ to $0.015\text{--}1.980\,\text{V} \le 2.048\,\text{V}$ for the REII ADC. \\
         \bottomrule
     \end{tabular}
 \end{table}
