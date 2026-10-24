@@ -156,11 +156,48 @@ circuit to inhibit the inverter following an overcurrent fault.
 
 \section{EERI II: Subsystem: Magnetic Load Attachment}
 \label{sec:eeri2-subsystem-magnetic-load-attachment}
+The design of the EERI II magnetic load attachment subsystem had the following to conceder:
+the physical configuration and conection of the electromagnet,
+the solid state switching and flyback clamp,
+and the current sensing and analog conditioning.
+ 
+\subsection{Electromagnet Configuration and Core Geometry}
+\label{subsec:eeri2-dec-electromagnet}
+Requirement DR3 strictly prohibits the use of complete COTS electromagnets,
+while permitting COTS cores.
+To safely hoist a 20\,kg steel plate ($196.2\,\text{N}$), the topology and magnetic circuit reluctance were evaluated across three configurations in Table~\ref{tab:eeri2-magnet-tradeoff}.
 
+\begin{table}[H]
+    \centering
+    \small
+    \caption{Trade-off evaluation of electromagnet configurations.}
+    \label{tab:eeri2-magnet-tradeoff}
+    \begin{tabularx}{\textwidth}{@{} >{\raggedright\arraybackslash}X c *{4}{c} c c @{}}
+        \toprule
+        \textbf{Configuration} & \textbf{DR3 Ok} & \textbf{Stability} & \textbf{Reluctance} & \textbf{Manufacture} & \textbf{Thermal} & \textbf{Score} & \textbf{Selected} \\
+        \textit{Criteria weighting} & \textit{0.25} & \textit{0.25} & \textit{0.20} & \textit{0.15} & \textit{0.15} & \textit{(1--5)} & \\
+        \midrule
+        Single central pot core     & 2 & 2 & 4 & 4 & 3 & 2.85 & \\
+        3$\times$ Cylindrical solenoids & 4 & 3 & 2 & 3 & 3 & 3.05 & \\
+        3$\times$ Hand-wound U-cores (Custom) & 5 & 5 & 5 & 4 & 5 & 4.85 & \checkmark \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
 
-[Discuss the criteria for selecting this component (resolution,
-power, size, cost, etc.). Present the options in a comparison
-table.]
+A single central pot core fails to provide stability:
+any motion or off-centre loads generate peeling force that works to pray teh contact face away from the payload.
+Three cylindrical solenoids offer 3 point contact,
+but their open magnetic path through air introduces high reluctance,
+requiring large ampere-turns and power.
+
+The custom U-core topology was selected.
+Arranged in an rectangular manner,
+it provides 6 points of contact and stability against and peeling.
+Each U-core is machined from low carbon steel, providing two contact poles $A_{\mathrm{pole}} = 314.16\,\text{mm}^2$ each.
+These cores form a closed magnetic circuit through the steel plate.
+Each leg of the U-core is a separate spool with $N = 286$ turns of $1.00\,\text{mm}$ enamelled copper wire per spool. Simulations in FEMM confirm a flux density of $1.32\,\text{T}$, producing a holding force of $89.56\,\text{N}$ per point.
+The simulation was done with a $0.20\,\text{mm}$ air gap.
+The total force is $F_{\mathrm{total}} = 268.68\,\text{N}$ ($27.39\,\text{kg}$), giving a safety factor of 1.37 fully complying with DR3 and PT3.
 
 \begin{table}[H]
     \centering
