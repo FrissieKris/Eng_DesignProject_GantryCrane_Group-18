@@ -26,3 +26,5 @@
 
 *.pdf
 !img/*.pdf
+!figures/*.pdf
+!tables/*.pdf

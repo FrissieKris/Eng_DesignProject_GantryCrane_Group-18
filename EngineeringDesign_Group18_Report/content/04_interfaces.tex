@@ -97,9 +97,10 @@ capacitor to supply the 3-phase inverter. In parallel, a 12VDC PSU powers the ga
 PWM singals from REII to switch the IBTSs and create the 3-phase AC for the induction motor. The EEII I subsystem
 also provides a current-sense signal to REII for feedback and local protection of the inverter. 
 
-\subsection{EERI II: }
+\subsection{EERI II: Magnetic Load Attachment Interfaces}
 \label{subsec:eeri2-interfaces}
-EERI II Magnetic Load Attachment by JP Smith.
+The EERI II subsystem interfaces with the embedded controller, the main power distribution, the hoisting assembly, and the physical electromagnet.
+The interface allocations it the work of JP Smith, and are detailed in Table~\ref{tab:interfaces-eeri2}.
 \begin{table}[H]
     \centering
     \caption{Operational Interfaces.}
@@ -108,8 +109,7 @@ EERI II Magnetic Load Attachment by JP Smith.
         \toprule
         \textbf{Interface} & \textbf{From} & \textbf{To} & \textbf{Description} \\
         \midrule
-        I1 & F/U 1.0 & F/U 2.0 & [Description of data/power/signal.] \\
-        I2 & F/U 2.0 & F/U 3.0 & [Description.] \\
+        1&2&3&4\\
         \bottomrule
     \end{tabular}
 \end{table}

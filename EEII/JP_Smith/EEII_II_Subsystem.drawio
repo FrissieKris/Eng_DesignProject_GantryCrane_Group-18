@@ -1,0 +1,183 @@
+<mxfile host="Electron">
+  <diagram id="eeii2_subsystem_fu1p2" name="EEII II Magnetic Load Attachment F/U 1.2">
+    <mxGraphModel dx="2209" dy="1389" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="fu1p2_box" parent="1" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;fillColor=none;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="550" width="660" x="230" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="fu1p2_title" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontFamily=Helvetica;fontSize=14;fontStyle=1;" value="F/U 1.2: Magnetic Load Attachment Subsystem" vertex="1">
+          <mxGeometry height="30" width="380" x="240" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="fu122_grp" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="105" width="200" x="325" y="178" as="geometry" />
+        </mxCell>
+        <mxCell id="fu122_lbl" parent="fu122_grp" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontFamily=Helvetica;fontSize=12;" value="F/U 1.2.2" vertex="1">
+          <mxGeometry height="27.631578947368425" width="88.88888888888889" x="11.11111111111111" as="geometry" />
+        </mxCell>
+        <mxCell id="fu122_box" parent="fu122_grp" style="html=1;whiteSpace=wrap;fontStyle=0;fontFamily=Helvetica;fontSize=12;align=center;" value="&lt;b&gt;Power Switching &amp;amp; Gate Drive&lt;/b&gt;&lt;br&gt;IRF540Z Power MOSFET&lt;br&gt;TC4420 6A Driver &amp;amp; MBR1060 Clamp" vertex="1">
+          <mxGeometry height="71.8421052631579" width="177.77777777777777" x="11.11111111111111" y="23.70578947368421" as="geometry" />
+        </mxCell>
+        <mxCell id="fu123_grp" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="120" width="210" x="660" y="165" as="geometry" />
+        </mxCell>
+        <mxCell id="fu123_box" parent="fu123_grp" style="html=1;whiteSpace=wrap;fontStyle=0;fontFamily=Helvetica;fontSize=12;align=center;" value="&lt;b&gt;Current Sensing &amp;amp; Conditioning&lt;/b&gt;&lt;br&gt;COTS ACS712-30A Hall Sensor&lt;br&gt;Dual LM358 Differential Gain Stage" vertex="1">
+          <mxGeometry height="82.10526315789473" width="186.66666666666669" x="11.666666666666668" y="31.57894736842105" as="geometry" />
+        </mxCell>
+        <mxCell id="fu121_grp" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="105" width="220" x="440" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="fu121_lbl" parent="fu121_grp" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontFamily=Helvetica;fontSize=12;" value="F/U 1.2.1" vertex="1">
+          <mxGeometry height="25" width="80" x="10" as="geometry" />
+        </mxCell>
+        <mxCell id="fu121_box" parent="fu121_grp" style="html=1;whiteSpace=wrap;fontStyle=0;fontFamily=Helvetica;fontSize=12;align=center;" value="&lt;b&gt;Electromagnet Circuit &amp;amp; Coils&lt;/b&gt;&lt;br&gt;6x Wound Bobbins (Series)&lt;br&gt;3 U-Cores" vertex="1">
+          <mxGeometry height="75" width="200" x="10" y="25" as="geometry" />
+        </mxCell>
+        <mxCell id="ext_eeii1" parent="1" style="html=1;whiteSpace=wrap;fontStyle=1;fontFamily=Helvetica;fontSize=12;align=center;fillColor=#f5f5f5;strokeColor=#666666;" value="EEII I:&lt;br&gt;Drive Electronics&lt;br&gt;(COTS&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Power Supply)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="60" width="140" x="30" y="207.63" as="geometry" />
+        </mxCell>
+        <mxCell id="ext_mctr2" parent="1" style="html=1;whiteSpace=wrap;fontStyle=1;fontFamily=Helvetica;fontSize=12;align=center;fillColor=#f5f5f5;strokeColor=#666666;" value="MCTR II:&lt;br&gt;Spooling System&lt;br&gt;(Hoist Cable Hook)" vertex="1">
+          <mxGeometry height="60" width="140" x="30" y="472.5" as="geometry" />
+        </mxCell>
+        <mxCell id="ext_reii" parent="1" style="html=1;whiteSpace=wrap;fontStyle=1;fontFamily=Helvetica;fontSize=12;align=center;fillColor=#f5f5f5;strokeColor=#666666;" value="REII:&lt;br&gt;Remote Controlled System&lt;br&gt;(ESP32-S3 Controller)" vertex="1">
+          <mxGeometry height="80" width="160" x="990" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="ext_payload" parent="1" style="html=1;whiteSpace=wrap;fontStyle=1;fontFamily=Helvetica;fontSize=12;align=center;fillColor=#f5f5f5;strokeColor=#666666;" value="Payload:&lt;br&gt;Sheet Metal Plate (20 kg)" vertex="1">
+          <mxGeometry height="60" width="200" x="450" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_if12e_grp" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="50" width="80" x="220" y="207" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_if12e_line" edge="1" parent="cb_if12e_grp" style="endArrow=none;html=1;rounded=0;strokeWidth=4;fontFamily=Helvetica;fontSize=11;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="10" as="sourcePoint" />
+            <mxPoint x="10" y="50" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cb_if12e_txt" parent="cb_if12e_grp" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontFamily=Helvetica;fontSize=11;fontStyle=1;" value="I/F 1.2 E&lt;br&gt;+13.5V / GND" vertex="1">
+          <mxGeometry height="25" width="110" x="15" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_if13m_grp" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="50" width="80" x="220" y="472.5" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_if13m_line" edge="1" parent="cb_if13m_grp" style="endArrow=none;html=1;rounded=0;strokeWidth=4;fontFamily=Helvetica;fontSize=11;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="10" as="sourcePoint" />
+            <mxPoint x="10" y="50" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cb_if13m_txt" parent="cb_if13m_grp" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontFamily=Helvetica;fontSize=11;fontStyle=1;" value="I/F 1.3 M&lt;br&gt;Suspension Hook" vertex="1">
+          <mxGeometry height="25" width="110" x="15" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_if110s_grp" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="70" width="80" x="880" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_if110s_line" edge="1" parent="cb_if110s_grp" style="endArrow=none;html=1;rounded=0;strokeWidth=4;fontFamily=Helvetica;fontSize=11;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="10" as="sourcePoint" />
+            <mxPoint x="10" y="70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cb_if110s_txt" parent="cb_if110s_grp" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontFamily=Helvetica;fontSize=11;fontStyle=1;" value="I/F 1.10 S&lt;br&gt;PWM &amp;amp; I_SENSE" vertex="1">
+          <mxGeometry height="25" width="110" x="15" y="23" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_if50m_grp" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="40" width="140" x="470" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_if50m_line" edge="1" parent="cb_if50m_grp" style="endArrow=none;html=1;rounded=0;strokeWidth=4;fontFamily=Helvetica;fontSize=11;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint y="10" as="sourcePoint" />
+            <mxPoint x="140" y="10" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cb_if50m_txt" parent="cb_if50m_grp" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Helvetica;fontSize=11;fontStyle=1;" value="I/F 5.0 M (Magnetic Holding Force ≥268.7 N)" vertex="1">
+          <mxGeometry height="20" width="140" x="-50" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="e_eeii1_fu122" edge="1" parent="1" source="ext_eeii1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;endArrow=classic;endFill=1;" target="fu122_box" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mctr2_fu121" edge="1" parent="1" source="ext_mctr2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;endArrow=classic;endFill=1;" target="fu121_box" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_reii_fu122" edge="1" parent="1" source="ext_reii" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;endArrow=classic;endFill=1;exitX=0;exitY=0.25;entryX=0.5;entryY=0;" target="fu122_box" value="">
+          <mxGeometry relative="1" x="0.1884" as="geometry">
+            <Array as="points">
+              <mxPoint x="870" y="205" />
+              <mxPoint x="870" y="150" />
+              <mxPoint x="425" y="150" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_fu123_reii" edge="1" parent="1" source="fu123_box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;endArrow=classic;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.65;" target="ext_reii" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_fu121_payload" edge="1" parent="1" source="fu121_box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;endArrow=classic;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="ext_payload" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="550" y="740" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_fu122_fu121" edge="1" parent="1" source="fu122_box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;endArrow=classic;endFill=1;exitX=0.164;exitY=0.992;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;exitPerimeter=0;" target="fu121_box" value="">
+          <mxGeometry relative="1" x="-0.315" as="geometry">
+            <Array as="points">
+              <mxPoint x="365.3" y="360" />
+              <mxPoint x="550" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cb_int1_grp" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="40" width="80" x="380" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_int1_line" edge="1" parent="cb_int1_grp" style="endArrow=none;html=1;rounded=0;strokeWidth=4;fontFamily=Helvetica;fontSize=11;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="10" as="sourcePoint" />
+            <mxPoint x="10" y="40" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cb_int1_txt" parent="cb_int1_grp" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontFamily=Helvetica;fontSize=11;fontStyle=1;" value="I/F 1.2.1 E&lt;br&gt;Switched Coils" vertex="1">
+          <mxGeometry height="25" width="110" x="15" y="8" as="geometry" />
+        </mxCell>
+        <mxCell id="e_fu121_fu123" edge="1" parent="1" source="fu121_box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;endArrow=classic;endFill=1;exitX=0.75;exitY=0;entryX=0.5;entryY=1;" target="fu123_box" value="">
+          <mxGeometry relative="1" x="-0.055" as="geometry">
+            <Array as="points">
+              <mxPoint x="600" y="360" />
+              <mxPoint x="765" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cb_int2_grp" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="40" width="80" x="660" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_int2_line" edge="1" parent="cb_int2_grp" style="endArrow=none;html=1;rounded=0;strokeWidth=4;fontFamily=Helvetica;fontSize=11;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="10" as="sourcePoint" />
+            <mxPoint x="10" y="40" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cb_int2_txt" parent="cb_int2_grp" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontFamily=Helvetica;fontSize=11;fontStyle=1;" value="I/F 1.2.2 E&lt;br&gt;Sense Return" vertex="1">
+          <mxGeometry height="25" width="110" x="15" y="8" as="geometry" />
+        </mxCell>
+        <mxCell id="e_fu122_fu123" edge="1" parent="1" source="fu122_box" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontFamily=Helvetica;fontSize=11;fontColor=default;endArrow=classic;endFill=1;startArrow=classic;startFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="fu123_box" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_int3_grp" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="40" width="80" x="545" y="217" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_int3_line" edge="1" parent="cb_int3_grp" style="endArrow=none;html=1;rounded=0;strokeWidth=4;fontFamily=Helvetica;fontSize=11;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="10" as="sourcePoint" />
+            <mxPoint x="10" y="40" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fu123_lbl" parent="1" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontFamily=Helvetica;fontSize=12;" value="F/U 1.2.3" vertex="1">
+          <mxGeometry height="25" width="80" x="670" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="cb_int3_txt" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontFamily=Helvetica;fontSize=11;fontStyle=1;" value="I/F 1.2.3 E&lt;br&gt;+5V / GND" vertex="1">
+          <mxGeometry height="25" width="110" x="560" y="207.5" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
