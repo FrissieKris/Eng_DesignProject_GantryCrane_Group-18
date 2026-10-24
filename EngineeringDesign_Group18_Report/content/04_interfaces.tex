@@ -12,21 +12,90 @@ This section ascribes each interface sa the responsibility of the role under whi
 \subsection{EERI I:  }
 \label{subsec:eeri1-interfaces}
 EERI I Drive Electroncics by Jopie Roux.
+
+Table \ref{tab1:interfaces-eeri1} and \ref{tab2:interfaces-eeri1} define the the external inteerfaces that 
+cross the boundary of the drive electronics (F/U 1.1) and the internal interfaces bewtween
+its level 2 functional units. The interface type letters correspond to figure \ref{fig:arch-eeri1}, where E denotes
+electrical interfaces, S signal interfaces and M mechanical interfaces. 
+The drive-electronics subsystem receives single-phase AC, distributes protected power to the 
+required PSUs, receives control signals from REII, and supplies the three-phase induction 
+motor used by MCTR II. It also returns conditioned current feedback to the controller and provides local 
+hardware protection of the inverter.
+
 \begin{table}[H]
     \centering
-    \caption{Operational Interfaces.}
-    \label{tab:interfaces-eeri1}
-    \begin{tabular}{@{} l l l p{5cm} @{}}
+    \caption{External interfaces of EEII I (F/U 1.1, Level 1).}
+    \label{tab1:interfaces-eeri1}
+
+    \begin{tabularx}{\textwidth}{@{} l l l X @{}}
         \toprule
         \textbf{Interface} & \textbf{From} & \textbf{To} & \textbf{Description} \\
         \midrule
-        I1 & F/U 1.0 & F/U 2.0 & [Description of data/power/signal.] \\
-        I2 & F/U 2.0 & F/U 3.0 & [Description.] \\
+
+        I/F 1.0 E & F/U 2.0 & F/U 1.1.1 &
+        Single-phase 230 VAC, 50 Hz mains input to the drive electronics. The input is routed through the required main switching and protection using 15 A trip switches before being distributed to the rest of the system. \\
+
+        I/F 1.2 E & F/U 1.1.1 & F/U 1.2 &
+        Protected mains supply to the 12 VDC power supply. \\
+
+        I/F 1.6 E & F/U 1.1.1 & F/U 1.4 &
+        Protected mains supply to the 12 VDC power supply. \\
+
+        I/F 1.5 S & F/U 1.1 & F/U 1.1 &
+        Control and feedback interface between the REII controller and the drive electronics. The controller provides isolated PWM signals used by the driver ICs to switch the DC bus voltage. EEII I returns a current-sense signal via an ACS72981xLR Hall-effect current sensor. The output voltage is limited below 2.048 V. \\
+
+        I/F 1.7 E & F/U 1.1.5 & F/U 1.7 &
+        Three-phase AC from the inverter to the 180 W induction motor. \\
+
+        I/F 1.8 M & F/U 1.7 & F/U 1.3.1 &
+        Mechanical transfer of motor torque from the 11 mm motor shaft to MCTR II's gearbox input. \\
+
         \bottomrule
-    \end{tabular}
+    \end{tabularx}
 \end{table}
 
 
+\begin{table}[H]
+    \centering
+    \caption{Internal interfaces of EEII I (F/U 1.1, Level 2).}
+    \label{tab2:interfaces-eeri1}
+
+    \begin{tabularx}{\textwidth}{@{} l l l X @{}}
+        \toprule
+        \textbf{Interface} & \textbf{From} & \textbf{To} & \textbf{Description} \\
+        \midrule
+
+        I/F 1.1.1 E & F/U 1.1.1 & F/U 1.1.2 &
+        Protected single-phase 230 VAC supplied to the rectifier stage after the system protection and switching
+        devices.\\
+
+        I/F 1.1.2 E & F/U 1.1.2 & F/U 1.1.3 &
+        High voltage rectified DC supplied to the DC bus for smoothing with a bulk capacitor.\\
+
+        I/F 1.1.3 E & F/U 1.1.3 & F/U 1.1.5 &
+        Smooth HV DC voltage supplied to the 6 switch inverter.\\
+
+        I/F 1.1.4 S & F/U 1.1.4 & F/U 1.1.5 &
+        Isolated PWM signals used to contorl the IGBT switching. The IR2104 gate driver ICs are used to switch
+        the IGBTs using the provided PWM signal. Between the REII controller and the IR2104s a optocoupler is 
+        inserted to ensure electrical isolation.\\
+
+        I/F 1.1.5 S & F/U 1.1.5 & F/U 1.1.6 &
+        Inverter operating current information sent to the sensing and protection stage using a 
+        ACS72981xLR Hall-effect current sensor. This path is used to detect a overcurrent or shoot-through fault 
+        and initialte a local inverter shutdown.\\
+
+        I/F 1.1.6 E & F/U 1.2 & F/U 1.1.4 &
+        12VDC used to power the driver ICs obtained from EEII II's PSU. \\
+
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+The main power path flows from the protected mains to the bridge rectifier, to the DC bus for smoothing using a bulk
+capacitor to supply the 3-phase inverter. In parallel, a 12VDC PSU powers the gate driver ICs which use the isolated 
+PWM singals from REII to switch the IBTSs and create the 3-phase AC for the induction motor. The EEII I subsystem
+also provides a current-sense signal to REII for feedback and local protection of the inverter. 
 
 \subsection{EERI II: Magnetic Load Attachment Interfaces}
 \label{subsec:eeri2-interfaces}

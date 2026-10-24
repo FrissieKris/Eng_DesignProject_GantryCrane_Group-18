@@ -40,25 +40,63 @@ The gantry system itself is divided up into five functional units as per the rol
 
 
 
+
 \section{Level 2: Functional Units}
 \label{sec:functional-units}
 Each subsection handles one of the first level functional units introduced in section~\ref{sec:functional-units}.
 
 \subsection{EERI I: Drive Electronics: F/U 1.1}
 \label{subsec:eeri1-fu1p1}
-EERI I Drive Electroncics by Jopie Roux. This took too long to get running.
+EERI I Drive Electroncics by Jopie Roux.
+
+The drive electronics subsystem converts the available single-phase 230VAC main supply to a 
+controlled 3-phase supply for the induction motor. This interfaces with MCTR II through I/F 1.7 E
+and 1.8 M. Figure~\ref{fig:arch-eeri1} shows the internal architecture of the subsystem and 
+Table~\ref{tab:functional-units-eeri1} lists its three functional units. I additon to supplying them motor
+EEII I is responsible for mains protection and distirubtion to the low voltage power supplies.
+The subsystem also provides local protection against overcurrent and shoot-through conditions and
+supplies current measurement feedback to the REII controller. The mains enter through I/F 1.0 E. 
+The protected mains is supplied to the low voltage power supplies through I/F 1.2 E and 1.6 E. The
+protected mains is also rectified and filtered to provide a DC bus for the inverter, which interfaces with
+the induction motor through I/F 1.7 E. The motor interfaces mechanically with MCTR II through I/F 1.8 M.
+Contorl commands are received form the REII controller through I/F 1.5 S through the isolation and gate
+drivers. These control commands include the PWM signals used by the diver ICs to switch the IGBTs in the
+inverter. The inverter also provides current feedback to the REII controller through I/F 1.5 S.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{figures/Fig_Arch_Level2_EEII1.png}
+    \caption{System Architecture of F/U 1.1 of the Drive Electronics Subsystem}
+    \label{fig:arch-eeri1}
+\end{figure}
+
 
 \begin{table}[H]
     \centering
-    \caption{Operational Functional Units.}
+    \caption{Functional units of the EEII I drive electronics subsystem (F/U 1.1)}
     \label{tab:functional-units-eeri1}
     \begin{tabular}{@{} l l p{7cm} @{}}
         \toprule
         \textbf{F/U ID} & \textbf{Name} & \textbf{Description} \\
         \midrule
-        F/U 1.0 & [Subsystem A] & [What this functional unit does.] \\
-        F/U 2.0 & [Subsystem B] & [What this functional unit does.] \\
-        F/U 3.0 & [Subsystem C] & [What this functional unit does.] \\
+        F/U 1.1.1 & Mains Protection and Distribution
+        & Receives the 230VAC mains supply and provides protected distribution to the low voltage 
+        power supplies and drive electronics. This stage also contains the hardware isolation and emergency
+        disconnect for high voltage applications. \\
+        F/U 1.1.2 & Bridge Rectifier
+         & Converts the 230VAC into a unregulated DC supply for the DC bus. \\
+        F/U 1.1.3 & DC Bus
+         & Smooths and stores the DC voltage for the inverter using a bulk capacitor. \\
+        F/U 1.1.4 & Isolation and Gate Drivers
+         & Provides electrical isolation between the REII controller and the high voltage drive electronics.
+         The Driver ICs convert the incomming PWM signals into appropriate gate drive signals used to switch 
+         the IGBTs in the inverter. \\
+        F/U 1.1.5 & 3 Phase IGBT Inverter
+         & Uses 6 IGBTs arranged in 3 half-bridges to convert DC to 3-phase AC. \\
+        F/U 1.1.6 & Current sensing and HV Protection
+         & Measures the drive current and provides the controller with a conditioned current feedback signal
+         below 2.048V. \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -228,18 +266,24 @@ This section lists each of the interfaces introduced above organised according t
 \subsection{Mechanical Interfaces}
 \label{subsec:mechanical-interfaces}
 \begin{itemize}
+    \item \textbf{EEII I:} I/F 1.8~M connect the 3-phase induction motor to MCTR II (motor shaft to gearbox).
     \item \textbf{MCTR II:} I/F 1.1~M (hoist baseplate to MCTR I mounting plate), I/F 1.3~M (rope to magnetic attachment), I/F 1.8~M (motor shaft to gearbox), and internal I/F \fuMII.1~M (gearbox to drum), \fuMII.3~M (brake to shaft), \fuMII.4~M (rope to load cell).
 \end{itemize}
 
 \subsection{Electrical Interfaces}
 \label{subsec:electrical-interfaces}
 \begin{itemize}
+    \item \textbf{EEII I:} I/F 1.0 supplies mains power to the drive electronics subsystem. 
+    I/F 1.2 E and I/F 1.6 E supply to the required DC power supplies. I/F 1.7 E provides the 3-phase AC to the
+    induction motor.
     \item \textbf{MCTR II:} I/F 1.7~E (motor power from EEII~I) and internal I/F \fuMII.2~E (Brake PSU to brake coil).
 \end{itemize}
 
 \subsection{Signal Interfaces}
 \label{subsec:signal-interfaces}
 \begin{itemize}
+    \item \textbf{EEII I:} I/F 1.5 S connects the REII controller to the drive electronics. The controller is
+    electrically isolated from the high voltage of the inverter (supplied PWM signbals).
     \item \textbf{MCTR II:} I/F 1.9~S (HX711 to controller), I/F 1.10~S (brake release command) and internal I/F \fuMII.5~S (load cell to HX711).
 \end{itemize}
 
