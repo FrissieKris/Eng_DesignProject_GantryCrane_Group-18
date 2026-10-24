@@ -53,6 +53,8 @@ derating the current capability remains well above the expected operating requir
 
 \subsection{IGBT Selection}
 
+In Table \ref{tab:eeri1-igbt-options} below the available IGBTs for EEII are compared. 
+
 \begin{table}[H]
     \centering
     \caption{Available IGBT options for EEII I.}
@@ -93,6 +95,64 @@ A disadvantage of the FGH75T65SHDT is a larger gate charge of 123 nC compared to
 STGP7NC60HD. This places a greater load on the gate drivers and can increase losses. This trade-off was accepted 
 because the intended switching frequency is relatively low and low-voltage prototype testing confirmed that the 
 selected IR2104 driver and IGBT combination could successfully switch the test DC bus.
+
+\subsection{Optocoupler Selection}
+
+In Table \ref{tab:eeri1-optocoupler-options} below the available optocouplers for EEII are compared. 
+
+\begin{table}[H]
+    \centering
+    \caption{Available optocoupler options for EEII I.}
+    \label{tab:eeri1-optocoupler-options}
+
+    \small
+    \begin{tabular}{@{} l c c c c @{}}
+        \toprule
+        \textbf{Component} &
+        \shortstack{\textbf{Isolation}\\\textbf{Voltage}} &
+        \shortstack{\textbf{Typical Response}\\\textbf{Time}} &
+        \shortstack{\textbf{Current Transfer}\\\textbf{Ratio}} &
+        \textbf{Selected} \\
+        \midrule
+
+        PC817 &
+        5000 V RMS &
+        \shortstack{$t_r \approx 4\,\mu$s\\$t_f \approx 3\,\mu$s} &
+        50--600\% &
+        \\
+
+        4N25 &
+        5300 V RMS &
+        \shortstack{$t_{on} \approx 4\,\mu$s\\$t_{off} \approx 3\,\mu$s} &
+        20\% min. &
+        \checkmark \\
+
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Both devices in Table \ref{tab:eeri1-optocoupler-options} provide galvanic isolation well above the 
+voltage present in the inverter. The PC817 provides approximately 5000V RMS isolation, while the 4N25 is
+rated for 5300 V RMS input-to-output isolation. Their typical switching speeds are also similar: the PC817 
+has typical rise and fall times of approximately 4 µs and 3 µs, while the 4N25 specifies typical turn-on and 
+turn-off times of approximately 4 µs and 3 µs.
+
+The 4N25 was selected because it provides the required galvanic isolation function, a slightly higher isolation
+voltage, and was succesfully obtained and tested as part of the prototype drive circuit. The PC817 has a higher 
+current-transfer ratio, so the 4n25 is not superior in every electrical parameter but that is not the primary selection
+criterion because the optocoupler is used to transmit logic-level PWM information rather than a analogue signal.
+
+\subsection{Gate Driver Selection}
+
+The IR2104 was selected as the half-bridge gate-driver IC. One IR2104 controls the high- and low-side IGBTs of 
+each inverter leg, resulting in three driver ICs for the complete three-phase inverter. The device supports a 
+floating high-side voltage of up to 600 V and operates from a 10 V to 20 V gate-drive supply. It is also compatible
+with 3.3 V and 5 V logic levels.
+
+An important reason for selecting the IR2104 is its integrated cross-conduction prevention and approximately 
+520 ns internal dead time. These functions reduce the probability of simultaneous high- and low-side conduction 
+within an inverter leg. The shutdown input can additionally disable both outputs, allowing the hardware protection
+circuit to inhibit the inverter following an overcurrent fault.
 
 \section{EERI II: Subsystem: Magnetic Load Attachment}
 \label{sec:eeri2-subsystem-magnetic-load-attachment}
