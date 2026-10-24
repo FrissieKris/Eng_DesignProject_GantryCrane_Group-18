@@ -15,6 +15,8 @@ were subsequently used during the low voltage test of the drive ciruitry.
 
 \subsection{Bridge Rectifier}
 
+In Table \ref{tab:eeri1-rectifiers} below the available bridge rectifiers for EEII are compared. 
+
 \begin{table}[H]
     \centering
     \caption{Available bridge rectifiers for EEII I.}
@@ -38,14 +40,59 @@ were subsequently used during the low voltage test of the drive ciruitry.
     \end{tabular}
 \end{table}
 
-[Justify the selected option in one or two paragraphs.]
+Both rectifiers in Table \ref{tab:eeri1-rectifiers} provide a 1000V reverse-voltage rating, which gives a large margin above the 325VDC which 
+is obtained from rectify in the 230VAC mains. The GBK25M porvides a higher 25A average current rating and 
+350A surge current rating, whereas the GBJ1510 provides a 15A average and 240A surege current rating.
 
-\begin{figure}[H]
+The GJB1510 was selected because its 15A average currnet rating is already well above the nominal current 
+rating of the 180 W motor. The extra current capability of the GBK25M would therefore provide no additional
+benefit during normal operation. The GBJ1510 still provides the necessary 1000V blocking capacity and 240A 
+surge current rating is suffiecient for the application. The datasheet specifies that the rectifier current 
+rating should be derated by 20 \% when supplying a capacitive load such as the bulk capacitor. Even after
+derating the current capability remains well above the expected operating requirement. 
+
+\subsection{IGBT Selection}
+
+\begin{table}[H]
     \centering
-    %\includegraphics[width=0.40\textwidth]{subsystem1_photo}
-    \caption{Selected [Subsystem 1] component.}
-    \label{fig:eeri1-subsystem}
-\end{figure}
+    \caption{Available IGBT options for EEII I.}
+    \label{tab:eeri1-igbt-options}
+
+    \small
+    \begin{tabular}{@{} l c c c c c c @{}}
+        \toprule
+        \textbf{Component} &
+        \shortstack{\textbf{Voltage}\\\textbf{Rating}} &
+        \shortstack{\textbf{Current Rating}\\\textbf{@ 100$^\circ$C}} &
+        \shortstack{\textbf{Pulsed}\\\textbf{Current}} &
+        \shortstack{\textbf{Thermal}\\\textbf{Resistance}} &
+        \shortstack{\textbf{Total Gate}\\\textbf{Charge}} &
+        \textbf{Selected} \\
+        \midrule
+
+        STGP7NC60HD & 600 V & 14 A & 50 A & 1.56 $^\circ$C/W & 35 nC & \\
+
+        FGH75T65SHDT & 650 V & 75 A & 225 A & 0.33 $^\circ$C/W & 123 nC & \checkmark \\
+
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Both devices in Table \ref{tab:eeri1-igbt-options} are suitable for the inverter application and provide voltage ratings well above the  nominal DC
+bus voltage.The STGP7NC60HD is rated for 600V and 14A at a case temperature of 100$^\circ$C, with a pulsed current
+rating of 50A. The FGH75T65SHDT increases these ratings to 650V and 75A at 100$^\circ$C and 225A pulsed current. 
+It also has a significantly lower thermal resistance of 0.33 $^\circ$C/W. 
+
+The FGH75T65SHDT was selected mainly for its greater voltage, transient currnet and thermanl margins. 
+Although the nominal motor currnet is much lower than eitgher IGBT's continuous current rating, inverter
+faults such as shoot-throughh and a phase-to-phase short can produce currents far greater than the normal operating
+current. The higher pulsed-current therfore provides additional robustness while the protection circuit detects
+the fualt and disalbles the inverter. 
+
+A disadvantage of the FGH75T65SHDT is a larger gate charge of 123 nC compared to the approximately 35 nC of the
+STGP7NC60HD. This places a greater load on the gate drivers and can increase losses. This trade-off was accepted 
+because the intended switching frequency is relatively low and low-voltage prototype testing confirmed that the 
+selected IR2104 driver and IGBT combination could successfully switch the test DC bus.
 
 \section{EERI II: Subsystem: Magnetic Load Attachment}
 \label{sec:eeri2-subsystem-magnetic-load-attachment}
