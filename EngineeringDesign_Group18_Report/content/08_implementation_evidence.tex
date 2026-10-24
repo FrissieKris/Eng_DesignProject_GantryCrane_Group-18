@@ -61,62 +61,89 @@ $100\,\mathrm{k}\Omega$. The 4N25 optocoupler was tested seperately, the test re
     \centering
     \includegraphics[width=0.8\textwidth]
     {figures/Opto_results}
-    \caption{Single phase breadboard ciruit.}
+    \caption{Optocouper test results}
     \label{fig:eeri-i-implementation3}
 \end{figure}
 
-The test was conducted using a 50\% duty cycle square wave, the blue trace represents the output on the load side of the
+The test was conducted using a 50\% duty cycle 10kHz square wave, the blue trace represents the output on the load side of the
 optocoupler. 
 
 \subsection{Supporting Design Evidence}
 
-[kicad circuits]
+The circuit used to test the single phase is given in Figure \ref{fig:eeri-i-design1} below.
 
 \begin{figure}[H]
     \centering
-    % \includegraphics[width=0.8\textwidth]
-    % {img/eeri_i_design}
-    \caption{Design documentation for EERI I.}
-    \label{fig:eeri-i-design}
+    \includegraphics[width=0.8\textwidth]
+    {figures/Single_phase_circuit}
+    \caption{Single phase circuit}
+    \label{fig:eeri-i-design1}
 \end{figure}
+
+Figure \ref{fig:eeri-i-design1} shows the circuit used for testing one phase switching with the Driver IC. Figure 
+\ref{fig:eeri-i-design2} shows the optocoupler circuit used.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]
+    {figures/Opto_circuit}
+    \caption{Optocoupler circuit}
+    \label{fig:eeri-i-design2}
+\end{figure}
+
+The output of the optocoupler was mneasured at pin 5 relative to ground.
 
 \section{EERI II Implementation Evidence}
 \label{sec:eeri-ii-evidence}
 
-This section presents the evidence demonstrating the
-implementation of EERI II.
+This section documents the physical construction,
+electromagnetic finite element simulations,
+oscilloscope transient captures,
+and bill of materials demonstrating the complete implementation of EERI II.
 
 \subsection{Physical Implementation}
 
-Figure~\ref{fig:eeri-ii-implementation} shows the completed
-EERI II subsystem.
+Figure~\ref{fig:eeri-ii-implementation} shows the state of EERI II subsystem.
 
 \begin{figure}[H]
     \centering
-    % \includegraphics[width=0.8\textwidth]
-    % {img/eeri_ii_implementation}
-    \caption{Implemented EERI II subsystem.}
+    \includegraphics[width=0.8\textwidth]{figures/Mag_lift.jpg}
+    \caption{EERI II subsystem.}
     \label{fig:eeri-ii-implementation}
 \end{figure}
 
-The implementation evidence should identify the principal
-components, their arrangement, and their connection to the
-relevant parts of the gantry crane system.
+The system is not yet completed,
+but table \ref{tab:eeri-ii-tests},
+shows that the magnet and current sensing subsystem are near completion.
+The switching circuit components have arrived and only need to be assembled and tested.
 
 \subsection{Supporting Design Evidence}
 
-The final implementation should be supported by relevant
-engineering drawings, electrical schematics, component
-documentation, or other records showing how the design
-was realised.
+A large amount of design was done to reach this point of the process. Bellow follows evidence of the work put into design.
 
 \begin{figure}[H]
     \centering
-    % \includegraphics[width=0.8\textwidth]
-    % {img/eeri_ii_design}
-    \caption{Design documentation for EERI II.}
-    \label{fig:eeri-ii-design}
+    \includegraphics[width=0.8\textwidth]{figures/FEMM.png}
+    \caption{FEMM Construction of U core.}
+    \label{fig:eeri2-femm}
 \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/Femm_result.png}
+    \caption{FEMM Results.}
+    \label{fig:eeri2-femm1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/plate.png}
+    \includegraphics[width=0.8\textwidth]{figures/Bobbin.png}
+    \caption{Drawings used to order the metal parts.}
+    \label{fig:eeri2-ord}
+\end{figure}
+
+
 
 \section{MCTR I Implementation Evidence}
 \label{sec:mctr-i-evidence}
@@ -202,20 +229,44 @@ incomplete.
 
 \subsection{Physical Implementation}
 
-Figure~\ref{fig:reii-implementation} shows the earlier
-radio bench comprising two ESP32 boards and two nRF24
-modules. Later bench firmware generated physical PWM
-outputs while motion and sensor readings were simulated.
-The current controller is the university-supplied
-ESP32-S3 board, which still requires firmware migration
-and crane integration.
+Figure~\ref{fig:reii-implementation} shows the earlier radio
+bench comprising two original ESP32 boards and two nRF24
+modules. Later bench development used the STM32F411 board
+as the ground station, with UART communication to the PC
+and a radio link to the original ESP32 controller.
+Figure~\ref{fig:reii-ground-station} shows the ground-station
+board, programmer and radio wiring. The receiver firmware
+generated physical PWM outputs while motion and sensor
+readings were simulated. The current controller is the
+university-supplied ESP32-S3 board, which still requires
+firmware migration and crane integration.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.32\textwidth]
-        {figures/Figure_8_9_Radio_Assembly.jpg}
-    \caption{Earlier two-ESP32/nRF24 radio bench assembly.}
-    \label{fig:reii-implementation}
+
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[
+            width=\linewidth,
+            height=7.5cm,
+            keepaspectratio
+        ]{figures/Figure_8_9_Radio_Assembly.jpg}
+        \caption{Earlier two-ESP32/nRF24 radio bench assembly.}
+        \label{fig:reii-implementation}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \includegraphics[
+            width=\linewidth,
+            height=7.5cm,
+            keepaspectratio
+        ]{figures/REII_STM32_Ground_Station.jpg}
+        \caption{STM32F411 ground-station board, programmer
+            and radio wiring during bench development.}
+        \label{fig:reii-ground-station}
+    \end{minipage}
+
 \end{figure}
 
 \subsection{Supporting Design Evidence}
@@ -226,11 +277,6 @@ station and ESP32-S3 controller. The existing dashboard,
 STM32 bridge and earlier ESP32 controller software would
 provide the basis for this implementation.
 
-The Excel workbook records the earlier radio measurements.
-\cite{reii_measurements2026}
-Migration to the ESP32-S3 and integrated testing of the
-sensors, brake and complete crane remain outstanding.
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth]
@@ -238,6 +284,56 @@ sensors, brake and complete crane remain outstanding.
     \caption{Proposed REII software arrangement.
         ESP32-S3 migration remains incomplete.}
     \label{fig:reii-design}
+\end{figure}
+
+The developed Python dashboard includes serial connection
+controls, motion and magnet commands, telemetry fields,
+a workspace display and CSV logging.
+Figure~\ref{fig:reii-dashboard} shows the interface developed
+while awaiting the ESP32-S3 boards. It is disconnected and
+does not present live crane measurements.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]
+        {figures/REII_Dashboard_Interface.png}
+    \caption{Python dashboard developed before ESP32-S3
+        integration; disconnected interface shown.}
+    \label{fig:reii-dashboard}
+\end{figure}
+
+The Excel workbook records the earlier radio measurements
+\cite{reii_measurements2026}, with the trial data presented
+in Appendix~\ref{sec:reii-radio-tests}. Migration to the
+ESP32-S3 and integrated testing of the sensors, brake and
+complete crane remain outstanding.
+
+Figure~\ref{fig:reii-pwm-bench} presents two oscilloscope
+captures from 6 October 2026, showing switching edges and
+repeated waveforms during original ESP32 bench testing.
+These records demonstrate physical bench waveforms.
+The tests have not yet been repeated on the ESP32-S3.
+
+\begin{figure}[H]
+    \centering
+
+    \includegraphics[width=0.72\textwidth]
+        {figures/REII_Original_ESP32_PWM_a.png}
+
+    \par\vspace{0.6em}
+
+    \includegraphics[width=0.72\textwidth]
+        {figures/REII_Original_ESP32_PWM_b.png}
+
+    \caption{Oscilloscope captures from original ESP32
+        bench tests on 6 October 2026:
+        (a) switching-edge view at
+        $1\,\mu\mathrm{s}/\mathrm{div}$;
+        (b) repeated-waveform view at
+        $20\,\mu\mathrm{s}/\mathrm{div}$.
+        These tests have not yet been repeated on the
+        ESP32-S3.}
+    \label{fig:reii-pwm-bench}
 \end{figure}
 
 \section{Integrated System Implementation}
@@ -309,8 +405,8 @@ evidence provided for each subsystem and the integrated system.
         [Completed / Partial / Not implemented] \\
         \hline
         EERI II &
-        [Photographs, drawings, schematics, or other evidence] &
-        [Completed / Partial / Not implemented] \\
+        Photographs, schematics, and simulations. &
+        Partial \\
         \hline
         MCTR I &
         [Photographs, CAD drawings, assembly records, or other evidence] &
