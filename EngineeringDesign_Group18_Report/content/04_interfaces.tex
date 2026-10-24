@@ -100,18 +100,43 @@ also provides a current-sense signal to REII for feedback and local protection o
 \subsection{EERI II: Magnetic Load Attachment Interfaces}
 \label{subsec:eeri2-interfaces}
 The EERI II subsystem interfaces with the embedded controller, the main power distribution, the hoisting assembly, and the physical electromagnet.
-The interface allocations it the work of JP Smith, and are detailed in Table~\ref{tab:interfaces-eeri2}.
+The interface allocations are the work of J.P. Smith and are detailed in Tables~\ref{tab:interfaces-eeri2} (Level~1 external interfaces) and~\ref{tab:interfaces-eeri2-internal} (Level~2 internal interfaces).
+Power enters via I/F~1.2~E from the EEII~I power supply $+13.5\,\text{V}$ DC to the switching circuit and electromagnet coils.
+The physical assembly is suspended from the MCTR~II hoisting system via mechanical interface I/F~1.3~M.
+Command and feedback signals are exchanged with the REII ESP32-S3 controller across I/F~1.10~S, which carries PWM gate switching command and returns the analog current-sense signal ($V_{\mathrm{ISENSE}} \le 2.048\,\text{V}$).
+Internally, the driver stage switches the coils over I/F~1.2.1~E,
+the current passes through the ACS712 sensor over I/F~1.2.2~E,
+and regulated $+5\,\text{V}$ and ground are shared between the switching and analog conditioning circuit over I/F~1.2.3~E.
+Finally, electromagnetic force ($\ge 268.68\,\text{N}$) is applied to the 20\,kg metal plate across mechanical interface I/F~5.0~M.
 \begin{table}[H]
     \centering
-    \caption{Operational Interfaces.}
+    \caption{External interfaces of EERI II (F/U 1.2, Level 1).}
     \label{tab:interfaces-eeri2}
-    \begin{tabular}{@{} l l l p{5cm} @{}}
+    \begin{tabularx}{\textwidth}{@{} l l l X @{}}
         \toprule
         \textbf{Interface} & \textbf{From} & \textbf{To} & \textbf{Description} \\
         \midrule
-        1&2&3&4\\
+        I/F 1.2 E  & F/U 1.1.1 & F/U 1.2.2 & $+13.5\,\text{V}$ DC power supply rail and ground from EEII I, rated for $100\,\text{W}$. \\
+        I/F 1.3 M  & F/U 1.4   & F/U 1.2.1 & Mechanical connection between the electromagnet and the MCTR II hoist cable. \\
+        I/F 1.10 S & F/U 1.5   & F/U 1.2   & Control and feedback interface with the REII controller, 3.3\,V PWM switching command to F/U 1.2.2 and a conditioned analog current-sense signal ($V_{\mathrm{ISENSE}} \le 2.048\,\text{V}$) from F/U 1.2.3. \\
+        I/F 5.0 M  & F/U 1.2.1 & Payload   & Electro magnet - Plate interface with $\ge 268.68\,\text{N}$ of holding force across the 3 U cores, 6 poles, on the 20\,kg flat steel plate (PHY1). \\
         \bottomrule
-    \end{tabular}
+    \end{tabularx}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \caption{Internal interfaces of EERI II (F/U 1.2, Level 2).}
+    \label{tab:interfaces-eeri2-internal}
+    \begin{tabularx}{\textwidth}{@{} l l l X @{}}
+        \toprule
+        \textbf{Interface} & \textbf{From} & \textbf{To} & \textbf{Description} \\
+        \midrule
+        I/F 1.2.1 E & F/U 1.2.2 & F/U 1.2.1 & Switched driver delivering up to 3.1\,A at 13.5\,V) from the IRF540Z low-side switch to the 6 series coils. \\
+        I/F 1.2.2 E & F/U 1.2.1 & F/U 1.2.3 & Coil current through the ACS712-30A Hall-effect sensor. \\
+        I/F 1.2.3 E & F/U 1.2.2 & F/U 1.2.3 & Regulated $+5\,\text{V}$ DC and analog ground powering the ACS712 sensor and LM358 opamp stages. \\
+        \bottomrule
+    \end{tabularx}
 \end{table}
 
 
