@@ -41,13 +41,12 @@ Table~\ref{tab:app_eeri2_specs} summarises the complete mechanical, electrical, 
     Single Spool Resistance ($20^\circ\text{C}$) & 0.72 & $\Omega$ & Measured cold DC resistance \\
     Total Series Resistance ($20^\circ\text{C}$) & 4.32 & $\Omega$ & Measured series loop cold \\
     Total Loop Resistance ($50^\circ\text{C}$) & 4.95 & $\Omega$ & Warm copper + MOSFET + harness \\
-    Boost Supply Rail Voltage ($V_{\mathrm{boost}}$) & 13.88 & V & Sized to guarantee 2.80\,A warm \\
+    Rail Voltage ($V_{\mathrm{boost}}$) & 13.5 & V & Sized to guarantee 2.80\,A warm \\
     Operating Current ($I_{\mathrm{op}}$) & 2.80 & A & Sustained continuous excitation \\
     MMF per Spool ($N \cdot I$) & 800.8 & A-t & Ampere-turns per coil \\
     MMF per U-Core Point & 1601.6 & A-t & 2 spools in series \\
     Power Dissipation per Spool & 5.64 & W & Continuous conduction \\
     Total Magnet System Power & 33.84 & W & 6 spools energized \\
-    Surface Heat Flux & 0.090 & W/cm$^2$ & Natural convection ($<0.15\,\text{W/cm}^2$) \\
     Core Flux Density ($B_{\mathrm{core}}$) & 1.32 & T & 2D planar FEMM simulation \\
     Holding Force per Point ($F_y$) & 89.56 & N & At $0.20\,\text{mm}$ parasitic air gap \\
     Total Static Holding Force ($F_{\mathrm{total}}$) & 268.68 & N & $3 \times 89.56\,\text{N}$ ($27.39\,\text{kg}$) \\
@@ -55,54 +54,6 @@ Table~\ref{tab:app_eeri2_specs} summarises the complete mechanical, electrical, 
     \hline
   \end{tabular}
 \end{table}
-
-\subsection{Governing Electromagnetic and Circuit Equations}
-\label{subsec:app-eeri2-equations}
-
-\begin{equation}
-\label{eq:mean_turn_diameter}
-D_{\mathrm{mean}} = \frac{D_{\mathrm{core}} + D_{\mathrm{flange}}}{2}
-\end{equation}
-
-\begin{equation}
-\label{eq:mean_circumference}
-C_{\mathrm{mean}} = \pi D_{\mathrm{mean}}
-\end{equation}
-
-\begin{equation}
-\label{eq:wire_resistance_cold}
-R_{\mathrm{cold}} = \frac{\rho_{\mathrm{Cu}, 20} L}{A_{\mathrm{Cu}}} = \frac{1.72 \times 10^{-8} \times L}{\frac{\pi}{4} d_{\mathrm{Cu}}^2}
-\end{equation}
-
-\begin{equation}
-\label{eq:temp_resistance}
-R(T) = R_{20} \left[ 1 + \alpha_{\mathrm{Cu}} (T - 20^\circ\text{C}) \right], \quad \alpha_{\mathrm{Cu}} = 0.00393\,\mathrm{K}^{-1}
-\end{equation}
-
-\begin{equation}
-\label{eq:operating_current}
-I_{\mathrm{op}} = \frac{V_{\mathrm{boost}}}{R_{\mathrm{series}}(T) + R_{\mathrm{DS(on)}} + R_{\mathrm{harness}}}
-\end{equation}
-
-\begin{equation}
-\label{eq:magnetomotive_force}
-\mathcal{F} = N \cdot I
-\end{equation}
-
-\begin{equation}
-\label{eq:inductive_energy}
-E_L = \frac{1}{2} L I^2
-\end{equation}
-
-\begin{equation}
-\label{eq:transient_current_rise}
-i_L(t) = \frac{V_{\mathrm{boost}}}{R_{\mathrm{loop}}} \left( 1 - e^{-\frac{t}{\tau}} \right), \quad \tau = \frac{L}{R_{\mathrm{loop}}}
-\end{equation}
-
-\begin{equation}
-\label{eq:differential_opamp_gain}
-V_{\mathrm{ISENSE}} = \frac{R_f}{R_{\mathrm{in}}} (V_{\mathrm{ACS}} - V_{\mathrm{ref}}) = 10 \times (V_{\mathrm{ACS}} - 2.50\,\text{V})
-\end{equation}
 
 \section{MCTR II: Spooling}
 These are all the relevant technical data pertaining to the MCTR II work package.
